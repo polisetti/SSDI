@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.60.13" id="SearchStockPricePageDef"
+                Package="com.test.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="StockPricesVO" RangeSize="-1"
+              DataControl="SSDI_AMDataControl" id="StockPricesVOIterator"/>
+  </executables>
+  <bindings>
+    <graph IterBinding="StockPricesVOIterator" id="StockPricesVO"
+           xmlns="http://xmlns.oracle.com/adfm/dvt" type="LINE_VERT_ABS">
+      <graphDataMap leafOnly="true">
+        <series>
+          <data>
+            <item value="Price"/>
+          </data>
+        </series>
+        <groups>
+          <item value="Timetracked"/>
+        </groups>
+      </graphDataMap>
+    </graph>
+    <methodAction id="autoComplete"
+                  InstanceName="SSDI_AMDataControl.dataProvider"
+                  DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="autoComplete"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.SSDI_AMDataControl.methodResults.autoComplete_SSDI_AMDataControl_dataProvider_autoComplete_result">
+      <NamedData NDName="inputValue" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="displayGraph"
+                  InstanceName="SSDI_AMDataControl.dataProvider"
+                  DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="displayGraph"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="pStockName" NDValue="x" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

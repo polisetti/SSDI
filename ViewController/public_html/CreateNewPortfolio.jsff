@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <af:outputText value="Enter a portfolio name" id="ot1"
+                 inlineStyle="color:Black; font-size:large; text-align:center;"/>
+                   <br/>
+                   <br/>
+  <af:inputText label=" Name" id="it1" 
+                inlineStyle="color:Black; font-size:large;"/>
+                <br/>
+  <af:commandButton text="Create" id="cb1"/>
+  <af:spacer width="10" height="10" id="s1"/>
+  <af:commandButton text="Cancel" id="cb2"/>
+</jsp:root>

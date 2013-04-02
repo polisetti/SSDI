@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.60.13" id="MasterPagePageDef"
+                Package="com.test.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="UserPortfolioNamesROVO" RangeSize="25"
+              DataControl="SSDI_AMDataControl"
+              id="UserPortfolioNamesROVOIterator"/>
+    <taskFlow id="SearchStock1"
+              taskFlowId="/WEB-INF/SearchStock.xml#SearchStock"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="UserPortfolioNamesROVOIterator"
+          id="UserPortfolioNamesROVO">
+      <nodeDefinition DefName="com.test.model.view.UserPortfolioNamesROVO"
+                      Name="UserPortfolioNamesROVO0">
+        <AttrNames>
+          <Item Value="Portfolioname"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

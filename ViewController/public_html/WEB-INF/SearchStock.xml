@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="SearchStock">
+    <default-activity id="__1">SearchStockPrice</default-activity>
+    <managed-bean id="__7">
+      <managed-bean-name id="__9">SearchStockPriceBean</managed-bean-name>
+      <managed-bean-class id="__6">SearchStockPriceBean</managed-bean-class>
+      <managed-bean-scope id="__8">request</managed-bean-scope>
+    </managed-bean>
+    <view id="SearchStockPrice">
+      <page>/SearchStockPrice.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

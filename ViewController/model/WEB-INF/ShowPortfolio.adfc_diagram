@@ -1,0 +1,49 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View4">
+      <property
+         name="activityId">ShowPortfolio3</property>
+      <property
+         name="page">/ShowPortfolio.jsff</property>
+      <property
+         name="start">false</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>ShowPortfolio3&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">91.137695</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">13.356445</property>
+   </View>
+   <MethodCall
+      id="MethodCall12">
+      <property
+         name="activityId">initialScreen</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>initialScreen&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">183.16602</property>
+      <property
+         name="x">-251.3164</property>
+   </MethodCall>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase13"
+      from="MethodCall12"
+      to="View4">
+      <property
+         name="fromOutcome">initialScreen</property>
+      <property
+         name="sdm:polyPoints">R50,-210.3164,182.81543,-27.643555,90.78711,L50</property>
+   </ControlFlowCase>
+</SDM>

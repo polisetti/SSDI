@@ -1,0 +1,12 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="com.test.model.am.SSDI_AM">
+      <AppModuleConfig name="SSDI_AMLocal" DeployPlatform="LOCAL" JDBCName="SSDI-DEMO" jbo.project="com.test.model.Model" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" ApplicationName="com.test.model.am.SSDI_AM">
+         <Security AppModuleJndiName="com.test.model.am.SSDI_AM"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="SSDI_AMShared" DeployPlatform="LOCAL" JDBCName="SSDI-DEMO" jbo.project="com.test.model.Model" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" ApplicationName="com.test.model.am.SSDI_AM">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Security AppModuleJndiName="com.test.model.am.SSDI_AM"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

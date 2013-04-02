@@ -1,0 +1,161 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<table xmlns="http://xmlns.oracle.com/jdeveloper/1111/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">d96e6fbf-b18a-4448-977b-32bb8e69076e</identifier>
+  </ID>
+  <name>STOCKSINAGROUP</name>
+  <columns>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">82fb4298-8978-4ebc-9f51-d66100d4aba0</identifier>
+      </ID>
+      <name>GROUPID</name>
+      <dataTypeUsage class="oracle.javatools.db.datatypes.PredefinedDataTypeUsage">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">add8d258-9756-47da-a597-4fa0dcd0ce22</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">f9130364-662c-4bd3-aa41-c4d07350f4b5</identifier>
+      </ID>
+      <name>STOCKID</name>
+      <dataTypeUsage class="oracle.javatools.db.datatypes.PredefinedDataTypeUsage">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">b3dedcc5-cd4c-471a-9f71-22fb837ebd7e</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+    </column>
+  </columns>
+  <constraints>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">0e3a742b-e29b-4a04-8643-a52878dab464</identifier>
+      </ID>
+      <name>STOCKSINAGROUP_STOCKDETAI_FK1</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>GROUPID</name>
+          <identifier class="java.lang.String">82fb4298-8978-4ebc-9f51-d66100d4aba0</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>STOCKSINAGROUP</name>
+            <identifier class="java.lang.String">d96e6fbf-b18a-4448-977b-32bb8e69076e</identifier>
+            <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <deleteMode>0</deleteMode>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.OFFLINE_ONLY</key>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.IdentifierBasedID">
+        <name>STOCKGROUPS_PK</name>
+        <identifier class="java.lang.String">4546a33c-a8f6-4873-8af2-b0f1781f3766</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>STOCKGROUPS</name>
+          <identifier class="java.lang.String">9e88d7ee-d8cd-413c-9ab2-b059d1172ba4</identifier>
+          <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">2f01ba67-19ff-4900-a1d1-dde2be69eaff</identifier>
+      </ID>
+      <name>STOCKSINAGROUP_STOCKDETAI_FK2</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>STOCKID</name>
+          <identifier class="java.lang.String">f9130364-662c-4bd3-aa41-c4d07350f4b5</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>STOCKSINAGROUP</name>
+            <identifier class="java.lang.String">d96e6fbf-b18a-4448-977b-32bb8e69076e</identifier>
+            <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <deleteMode>0</deleteMode>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.OFFLINE_ONLY</key>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.IdentifierBasedID">
+        <name>STOCKDETAILS_PK</name>
+        <identifier class="java.lang.String">710c64da-32a0-46dd-bd3e-e86aa68e8203</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>STOCKDETAILS</name>
+          <identifier class="java.lang.String">9c98d5ed-1a47-455d-927a-5be422cbf949</identifier>
+          <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.PKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">460cb611-321f-4387-9939-21f46ce0d0f1</identifier>
+      </ID>
+      <name>STOCKSINAGROUP_PK</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>GROUPID</name>
+          <identifier class="java.lang.String">82fb4298-8978-4ebc-9f51-d66100d4aba0</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>STOCKSINAGROUP</name>
+            <identifier class="java.lang.String">d96e6fbf-b18a-4448-977b-32bb8e69076e</identifier>
+            <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+    </constraint>
+  </constraints>
+  <properties>
+    <entry>
+      <key>TableType</key>
+      <value class="oracle.javatools.db.Table$TableType">NORMAL</value>
+    </entry>
+  </properties>
+  <schema>
+    <name>SSDI_STOCKS_SCHEMA</name>
+  </schema>
+</table>

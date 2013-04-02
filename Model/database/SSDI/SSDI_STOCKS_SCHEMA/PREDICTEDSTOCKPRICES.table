@@ -1,0 +1,144 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<table xmlns="http://xmlns.oracle.com/jdeveloper/1111/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">6068a75d-0d64-48c1-951b-8500b859fb26</identifier>
+  </ID>
+  <name>PREDICTEDSTOCKPRICES</name>
+  <columns>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">98828ad6-a7ab-4763-91f1-d3b4580a291d</identifier>
+      </ID>
+      <name>STOCKID</name>
+      <dataTypeUsage class="oracle.javatools.db.datatypes.PredefinedDataTypeUsage">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">985b3145-3424-4e8d-a9e5-233e2d626176</identifier>
+        </ID>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">e25237da-33c4-4112-8bae-c2a14858bc5f</identifier>
+      </ID>
+      <name>DATETRACKED</name>
+      <dataTypeUsage class="oracle.javatools.db.datatypes.PredefinedDataTypeUsage">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">28a54fdf-0f6c-499e-aeac-59c2486d94bd</identifier>
+        </ID>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>DATE</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">9f00dd90-eaf3-459f-a91b-530f1c6167e9</identifier>
+      </ID>
+      <name>TIMEPREDICTED</name>
+      <dataTypeUsage class="oracle.javatools.db.datatypes.PredefinedDataTypeUsage">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">992fb71b-4bad-4311-8d88-5faf3b1ee9d9</identifier>
+        </ID>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">69721d6c-5cd4-4171-8959-8d0f5a1e9e69</identifier>
+      </ID>
+      <name>PRICEPREDICTED</name>
+      <dataTypeUsage class="oracle.javatools.db.datatypes.PredefinedDataTypeUsage">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">5fdd596f-b9d3-473b-b8e6-f2d2ccca86f7</identifier>
+        </ID>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+    </column>
+  </columns>
+  <constraints>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">d74075f7-a8c2-4411-9577-911d16444094</identifier>
+      </ID>
+      <name>PREDICTEDSTOCKPRICES_STOC_FK1</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>STOCKID</name>
+          <identifier class="java.lang.String">98828ad6-a7ab-4763-91f1-d3b4580a291d</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>PREDICTEDSTOCKPRICES</name>
+            <identifier class="java.lang.String">6068a75d-0d64-48c1-951b-8500b859fb26</identifier>
+            <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <deleteMode>0</deleteMode>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.OFFLINE_ONLY</key>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.IdentifierBasedID">
+        <name>STOCKDETAILS_PK</name>
+        <identifier class="java.lang.String">710c64da-32a0-46dd-bd3e-e86aa68e8203</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>STOCKDETAILS</name>
+          <identifier class="java.lang.String">9c98d5ed-1a47-455d-927a-5be422cbf949</identifier>
+          <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.PKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">ded9fae3-2a25-4866-b794-0821e9655f73</identifier>
+      </ID>
+      <name>PREDICTEDSTOCKPRICES_PK</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>STOCKID</name>
+          <identifier class="java.lang.String">98828ad6-a7ab-4763-91f1-d3b4580a291d</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>PREDICTEDSTOCKPRICES</name>
+            <identifier class="java.lang.String">6068a75d-0d64-48c1-951b-8500b859fb26</identifier>
+            <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+    </constraint>
+  </constraints>
+  <properties>
+    <entry>
+      <key>TableType</key>
+      <value class="oracle.javatools.db.Table$TableType">NORMAL</value>
+    </entry>
+  </properties>
+  <schema>
+    <name>SSDI_STOCKS_SCHEMA</name>
+  </schema>
+</table>

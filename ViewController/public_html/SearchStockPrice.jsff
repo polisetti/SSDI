@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+  <af:panelSplitter id="ps1" orientation="vertical" splitterPosition="203">
+    <f:facet name="first">
+      <af:panelGroupLayout id="pgl1" halign="center" valign="middle"
+                           layout="vertical">
+        <af:spacer width="10" height="30" id="s3"/>
+        <af:activeOutputText value="Enter the Stock Name" id="aot1"
+                             inlineStyle="color:Black; font-size:x-large; text-align:center;"/>
+        <af:panelGroupLayout id="pgl2" layout="horizontal">
+          <af:inputText label="" id="it1"
+                        inlineStyle="font-size:medium; text-align:center;"
+                        columns="40" autoSubmit="true"
+                        value="#{SearchStockPriceBean.stockName}">
+                        
+            <af:autoSuggestBehavior suggestItems="#{SearchStockPriceBean.autoComplete}"/>
+          </af:inputText>
+          <af:spacer width="10" height="10" id="s1"/>
+          <af:commandButton
+                            text="Search"
+                            id="cb2"
+                            action="#{SearchStockPriceBean.getStockID}"/>
+          <af:spacer width="10" height="10" id="s2"/>
+          <f:verbatim>
+            <br/>
+            <br/>
+          </f:verbatim>
+        </af:panelGroupLayout>
+        <f:verbatim>
+          <br/>
+        </f:verbatim>
+      </af:panelGroupLayout>
+    </f:facet>
+    <f:facet name="second">
+      <dvt:lineGraph id="lineGraph1"
+                     value="#{bindings.StockPricesVO.graphModel}"
+                     subType="LINE_VERT_ABS" threeDEffect="false"
+                     inlineStyle="text-align:center;" partialTriggers="::cb2">
+        <dvt:background>
+          <dvt:specialEffects/>
+        </dvt:background>
+        <dvt:graphPlotArea/>
+        <dvt:seriesSet>
+          <dvt:series/>
+        </dvt:seriesSet>
+        <dvt:o1Axis/>
+        <dvt:y1Axis/>
+        <dvt:legendArea automaticPlacement="AP_NEVER" position="LAP_TOP"
+                        rendered="false"/>
+        <dvt:graphSubtitle text="Subtitle" rendered="false"/>
+        <dvt:graphTitle text="StockPriceGraph"/>
+        <dvt:o1Title text="Time"/>
+        <dvt:y1Title text="Price"/>
+        <dvt:legendTitle id="legendTitle1" text="Legend Title"
+                         rendered="false"/>
+      </dvt:lineGraph>
+    </f:facet>
+  </af:panelSplitter>
+</jsp:root>

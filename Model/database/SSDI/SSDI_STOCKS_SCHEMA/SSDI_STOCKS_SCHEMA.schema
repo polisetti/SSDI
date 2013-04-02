@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<schema xmlns="http://xmlns.oracle.com/jdeveloper/1111/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">8dc792c6-bc5c-495f-b104-b8bb9adf3747</identifier>
+  </ID>
+  <name>SSDI_STOCKS_SCHEMA</name>
+</schema>

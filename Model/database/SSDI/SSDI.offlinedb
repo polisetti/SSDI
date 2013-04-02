@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<ProviderSettings xmlns="http://xmlns.oracle.com/ide/hash">
+   <hash n="dataTypeSettings">
+      <value n="sourceKey" v="oracle.javatools.db.ora.Oracle11g"/>
+   </hash>
+   <value n="id" v="3b6ab738-013d-1000-8001-c0a8010d9e17"/>
+   <value n="name" v="SSDI"/>
+   <hash n="oracle.jdeveloper.offlinedb.model.ProviderDefaultTemplateSettings">
+      <hash n="default-template-ids">
+         <value n="TABLE" v="I:TABLE:8ae8c1fa-1ef4-47e7-95b0-b61f61b1f168"/>
+      </hash>
+   </hash>
+</ProviderSettings>

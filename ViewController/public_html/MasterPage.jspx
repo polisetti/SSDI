@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/oracle/templates/threeColumnTemplate.jspx"
+                         id="pt1">
+          <f:facet name="header"/>
+          <f:facet name="end">
+            <af:activeOutputText value="Todays Notes" id="aot1"
+                                 inlineStyle="color:Black; font-size:small;">
+              <textarea name="EveryDayTextArea" cols="1" rows="20"
+                        readonly="readonly"></textarea>
+            </af:activeOutputText>
+          </f:facet>
+          <f:facet name="start">
+            <af:panelAccordion id="pa1">
+              <af:showDetailItem text="Home" id="sdi1">
+                <af:panelGroupLayout id="pgl1">
+                  <h:commandLink value="Get Quote" id="cl1"
+                                 style="font-size:small; color:Black; text-align:center;"/>
+                  <br/><br/>
+                </af:panelGroupLayout>
+              </af:showDetailItem>
+              <af:showDetailItem text="Stocks" id="sdi2">
+                <af:panelGroupLayout id="pgl2">
+                  <h:commandLink value="Get Stock Quote" id="cl2"
+                                 style="color:Black; font-size:small;"/>
+                  <br/><br/>
+                  <h:commandLink value="See Predicted" id="cl3"
+                                 style="color:Black; font-size:small;"/>
+                  <br/><br/>
+                  <h:commandLink value="Compare Stocks" id="cl4"
+                                 style="color:Black; font-size:small;"/>                 
+                </af:panelGroupLayout>
+              </af:showDetailItem>
+              <af:showDetailItem text="PortFolios" id="sdi3">
+                <af:panelGroupLayout id="pgl3">
+                  <af:table value="#{bindings.UserPortfolioNamesROVO.collectionModel}"
+                            var="row"
+                            autoHeightRows="#{bindings.UserPortfolioNamesROVO.estimatedRowCount+2}"
+                            rows="#{bindings.UserPortfolioNamesROVO.rangeSize}"
+                            emptyText="#{bindings.UserPortfolioNamesROVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                            fetchSize="#{bindings.UserPortfolioNamesROVO.rangeSize}"
+                            rowBandingInterval="0" id="t1">
+                    <af:column sortProperty="Portfolioname" sortable="false" id="c1">
+                      <af:outputText value="#{row.Portfolioname}" id="ot1"/>
+                    </af:column>
+                  </af:table>
+                  <h:commandLink value="Create New" id="cl8"/>
+                </af:panelGroupLayout>
+              </af:showDetailItem>
+              <af:showDetailItem text="DomesticTrends" id="sdi4">
+                <h:commandLink value="Add" id="cl6"/>
+              </af:showDetailItem>
+              <af:showDetailItem text="Recently Viewed" id="sdi5"/>
+            </af:panelAccordion>
+          </f:facet>
+          <f:facet name="copyright"/>
+          <f:facet name="status">
+            <af:panelGroupLayout id="pgl4">
+            <br/>
+              <h:commandLink value="Logout" id="cl5"/>
+              <af:spacer width="10" height="10" id="s1"/>
+              <h:commandLink value="ViewDemo" id="cl7"/>
+              <af:spacer width="20" height="10" id="s2"/>
+            </af:panelGroupLayout>
+          </f:facet>
+          <f:facet name="center">
+            <af:region value="#{bindings.SearchStock1.regionModel}" id="r1"/>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

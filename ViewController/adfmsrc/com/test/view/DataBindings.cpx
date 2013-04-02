@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.60.13" id="DataBindings" SeparateXMLFiles="false"
+             Package="com.test.view" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+    <factory nameSpace="http://xmlns.oracle.com/adfm/dvt"
+             className="oracle.adfinternal.view.faces.dvt.model.binding.FacesBindingFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/MasterPage.jspx" usageId="com_test_view_MasterPagePageDef"/>
+    <page path="/ShowPortfolio.jsff"
+          usageId="com_test_view_ShowPortfolioPageDef"/>
+    <page path="/ShowPortfolio.jspx" usageId="com_test_view_untitled1PageDef"/>
+    <page path="/WEB-INF/ShowPortfolio.xml#ShowPortfolio@initialScreen"
+          usageId="com_test_view_ShowPortfolio_ShowPortfolio_initialScreenPageDef"/>
+    <page path="/LineGraph.jspx" usageId="com_test_view_LineGraphPageDef"/>
+    <page path="/SearchStockPrice.jsff"
+          usageId="com_test_view_SearchStockPricePageDef"/>
+    <page path="/SearchStockPrice.jspx"
+          usageId="com_test_view_SearchStockPricePageDef1"/>
+    <page path="/TestMultiSelect.jspx"
+          usageId="com_test_view_TestMultiSelectPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="com_test_view_MasterPagePageDef"
+          path="com.test.view.pageDefs.MasterPagePageDef"/>
+    <page id="com_test_view_ShowPortfolioPageDef"
+          path="com.test.view.pageDefs.ShowPortfolioPageDef"/>
+    <page id="com_test_view_untitled1PageDef"
+          path="com.test.view.pageDefs.untitled1PageDef"/>
+    <page id="com_test_view_ShowPortfolio_ShowPortfolio_initialScreenPageDef"
+          path="com.test.view.pageDefs.ShowPortfolio_ShowPortfolio_initialScreenPageDef"/>
+    <page id="com_test_view_LineGraphPageDef"
+          path="com.test.view.pageDefs.LineGraphPageDef"/>
+    <page id="com_test_view_SearchStockPricePageDef"
+          path="com.test.view.pageDefs.SearchStockPricePageDef"/>
+    <page id="com_test_view_SearchStockPricePageDef1"
+          path="com.test.view.pageDefs.SearchStockPricePageDef1"/>
+    <page id="com_test_view_TestMultiSelectPageDef"
+          path="com.test.view.pageDefs.TestMultiSelectPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="SSDI_AMDataControl" Package="com.test.model.am"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="SSDI_AMLocal"
+                     syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

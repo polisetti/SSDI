@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelCollection id="pc1">
+    <af:table value="#{bindings.PortfolioStocksVO.collectionModel}" var="row"
+              rows="#{bindings.PortfolioStocksVO.rangeSize}"
+              emptyText="#{bindings.PortfolioStocksVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.PortfolioStocksVO.rangeSize}"
+              rowBandingInterval="0"
+              selectionListener="#{bindings.PortfolioStocksVO.collectionModel.makeCurrent}"
+              autoHeightRows="#{bindings.PortfolioStocksVO.estimatedRowCount}"
+              rowSelection="multiple" id="t1"
+              partialTriggers="::cb1 :::cb5"
+              styleClass="AFStretchWidth">
+      <af:column sortProperty="Selection" sortable="false"
+                 headerText="#{bindings.PortfolioStocksVO.hints.Selection.label}"
+                 id="c5">
+        <af:selectBooleanCheckbox text=""
+                                  value="#{row.Selection}"
+                                  id="sbc1"/>
+      </af:column>
+      <af:column sortProperty="Dateadded" sortable="false"
+                 headerText="#{bindings.PortfolioStocksVO.hints.Dateadded.label}"
+                 id="c2">
+        <af:outputText value="#{row.Dateadded}" id="ot2">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.PortfolioStocksVO.hints.Dateadded.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="Portfolioid" sortable="false"
+                 headerText="#{bindings.PortfolioStocksVO.hints.Portfolioid.label}"
+                 id="c1">
+        <af:outputText value="#{row.Portfolioid}" id="ot4">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.PortfolioStocksVO.hints.Portfolioid.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="Stockid" sortable="false"
+                 headerText="#{bindings.PortfolioStocksVO.hints.Stockid.label}"
+                 id="c3">
+        <af:outputText value="#{row.Stockid}" id="ot1">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.PortfolioStocksVO.hints.Stockid.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="Timeadded" sortable="false"
+                 headerText="#{bindings.PortfolioStocksVO.hints.Timeadded.label}"
+                 id="c4">
+        <af:outputText value="#{row.Timeadded}" id="ot3">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.PortfolioStocksVO.hints.Timeadded.format}"/>
+        </af:outputText>
+      </af:column>
+    </af:table>
+    <f:facet name="viewMenu"/>
+    <f:facet name="toolbar">
+      <af:toolbar id="t2">
+        <af:commandToolbarButton text="Compare Stocks" id="ctb1"
+                                 actionListener="#{PortfolioBakingBean.compareStocks}"/>
+        <af:commandButton actionListener="#{bindings.Delete.execute}"
+                          text="Delete Stock"
+                          disabled="#{!bindings.Delete.enabled}" id="cb1"
+                          immediate="true"/>
+        <af:commandButton actionListener="#{bindings.Delete1.execute}"
+                          text="Delete Portfolio"
+                          disabled="#{!bindings.Delete1.enabled}" id="cb2"/>
+      </af:toolbar>
+    </f:facet>
+  </af:panelCollection>
+  <af:spacer width="10" height="10" id="s2"/>
+  <af:panelGroupLayout id="pgl1" layout="horizontal">
+    <af:inputText label="Enter" id="it1"
+                  value="#{PortfolioBakingBean.stockName}">
+      <af:autoSuggestBehavior suggestItems="#{PortfolioBakingBean.auto}"/>
+    </af:inputText>
+    <af:spacer width="10" height="10" id="s1"/>
+    <af:commandButton text="Add To Portfolio" id="cb5"
+                      actionListener="#{PortfolioBakingBean.addStocksToPortfolio}"/>
+    <af:spacer width="10" height="10" id="s3"/>
+    <af:commandButton actionListener="#{bindings.Commit.execute}"
+                      text="Commit All Changes"
+                      disabled="#{!bindings.Commit.enabled}" id="cb3"/>
+  </af:panelGroupLayout>
+</jsp:root>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Association SYSTEM "jbo_03_01.dtd">
+<!---->
+<Association
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="UserportfoliosUseridFkAssoc"
+  Version="11.1.1.60.13">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <AssociationEnd
+    Name="UserDetailsEO"
+    Cardinality="1"
+    Source="true"
+    Owner="com.test.model.entity.UserDetailsEO">
+    <DesignTime>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="UserDetailsEO"/>
+      <Attr Name="_foreignKey"
+        Value="com.test.model.entity.UserDetailsEO.UserdetailsUseridPk"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.test.model.entity.UserDetailsEO.Userid"/>
+    </AttrArray>
+  </AssociationEnd>
+  <AssociationEnd
+    Name="UserPortfoliosEO"
+    Cardinality="-1"
+    Owner="com.test.model.entity.UserPortfoliosEO">
+    <DesignTime>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="UserPortfoliosEO"/>
+      <Attr Name="_foreignKey"
+        Value="com.test.model.entity.UserPortfoliosEO.UserportfoliosUseridFk"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.test.model.entity.UserPortfoliosEO.Userid"/>
+    </AttrArray>
+  </AssociationEnd>
+</Association>

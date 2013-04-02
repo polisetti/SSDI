@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="ShowPortfolio">
+    <default-activity id="__44">initialScreen</default-activity>
+    <input-parameter-definition id="__36">
+      <name id="__37">inputParameter1</name>
+      <class>java.lang.Integer</class>
+    </input-parameter-definition>
+    <managed-bean id="__2">
+      <managed-bean-name id="__5">PortfolioBakingBean</managed-bean-name>
+      <managed-bean-class id="__3">PortfolioBakingBean</managed-bean-class>
+      <managed-bean-scope id="__4">request</managed-bean-scope>
+    </managed-bean>
+    <view id="ShowPortfolio3">
+      <page>/ShowPortfolio.jsff</page>
+    </view>
+    <method-call id="initialScreen">
+      <method>#{bindings.initialScreen.execute}</method>
+      <outcome id="__38">
+        <fixed-outcome>initialScreen</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__39">
+      <from-activity-id id="__40">initialScreen</from-activity-id>
+      <control-flow-case id="__41">
+        <from-outcome id="__42">initialScreen</from-outcome>
+        <to-activity-id id="__43">ShowPortfolio3</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

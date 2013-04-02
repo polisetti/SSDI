@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.60.13"
+                id="ShowPortfolio_ShowPortfolio_initialScreenPageDef"
+                Package="com.test.view.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <action id="initialScreen" RequiresUpdateModel="true" Action="invokeMethod"
+            MethodName="initialScreen" IsViewObjectMethod="false"
+            DataControl="SSDI_AMDataControl"
+            InstanceName="SSDI_AMDataControl.dataProvider"/>
+  </bindings>
+</pageDefinition>

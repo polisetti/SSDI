@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.60.13" id="ShowPortfolioPageDef"
+                Package="com.test.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="PortfolioStocksVO" RangeSize="25"
+              DataControl="SSDI_AMDataControl" id="PortfolioStocksVOIterator"/>
+    <iterator Binds="UserPortfolioNamesROVO" RangeSize="25"
+              DataControl="SSDI_AMDataControl"
+              id="UserPortfolioNamesROVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="PortfolioStocksVOIterator" id="PortfolioStocksVO">
+      <nodeDefinition DefName="com.test.model.view.PortfolioStocksVO"
+                      Name="PortfolioStocksVO0">
+        <AttrNames>
+          <Item Value="Dateadded"/>
+          <Item Value="Portfolioid"/>
+          <Item Value="Stockid"/>
+          <Item Value="Timeadded"/>
+          <Item Value="Selection"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="compareStocks"
+                  InstanceName="SSDI_AMDataControl.dataProvider"
+                  DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="compareStocks"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="stockID1" NDType="int"/>
+      <NamedData NDName="stockID2" NDType="int"/>
+    </methodAction>
+    <methodAction id="deletePortfolio"
+                  InstanceName="SSDI_AMDataControl.dataProvider"
+                  DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="deletePortfolio"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="portfolioID" NDType="int"/>
+    </methodAction>
+    <methodAction id="deleteStocksFromPortfolio"
+                  InstanceName="SSDI_AMDataControl.dataProvider"
+                  DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="deleteStocksFromPortfolio"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="stockID" NDType="int"/>
+      <NamedData NDName="portfolioID" NDType="int"/>
+    </methodAction>
+    <action IterBinding="PortfolioStocksVOIterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action IterBinding="UserPortfolioNamesROVOIterator" id="Delete1"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <methodAction id="autoComplete"
+                  InstanceName="SSDI_AMDataControl.dataProvider"
+                  DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="autoComplete"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.SSDI_AMDataControl.methodResults.autoComplete_SSDI_AMDataControl_dataProvider_autoComplete_result">
+      <NamedData NDName="inputValue" NDType="java.lang.String"/>
+    </methodAction>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="SSDI_AMDataControl"/>
+    <methodAction id="getStockID" InstanceName="SSDI_AMDataControl.dataProvider"
+                  DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getStockID"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.SSDI_AMDataControl.methodResults.getStockID_SSDI_AMDataControl_dataProvider_getStockID_result">
+      <NamedData NDName="pStockName" NDValue="x" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="addStocksToPortfolio"
+                  InstanceName="SSDI_AMDataControl.dataProvider"
+                  DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="addStocksToPortfolio"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="stockID" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

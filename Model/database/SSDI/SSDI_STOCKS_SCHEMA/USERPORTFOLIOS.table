@@ -1,0 +1,134 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<table xmlns="http://xmlns.oracle.com/jdeveloper/1111/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">d94c9cb6-4fe7-49ad-b766-67bd46349f41</identifier>
+  </ID>
+  <name>USERPORTFOLIOS</name>
+  <columns>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">ec475627-b98a-418c-b9f5-e9008bcaa19b</identifier>
+      </ID>
+      <name>USERID</name>
+      <dataTypeUsage class="oracle.javatools.db.datatypes.PredefinedDataTypeUsage">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">d76e0037-8615-469f-9239-942f55e650f0</identifier>
+        </ID>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">41eb7751-30d5-4f40-b483-0ef12fe66b60</identifier>
+      </ID>
+      <name>PORTFOLIOID</name>
+      <dataTypeUsage class="oracle.javatools.db.datatypes.PredefinedDataTypeUsage">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">8ae6b6a1-b6d9-487c-acdb-ef98bcf6ebcf</identifier>
+        </ID>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+    <column>
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">31ea0173-1449-4b07-83fa-f9bd46b0244f</identifier>
+      </ID>
+      <name>PORTFOLIONAME</name>
+      <dataTypeUsage class="oracle.javatools.db.datatypes.PredefinedDataTypeUsage">
+        <ID class="oracle.javatools.db.IdentifierBasedID">
+          <identifier class="java.lang.String">9196fe7d-637c-4df6-b984-af24795722db</identifier>
+        </ID>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">20</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle9i</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+    </column>
+  </columns>
+  <constraints>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">57901b6c-b4ca-4d12-9dc0-4871dc2a3743</identifier>
+      </ID>
+      <name>USERPORTFOLIOS_USERDETAIL_FK1</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>USERID</name>
+          <identifier class="java.lang.String">ec475627-b98a-418c-b9f5-e9008bcaa19b</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>USERPORTFOLIOS</name>
+            <identifier class="java.lang.String">d94c9cb6-4fe7-49ad-b766-67bd46349f41</identifier>
+            <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <deleteMode>0</deleteMode>
+      <enabled>true</enabled>
+      <properties>
+        <entry>
+          <key>OfflineDBConstants.OFFLINE_ONLY</key>
+        </entry>
+      </properties>
+      <referenceID class="oracle.javatools.db.IdentifierBasedID">
+        <name>USERDETAILS_PK</name>
+        <identifier class="java.lang.String">209b6bda-7095-41c7-9a93-6a68b14c6e04</identifier>
+        <parent class="oracle.javatools.db.IdentifierBasedID">
+          <name>USERDETAILS</name>
+          <identifier class="java.lang.String">85ca0903-b721-444a-94e3-c37311c72024</identifier>
+          <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.PKConstraint">
+      <ID class="oracle.javatools.db.IdentifierBasedID">
+        <identifier class="java.lang.String">3f101dd2-d6e3-45e8-8dd4-4365ab6903c3</identifier>
+      </ID>
+      <name>USERPORTFOLIOS_PK</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.IdentifierBasedID">
+          <name>PORTFOLIOID</name>
+          <identifier class="java.lang.String">41eb7751-30d5-4f40-b483-0ef12fe66b60</identifier>
+          <parent class="oracle.javatools.db.IdentifierBasedID">
+            <name>USERPORTFOLIOS</name>
+            <identifier class="java.lang.String">d94c9cb6-4fe7-49ad-b766-67bd46349f41</identifier>
+            <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>SSDI_STOCKS_SCHEMA</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+    </constraint>
+  </constraints>
+  <properties>
+    <entry>
+      <key>TableType</key>
+      <value class="oracle.javatools.db.Table$TableType">NORMAL</value>
+    </entry>
+  </properties>
+  <schema>
+    <name>SSDI_STOCKS_SCHEMA</name>
+  </schema>
+</table>
