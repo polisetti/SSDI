@@ -5,4 +5,9 @@
     <managed-bean-class id="__2">StockDataBean</managed-bean-class>
     <managed-bean-scope id="__4">request</managed-bean-scope>
   </managed-bean>
+  <managed-bean id="__7">
+    <managed-bean-name id="__8">multiSelectBackingBean</managed-bean-name>
+    <managed-bean-class id="__5">MultiSelectBackingBean</managed-bean-class>
+    <managed-bean-scope id="__6">request</managed-bean-scope>
+  </managed-bean>
 </adfc-config>

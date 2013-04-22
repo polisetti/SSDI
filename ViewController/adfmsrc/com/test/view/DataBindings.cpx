@@ -23,6 +23,10 @@
           usageId="com_test_view_SearchStockPricePageDef1"/>
     <page path="/TestMultiSelect.jspx"
           usageId="com_test_view_TestMultiSelectPageDef"/>
+    <page path="/CompareStocks.jsff"
+          usageId="com_test_view_CompareStocksPageDef1"/>
+    <page path="/CompareStocks.jspx"
+          usageId="com_test_view_CompareStocksPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="com_test_view_MasterPagePageDef"
@@ -41,6 +45,10 @@
           path="com.test.view.pageDefs.SearchStockPricePageDef1"/>
     <page id="com_test_view_TestMultiSelectPageDef"
           path="com.test.view.pageDefs.TestMultiSelectPageDef"/>
+    <page id="com_test_view_CompareStocksPageDef1"
+          path="com.test.view.pageDefs.CompareStocksPageDef1"/>
+    <page id="com_test_view_CompareStocksPageDef"
+          path="com.test.view.pageDefs.CompareStocksPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <BC4JDataControl id="SSDI_AMDataControl" Package="com.test.model.am"

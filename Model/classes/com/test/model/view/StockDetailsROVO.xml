@@ -7,14 +7,14 @@
   Version="11.1.1.60.13"
   BindingStyle="OracleName"
   CustomQuery="true"
-  PageIterMode="Full"
-  UseGlueCode="false"
   RowClass="com.test.model.view.StockDetailsROVORowImpl"
   ComponentClass="com.test.model.view.StockDetailsROVOImpl"
+  PageIterMode="Full"
+  UseGlueCode="false"
   AutoRefresh="true">
   <DesignTime>
-    <Attr Name="_isExpertMode" Value="true"/>
     <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
     <Attr Name="_isCodegen" Value="true"/>
   </DesignTime>
   <Properties>
@@ -27,6 +27,10 @@
     Name="BindStockName"
     Kind="viewcriteria"
     Type="java.lang.String"/>
+  <Variable
+    Name="BindStockID"
+    Kind="viewcriteria"
+    Type="oracle.jbo.domain.Number"/>
   <SQLQuery>
     <![CDATA[SELECT *
  
@@ -80,7 +84,45 @@ FROM
     </DesignTime>
   </ViewAttribute>
   <ViewCriteria
-    Name="StockDetailsROVVOCriteria"
+    Name="StockDetailsROVVOgetIDCriteria"
+    ViewObjectName="com.test.model.view.StockDetailsROVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="Stockname"
+        ViewAttribute="Stockname"
+        Operator="="
+        Conjunction="AND"
+        Value=":BindStockName"
+        GenerateIsNullClauseForBindVars="false"
+        ValidateBindVars="true"
+        IsBindVarValue="true"
+        Required="Required"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ViewCriteria
+    Name="StockDetailsROVOGetNameCriteria"
     ViewObjectName="com.test.model.view.StockDetailsROVO"
     Conjunction="AND">
     <Properties>
@@ -103,18 +145,16 @@ FROM
       </CustomProperties>
     </Properties>
     <ViewCriteriaRow
-      Name="vcrow0"
+      Name="vcrow8"
       UpperColumns="1">
       <ViewCriteriaItem
-        Name="Stockname"
-        ViewAttribute="Stockname"
+        Name="StockDetailsROVOCriteria_vcrow8_Stockid"
+        ViewAttribute="Stockid"
         Operator="="
         Conjunction="AND"
-        Value=":BindStockName"
-        GenerateIsNullClauseForBindVars="false"
-        ValidateBindVars="true"
+        Value=":BindStockID"
         IsBindVarValue="true"
-        Required="Required"/>
+        Required="Optional"/>
     </ViewCriteriaRow>
   </ViewCriteria>
   <ResourceBundle>

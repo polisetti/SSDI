@@ -102,7 +102,7 @@ public class SSDI_AMImpl extends ApplicationModuleImpl implements SSDI_AM {
     public Number getStockID(String pStockName) {
       StockDetailsROVOImpl stockDetailsVO = this.getStockDetailsROVO();
       
-      ViewCriteria vc = stockDetailsVO.getViewCriteria("StockDetailsROVVOCriteria");
+      ViewCriteria vc = stockDetailsVO.getViewCriteria("StockDetailsROVVOgetIDCriteria");
       vc.resetCriteria();
       stockDetailsVO.setBindStockName(pStockName);
       stockDetailsVO.applyViewCriteria(vc);
@@ -112,6 +112,21 @@ public class SSDI_AMImpl extends ApplicationModuleImpl implements SSDI_AM {
       StockDetailsROVORowImpl resultRow = (StockDetailsROVORowImpl)stockDetailsVO.first();
       return resultRow.getStockid();
     }
+
+    public String getStockName(Number pStockID) {
+      StockDetailsROVOImpl stockDetailsVO = this.getStockDetailsROVO();
+      
+      ViewCriteria vc = stockDetailsVO.getViewCriteria("StockDetailsROVOGetNameCriteria");
+      vc.resetCriteria();
+      stockDetailsVO.setBindStockID(pStockID);
+      stockDetailsVO.applyViewCriteria(vc);
+      stockDetailsVO.executeQuery();
+      
+      // parsing the VO results
+      StockDetailsROVORowImpl resultRow = (StockDetailsROVORowImpl)stockDetailsVO.first();
+      return resultRow.getStockname();
+    }
+
 
     public void addStocksToPortfolio(Number stockID) {
         PortfolioStocksVOImpl vo = getPortfolioStocksVO();
@@ -222,5 +237,13 @@ public class SSDI_AMImpl extends ApplicationModuleImpl implements SSDI_AM {
      */
     public ViewObjectImpl getTestPortfolioStocksVO() {
         return (ViewObjectImpl)findViewObject("TestPortfolioStocksVO");
+    }
+
+    /**
+     * Container's getter for PortfolioStocks2.
+     * @return PortfolioStocks2
+     */
+    public ViewObjectImpl getPortfolioStocks2() {
+        return (ViewObjectImpl)findViewObject("PortfolioStocks2");
     }
 }

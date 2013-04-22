@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process name="SOA_SSDI_BPEL" targetNamespace="http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL" xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:client="http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL" xmlns:ora="http://schemas.oracle.com/xpath/extension" xmlns:bpelx="http://schemas.oracle.com/bpel/extension" xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/db/SSDI+Demo/SOA_SSDI/DBAdapterService" xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/top/DBAdapterService" xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20" xmlns:aia="http://www.oracle.com/XSL/Transform/java/oracle.apps.aia.core.xpath.AIAFunctions" xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc" xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath" xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath" xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk" xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions" xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/file/SSDI+Demo/SOA_SSDI/WriteFileAdapterService" xmlns:ns4="http://TargetNamespace.com/WriteFileAdapterService" id="BpPrc0">
+
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="SOA_SSDI_Service" partnerLinkType="client:SOA_SSDI_BPEL" myRole="SOA_SSDI_BPELProvider"/>
+    <partnerLink name="DBAdapterService" partnerLinkType="ns1:DBAdapterService_plt" partnerRole="DBAdapterService_role"/>
+    <partnerLink name="WriteFileAdapterService" partnerLinkType="ns3:Write_plt" partnerRole="Write_role"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:SOA_SSDI_BPELRequestMessage"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="client:SOA_SSDI_BPELResponseMessage"/>
+    <variable name="InputVariable_DBAdapter" messageType="ns1:DBAdapterServiceSelect_inputParameters"/>
+    <variable name="OutputVariable_DBAdapter" messageType="ns1:TeststockpricesCollection_msg"/>
+    <variable name="Iterator" type="xsd:integer"/>
+    <variable name="Count" type="xsd:integer"/>
+    <variable name="writeFileAdapter_InputVariable" messageType="ns3:Write_msg"/>
+    <variable name="tempVar" type="xsd:double"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main" id="BpSeq0">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in SOA_SSDI_BPEL.wsdl) -->
+    <receive name="receiveInput" partnerLink="SOA_SSDI_Service" portType="client:SOA_SSDI_BPEL" operation="process" variable="inputVariable" createInstance="yes" id="BpRcv0"/>
+
+    <!-- Generate reply to synchronous request -->
+    <assign name="Assign_DBAdapter" id="BpAss0">
+      <copy>
+        <from variable="inputVariable" part="payload" query="/client:process/client:StockID"/>
+        <to variable="InputVariable_DBAdapter" part="DBAdapterServiceSelect_inputParameters" query="/ns2:DBAdapterServiceSelect_BindStockID_BindStartDate_BindEndDateInputParameters/ns2:BindStockID"/>
+      </copy>
+      <copy>
+        <from variable="inputVariable" part="payload" query="/client:process/client:StartDate"/>
+        <to variable="InputVariable_DBAdapter" part="DBAdapterServiceSelect_inputParameters" query="/ns2:DBAdapterServiceSelect_BindStockID_BindStartDate_BindEndDateInputParameters/ns2:BindStartDate"/>
+      </copy>
+      <copy>
+        <from variable="inputVariable" part="payload" query="/client:process/client:EndDate"/>
+        <to variable="InputVariable_DBAdapter" part="DBAdapterServiceSelect_inputParameters" query="/ns2:DBAdapterServiceSelect_BindStockID_BindStartDate_BindEndDateInputParameters/ns2:BindEndDate"/>
+      </copy>
+    </assign>
+    <invoke name="Invoke_DBAdapter" inputVariable="InputVariable_DBAdapter" outputVariable="OutputVariable_DBAdapter" partnerLink="DBAdapterService" portType="ns1:DBAdapterService_ptt" operation="DBAdapterServiceSelect" bpelx:invokeAsDetail="no" id="BpInv0"/>
+    <assign name="Assign_Count_And_Iterator" id="BpAss1">
+      <copy>
+        <from expression="ora:countNodes('OutputVariable_DBAdapter','TeststockpricesCollection','/ns2:TeststockpricesCollection/ns2:Teststockprices')"/>
+        <to variable="Count"/>
+      </copy>
+      <copy>
+        <from expression="1"/>
+        <to variable="Iterator"/>
+      </copy>
+    </assign>
+    <assign name="Transform_DBOutput_To_FileInput" id="BpAss2">
+      <bpelx:annotation>
+        <bpelx:pattern>transformation</bpelx:pattern>
+      </bpelx:annotation>
+      <copy>
+        <from expression="ora:doXSLTransformForDoc('xsl/Transformation_1.xsl', $OutputVariable_DBAdapter.TeststockpricesCollection)"/>
+        <to variable="writeFileAdapter_InputVariable" part="body"/>
+      </copy>
+    </assign>
+    <invoke name="Invoke_writeFileAdapter" inputVariable="writeFileAdapter_InputVariable" partnerLink="WriteFileAdapterService" portType="ns3:Write_ptt" operation="Write" bpelx:invokeAsDetail="no" id="BpInv1"/>
+    <bpelx:exec import="org.w3c.dom.Element" id="BxExe0"/>
+    <bpelx:exec import="prediction.*" id="BxExe1"/>
+    <bpelx:exec name="Prediction_Algorithm" version="1.5" language="java" id="BxExe2">
+      <![CDATA[Double predictedPrice = PredictionAlgorithm.predictedValue();  
+setVariableData("tempVar", predictedPrice);]]>
+    </bpelx:exec>
+        <assign name="Assign1" id="BpAss3">
+      <copy>
+        <from variable="tempVar"/>
+        <to variable="outputVariable" part="payload" query="/client:processResponse/client:result"/>
+      </copy>
+    </assign>
+    <reply name="replyOutput" partnerLink="SOA_SSDI_Service" portType="client:SOA_SSDI_BPEL" operation="process" variable="outputVariable" id="BpRpl0"/>
+  </sequence>
+</process><!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Tue Apr 16 16:07:49 EDT 2013
+  Author:  owner
+  Type: BPEL 1.1 Process
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->

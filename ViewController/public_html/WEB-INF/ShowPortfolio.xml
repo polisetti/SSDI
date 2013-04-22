@@ -9,7 +9,7 @@
     <managed-bean id="__2">
       <managed-bean-name id="__5">PortfolioBakingBean</managed-bean-name>
       <managed-bean-class id="__3">PortfolioBakingBean</managed-bean-class>
-      <managed-bean-scope id="__4">request</managed-bean-scope>
+      <managed-bean-scope id="__4">pageFlow</managed-bean-scope>
     </managed-bean>
     <view id="ShowPortfolio3">
       <page>/ShowPortfolio.jsff</page>

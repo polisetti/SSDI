@@ -39,14 +39,6 @@
       </DesignTime>
    </Containee>
    <Containee
-      Name="model"
-      PackageName="com.test.model"
-      ObjectType="JboPackage">
-      <DesignTime>
-         <Attr Name="_VO" Value="true"/>
-      </DesignTime>
-   </Containee>
-   <Containee
       Name="view"
       PackageName="com.test.model.view"
       ObjectType="JboPackage">

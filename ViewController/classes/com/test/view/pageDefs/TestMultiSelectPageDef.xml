@@ -5,15 +5,13 @@
   <parameters/>
   <executables>
     <variableIterator id="variables"/>
-    <iterator Binds="TestPortfolioStocksVO" RangeSize="25"
-              DataControl="SSDI_AMDataControl"
-              id="TestPortfolioStocksVOIterator"/>
+    <iterator Binds="PortfolioStocks2" RangeSize="25"
+              DataControl="SSDI_AMDataControl" id="PortfolioStocks2Iterator"/>
   </executables>
   <bindings>
-    <tree IterBinding="TestPortfolioStocksVOIterator"
-          id="TestPortfolioStocksVO">
-      <nodeDefinition DefName="com.test.model.TestPortfolioStocksVO"
-                      Name="TestPortfolioStocksVO0">
+    <tree IterBinding="PortfolioStocks2Iterator" id="PortfolioStocks2">
+      <nodeDefinition DefName="com.test.model.view.PortfolioStocks2"
+                      Name="PortfolioStocks20">
         <AttrNames>
           <Item Value="Portfolioid"/>
           <Item Value="Stockid"/>

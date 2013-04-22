@@ -1,0 +1,25 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/DBAdapterService" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/DBAdapterService" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="TeststockpricesCollection" type="TeststockpricesCollection"/>
+   <xs:complexType name="TeststockpricesCollection">
+      <xs:sequence>
+         <xs:element name="Teststockprices" type="Teststockprices" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Teststockprices">
+      <xs:sequence>
+         <xs:element name="stockid" type="xs:decimal" nillable="true"/>
+         <xs:element name="datetracked" type="xs:int" nillable="true"/>
+         <xs:element name="timetracked" type="xs:int" nillable="true"/>
+         <xs:element name="price" type="xs:decimal" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="DBAdapterServiceSelect_BindStockID_BindStartDate_BindEndDateInputParameters" type="DBAdapterServiceSelect_BindStockID_BindStartDate_BindEndDate"/>
+   <xs:complexType name="DBAdapterServiceSelect_BindStockID_BindStartDate_BindEndDate">
+      <xs:sequence>
+         <xs:element name="BindStockID" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="BindStartDate" type="xs:int" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="BindEndDate" type="xs:int" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

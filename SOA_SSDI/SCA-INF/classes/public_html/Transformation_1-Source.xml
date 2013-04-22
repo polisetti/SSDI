@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<TeststockpricesCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.oracle.com/pcbpel/adapter/db/top/DBAdapterService file:/C:/JDeveloper/mywork/SSDI%20Demo/SOA_SSDI/xsd/DBAdapterService_table.xsd" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/DBAdapterService">
+   <Teststockprices>
+      <stockid>19</stockid>
+      <datetracked>-0</datetracked>
+      <timetracked>-0</timetracked>
+      <price>20</price>
+   </Teststockprices>
+   <Teststockprices>
+      <stockid>21</stockid>
+      <datetracked>-0</datetracked>
+      <timetracked>-0</timetracked>
+      <price>22</price>
+   </Teststockprices>
+   <Teststockprices>
+      <stockid>23</stockid>
+      <datetracked>-0</datetracked>
+      <timetracked>-0</timetracked>
+      <price>24</price>
+   </Teststockprices>
+</TeststockpricesCollection>

@@ -26,4 +26,8 @@ public interface SSDI_AM extends ApplicationModule {
     Number getStockID(String pStockName);
 
     void addStocksToPortfolio(Number stockID);
+
+    String getStockName(Number pStockID);
+
+    List<String> autoComplete(String inputValue);
 }

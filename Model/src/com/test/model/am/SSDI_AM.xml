@@ -42,7 +42,10 @@
     ViewObjectName="com.test.model.am.StockPricesROVO"/>
   <ViewUsage
     Name="TestPortfolioStocksVO"
-    ViewObjectName="com.test.model.TestPortfolioStocksVO"/>
+    ViewObjectName="com.test.model.view.TestPortfolioStocksVO"/>
+  <ViewUsage
+    Name="PortfolioStocks2"
+    ViewObjectName="com.test.model.view.PortfolioStocks2"/>
   <ClientInterface>
     <Method
       Name="deleteStocksFromPortfolio">
@@ -110,6 +113,26 @@
       <Parameter
         Name="stockID"
         Type="oracle.jbo.domain.Number"/>
+    </Method>
+    <Method
+      Name="getStockName">
+      <Return
+        Type="java.lang.String"/>
+      <Parameter
+        Name="pStockID"
+        Type="oracle.jbo.domain.Number"/>
+    </Method>
+    <Method
+      Name="autoComplete">
+      <Return
+        Type="java.util.List"
+        IsGeneric="true">
+        <Element
+          Type="java.lang.String"/>
+      </Return>
+      <Parameter
+        Name="inputValue"
+        Type="java.lang.String"/>
     </Method>
   </ClientInterface>
   <ResourceBundle>

@@ -3,6 +3,7 @@
    <task-flow-descriptor path="META-INF/adfc-config.xml" id="" type="" uses-page-fragments="false" library-internal="false" train="false"/>
    <task-flow-descriptor path="WEB-INF/CreateNewPortfolio.xml" id="CreateNewPortfolio" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false"/>
    <task-flow-descriptor path="WEB-INF/SearchStock.xml" id="SearchStock" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false"/>
+   <task-flow-descriptor path="WEB-INF/CompareStocks.xml" id="CompareStocks" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false"/>
    <task-flow-descriptor path="WEB-INF/ShowPortfolio.xml" id="ShowPortfolio" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false">
       <input-parameter name="inputParameter1"/>
    </task-flow-descriptor>

@@ -13,8 +13,7 @@
         <af:panelGroupLayout id="pgl2" layout="horizontal">
           <af:inputText label="" id="it1"
                         inlineStyle="font-size:medium; text-align:center;"
-                        columns="40" autoSubmit="true"
-                        value="#{SearchStockPriceBean.stockName}">
+                        columns="40" autoSubmit="true">
                         
             <af:autoSuggestBehavior suggestItems="#{SearchStockPriceBean.autoComplete}"/>
           </af:inputText>

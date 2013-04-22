@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+  <af:panelSplitter id="ps1" orientation="vertical">
+    <f:facet name="first">
+      <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+        <af:spacer width="50" height="30" id="s1"/>
+        <af:outputText value="Enter the Stock Name" id="ot1"
+                       inlineStyle="color:Black; font-size:x-large; text-align:center;"/>
+        <af:panelGroupLayout id="pgl2" layout="horizontal">
+          <af:inputText label="Label 1" id="it1"
+                        value="#{pageFlowScope.CompareStocksBean.stockSelected}">
+            <af:autoSuggestBehavior suggestItems="#{pageFlowScope.CompareStocksBean.autoComplete}"/>
+          </af:inputText>
+          <af:spacer width="10" height="10" id="s2"/>
+          <af:commandButton text="Add to Compare" id="cb1"
+                            actionListener="#{pageFlowScope.CompareStocksBean.compareStocks}"
+                            partialSubmit="true"/>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+    <f:facet name="second">
+      <dvt:lineGraph id="lineGraph1" subType="LINE_VERT_ABS"
+                     tabularData="#{pageFlowScope.CompareStocksBean.tabularData}"
+                     partialTriggers="::cb1">
+        <dvt:background>
+          <dvt:specialEffects/>
+        </dvt:background>
+        <dvt:graphPlotArea/>
+        <dvt:seriesSet>
+          <dvt:series/>
+        </dvt:seriesSet>
+        <dvt:o1Axis/>
+        <dvt:y1Axis/>
+        <dvt:legendArea automaticPlacement="AP_NEVER"/>
+      </dvt:lineGraph>
+    </f:facet>
+  </af:panelSplitter>
+</jsp:root>

@@ -1,85 +1,131 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
           xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
-          xmlns:f="http://java.sun.com/jsf/core">
-  <af:panelCollection id="pc1">
-    <af:table value="#{bindings.PortfolioStocksVO.collectionModel}" var="row"
-              rows="#{bindings.PortfolioStocksVO.rangeSize}"
-              emptyText="#{bindings.PortfolioStocksVO.viewable ? 'No data to display.' : 'Access Denied.'}"
-              fetchSize="#{bindings.PortfolioStocksVO.rangeSize}"
-              rowBandingInterval="0"
-              selectionListener="#{bindings.PortfolioStocksVO.collectionModel.makeCurrent}"
-              autoHeightRows="#{bindings.PortfolioStocksVO.estimatedRowCount}"
-              rowSelection="multiple" id="t1"
-              partialTriggers="::cb1 :::cb5"
-              styleClass="AFStretchWidth">
-      <af:column sortProperty="Selection" sortable="false"
-                 headerText="#{bindings.PortfolioStocksVO.hints.Selection.label}"
-                 id="c5">
-        <af:selectBooleanCheckbox text=""
-                                  value="#{row.Selection}"
-                                  id="sbc1"/>
-      </af:column>
-      <af:column sortProperty="Dateadded" sortable="false"
-                 headerText="#{bindings.PortfolioStocksVO.hints.Dateadded.label}"
-                 id="c2">
-        <af:outputText value="#{row.Dateadded}" id="ot2">
-          <af:convertNumber groupingUsed="false"
-                            pattern="#{bindings.PortfolioStocksVO.hints.Dateadded.format}"/>
-        </af:outputText>
-      </af:column>
-      <af:column sortProperty="Portfolioid" sortable="false"
-                 headerText="#{bindings.PortfolioStocksVO.hints.Portfolioid.label}"
-                 id="c1">
-        <af:outputText value="#{row.Portfolioid}" id="ot4">
-          <af:convertNumber groupingUsed="false"
-                            pattern="#{bindings.PortfolioStocksVO.hints.Portfolioid.format}"/>
-        </af:outputText>
-      </af:column>
-      <af:column sortProperty="Stockid" sortable="false"
-                 headerText="#{bindings.PortfolioStocksVO.hints.Stockid.label}"
-                 id="c3">
-        <af:outputText value="#{row.Stockid}" id="ot1">
-          <af:convertNumber groupingUsed="false"
-                            pattern="#{bindings.PortfolioStocksVO.hints.Stockid.format}"/>
-        </af:outputText>
-      </af:column>
-      <af:column sortProperty="Timeadded" sortable="false"
-                 headerText="#{bindings.PortfolioStocksVO.hints.Timeadded.label}"
-                 id="c4">
-        <af:outputText value="#{row.Timeadded}" id="ot3">
-          <af:convertNumber groupingUsed="false"
-                            pattern="#{bindings.PortfolioStocksVO.hints.Timeadded.format}"/>
-        </af:outputText>
-      </af:column>
-    </af:table>
-    <f:facet name="viewMenu"/>
-    <f:facet name="toolbar">
-      <af:toolbar id="t2">
-        <af:commandToolbarButton text="Compare Stocks" id="ctb1"
-                                 actionListener="#{PortfolioBakingBean.compareStocks}"/>
-        <af:commandButton actionListener="#{bindings.Delete.execute}"
-                          text="Delete Stock"
-                          disabled="#{!bindings.Delete.enabled}" id="cb1"
-                          immediate="true"/>
-        <af:commandButton actionListener="#{bindings.Delete1.execute}"
-                          text="Delete Portfolio"
-                          disabled="#{!bindings.Delete1.enabled}" id="cb2"/>
-      </af:toolbar>
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces"
+          xmlns:h="http://java.sun.com/jsf/html">
+  <af:panelSplitter id="ps1" orientation="vertical" splitterPosition="182">
+    <f:facet name="first">
+      <af:panelGroupLayout id="pgl2" layout="scroll">
+        <af:panelCollection id="pc1">
+          <af:table value="#{bindings.PortfolioStocksVO.collectionModel}"
+                    var="row" rows="#{bindings.PortfolioStocksVO.rangeSize}"
+                    emptyText="#{bindings.PortfolioStocksVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                    fetchSize="#{bindings.PortfolioStocksVO.rangeSize}"
+                    rowBandingInterval="0"
+                    selectionListener="#{bindings.PortfolioStocksVO.collectionModel.makeCurrent}"
+                    autoHeightRows="#{bindings.PortfolioStocksVO.estimatedRowCount}"
+                    rowSelection="multiple" id="t1"
+                    partialTriggers="::cb1 :::cb5" styleClass="AFStretchWidth"
+                    binding="#{pageFlowScope.PortfolioBakingBean.pfTable}">
+            <af:column sortProperty="Selection" sortable="false"
+                       headerText="#{bindings.PortfolioStocksVO.hints.Selection.label}"
+                       id="c5">
+              <af:selectBooleanCheckbox text="" value="#{row.Selection}"
+                                        id="sbc1"/>
+            </af:column>
+            <af:column sortProperty="Dateadded" sortable="false"
+                       headerText="#{bindings.PortfolioStocksVO.hints.Dateadded.label}"
+                       id="c2">
+              <af:outputText value="#{row.Dateadded}" id="ot2">
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.PortfolioStocksVO.hints.Dateadded.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="Portfolioid" sortable="false"
+                       headerText="#{bindings.PortfolioStocksVO.hints.Portfolioid.label}"
+                       id="c1">
+              <af:outputText value="#{row.Portfolioid}" id="ot4">
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.PortfolioStocksVO.hints.Portfolioid.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="Stockid" sortable="false"
+                       headerText="#{bindings.PortfolioStocksVO.hints.Stockid.label}"
+                       id="c3">
+              <af:outputText value="#{row.Stockid}" id="ot1">
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.PortfolioStocksVO.hints.Stockid.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="Timeadded" sortable="false"
+                       headerText="#{bindings.PortfolioStocksVO.hints.Timeadded.label}"
+                       id="c4">
+              <af:outputText value="#{row.Timeadded}" id="ot3">
+                <af:convertNumber groupingUsed="false"
+                                  pattern="#{bindings.PortfolioStocksVO.hints.Timeadded.format}"/>
+              </af:outputText>
+            </af:column>
+          </af:table>
+          <f:facet name="viewMenu"/>
+          <f:facet name="toolbar">
+            <af:toolbar id="t2">
+              <af:commandButton text="CompareStocks" 
+                                actionListener="#{pageFlowScope.PortfolioBakingBean.compareStocks}" id="cbt1"/>
+              <af:commandButton actionListener="#{bindings.Delete.execute}"
+                                text="Delete Stock"
+                                disabled="#{!bindings.Delete.enabled}" id="cb1"
+                                immediate="true"/>
+              <af:commandButton actionListener="#{bindings.Delete1.execute}"
+                                text="Delete Portfolio"
+                                disabled="#{!bindings.Delete1.enabled}"
+                                id="cb2"/>
+            </af:toolbar>
+          </f:facet>
+        </af:panelCollection>
+        <af:spacer width="10" height="10" id="s4"/>
+        <af:panelGroupLayout id="pgl1" layout="horizontal">
+          <af:inputText label="Enter" id="it1"
+                        value="#{pageFlowScope.PortfolioBakingBean.stockName}">
+            <af:autoSuggestBehavior suggestItems="#{pageFlowScope.PortfolioBakingBean.auto}"/>
+          </af:inputText>
+          <af:spacer width="10" height="10" id="s1"/>
+          <af:commandButton text="Add To Portfolio" id="cb5"
+                            actionListener="#{pageFlowScope.PortfolioBakingBean.addStocksToPortfolio}"/>
+          <af:spacer width="10" height="10" id="s3"/>
+          <af:commandButton actionListener="#{bindings.Commit.execute}"
+                            text="Commit All Changes"
+                            disabled="#{!bindings.Commit.enabled}" id="cb3"/>
+          <af:spacer width="10" height="10" id="s2"/>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
     </f:facet>
-  </af:panelCollection>
-  <af:spacer width="10" height="10" id="s2"/>
-  <af:panelGroupLayout id="pgl1" layout="horizontal">
-    <af:inputText label="Enter" id="it1"
-                  value="#{PortfolioBakingBean.stockName}">
-      <af:autoSuggestBehavior suggestItems="#{PortfolioBakingBean.auto}"/>
-    </af:inputText>
-    <af:spacer width="10" height="10" id="s1"/>
-    <af:commandButton text="Add To Portfolio" id="cb5"
-                      actionListener="#{PortfolioBakingBean.addStocksToPortfolio}"/>
-    <af:spacer width="10" height="10" id="s3"/>
-    <af:commandButton actionListener="#{bindings.Commit.execute}"
-                      text="Commit All Changes"
-                      disabled="#{!bindings.Commit.enabled}" id="cb3"/>
-  </af:panelGroupLayout>
+    <f:facet name="second">
+      <af:panelGroupLayout layout="scroll"
+                           xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                           id="pgl3">
+        <af:panelGroupLayout id="pgl4">
+          <af:spacer width="30" height="10" id="s8"/>
+          <h:commandLink value="1 day" id="cl4" style="font-size:small;"/>
+          <af:spacer width="10" height="10" id="s5"/>
+          <h:commandLink value="5 days" id="cl1" style="font-size:small;"/>
+          <af:spacer width="10" height="10" id="s6"/>
+          <h:commandLink value="10 days" id="cl3" style="font-size:small;"/>
+          <af:spacer width="10" height="10" id="s7"/>
+          <h:commandLink value="1 month" id="cl2" style="font-size:small;"/>
+          <dvt:lineGraph id="lineGraph1" subType="LINE_VERT_ABS"
+                         tabularData="#{pageFlowScope.PortfolioBakingBean.tabularData}"
+                         partialTriggers=""
+                         binding="#{pageFlowScope.PortfolioBakingBean.displayLineGraph}">
+            <dvt:background>
+              <dvt:specialEffects/>
+            </dvt:background>
+            <dvt:graphPlotArea/>
+            <dvt:seriesSet>
+              <dvt:series/>
+            </dvt:seriesSet>
+            <dvt:o1Axis/>
+            <dvt:y1Axis/>
+            <dvt:legendArea automaticPlacement="AP_NEVER"/>
+            <dvt:legendTitle text="Legend Title"/>
+            <dvt:graphFootnote text="Footnote"/>
+            <dvt:graphSubtitle text="Subtitle"/>
+            <dvt:graphTitle text="Title"/>
+            <dvt:o1Title text="O1-Axis Title"/>
+            <dvt:y1Title text="Y1-Axis Title"/>
+          </dvt:lineGraph>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+  </af:panelSplitter>
 </jsp:root>

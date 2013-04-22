@@ -35,13 +35,6 @@ public class SSDI_AMClient extends ApplicationModuleImpl implements SSDI_AM {
     } */
 
 
-    public List autoComplete(String inputValue) {
-        Object _ret =
-            this.riInvokeExportedMethod(this,"autoComplete",new String [] {"java.lang.String"},new Object[] {inputValue});
-        return (List)_ret;
-    }
-
-
     public void deleteStocksFromPortfolio(int stockID, int portfolioID) {
         Object _ret =
             this.riInvokeExportedMethod(this,"deleteStocksFromPortfolio",new String [] {"int","int"},new Object[] {new Integer(stockID), new Integer(portfolioID)});
@@ -87,5 +80,17 @@ public class SSDI_AMClient extends ApplicationModuleImpl implements SSDI_AM {
         Object _ret =
             this.riInvokeExportedMethod(this,"addStocksToPortfolio",new String [] {"oracle.jbo.domain.Number"},new Object[] {stockID});
         return;
+    }
+
+    public String getStockName(Number pStockID) {
+        Object _ret =
+            this.riInvokeExportedMethod(this,"getStockName",new String [] {"oracle.jbo.domain.Number"},new Object[] {pStockID});
+        return (String)_ret;
+    }
+
+    public List<String> autoComplete(String inputValue) {
+        Object _ret =
+            this.riInvokeExportedMethod(this,"autoComplete",new String [] {"java.lang.String"},new Object[] {inputValue});
+        return (List<String>)_ret;
     }
 }

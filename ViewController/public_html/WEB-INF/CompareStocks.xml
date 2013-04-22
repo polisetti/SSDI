@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="CompareStocks">
+    <default-activity id="__1">CompareStocks1</default-activity>
+    <managed-bean id="__5">
+      <managed-bean-name id="__2">CompareStocksBean</managed-bean-name>
+      <managed-bean-class id="__4">CompareStocksBean</managed-bean-class>
+      <managed-bean-scope id="__3">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="CompareStocks1">
+      <page>/CompareStocks.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

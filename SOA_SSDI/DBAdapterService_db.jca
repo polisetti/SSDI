@@ -1,0 +1,14 @@
+<adapter-config name="DBAdapterService" adapter="Database Adapter" wsdlLocation="DBAdapterService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory location="eis/jndi/ssdi" UIConnectionName="SSDI-DEMO" adapterRef=""/>
+  <endpoint-interaction portType="DBAdapterService_ptt" operation="DBAdapterServiceSelect">
+    <interaction-spec className="oracle.tip.adapter.db.DBReadInteractionSpec">
+      <property name="DescriptorName" value="DBAdapterService.Teststockprices"/>
+      <property name="QueryName" value="DBAdapterServiceSelect"/>
+      <property name="MappingsMetaDataURL" value="DBAdapterService-or-mappings.xml"/>
+      <property name="ReturnSingleResultSet" value="false"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

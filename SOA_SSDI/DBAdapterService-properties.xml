@@ -1,0 +1,25 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <entry key="TESTSTOCKPRICES.PRICE:db_column_not_null">false</entry>
+   <entry key="TESTSTOCKPRICES.DATETRACKED:db_column_precision">8</entry>
+   <entry key="TESTSTOCKPRICES:db_column_3">PRICE</entry>
+   <entry key="TESTSTOCKPRICES:db_table_type">TABLE</entry>
+   <entry key="TESTSTOCKPRICES:db_column_2">TIMETRACKED</entry>
+   <entry key="TESTSTOCKPRICES.TIMETRACKED:db_column_scale">0</entry>
+   <entry key="TESTSTOCKPRICES:db_column_1">DATETRACKED</entry>
+   <entry key="TESTSTOCKPRICES:db_column_0">STOCKID</entry>
+   <entry key="TESTSTOCKPRICES.STOCKID:db_column_precision">0</entry>
+   <entry key="TESTSTOCKPRICES.STOCKID:db_column_not_null">false</entry>
+   <entry key="TESTSTOCKPRICES.STOCKID:db_column_type">NUMBER</entry>
+   <entry key="TESTSTOCKPRICES.DATETRACKED:db_column_type">NUMBER</entry>
+   <entry key="TESTSTOCKPRICES.DATETRACKED:db_column_scale">0</entry>
+   <entry key="return_single_result_set">false</entry>
+   <entry key="TESTSTOCKPRICES.TIMETRACKED:db_column_not_null">false</entry>
+   <entry key="TESTSTOCKPRICES.PRICE:db_column_type">NUMBER</entry>
+   <entry key="TESTSTOCKPRICES.TIMETRACKED:db_column_type">NUMBER</entry>
+   <entry key="TESTSTOCKPRICES.PRICE:db_column_precision">0</entry>
+   <entry key="TESTSTOCKPRICES.DATETRACKED:db_column_not_null">false</entry>
+   <entry key="root_descriptor_alias">TESTSTOCKPRICES</entry>
+   <entry key="TESTSTOCKPRICES.TIMETRACKED:db_column_precision">4</entry>
+</properties>

@@ -1,0 +1,25 @@
+<?binding.jca DBAdapterService_db.jca?>
+<wsdl:definitions name="DBAdapterService" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/SSDI+Demo/SOA_SSDI/DBAdapterService" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/SSDI+Demo/SOA_SSDI/DBAdapterService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/DBAdapterService">
+    <plt:partnerLinkType name="DBAdapterService_plt">
+        <plt:role name="DBAdapterService_role">
+            <plt:portType name="tns:DBAdapterService_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/DBAdapterService" schemaLocation="xsd/DBAdapterService_table.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="DBAdapterServiceSelect_inputParameters">
+        <wsdl:part name="DBAdapterServiceSelect_inputParameters" element="top:DBAdapterServiceSelect_BindStockID_BindStartDate_BindEndDateInputParameters"/>
+    </wsdl:message>
+    <wsdl:message name="TeststockpricesCollection_msg">
+        <wsdl:part name="TeststockpricesCollection" element="top:TeststockpricesCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="DBAdapterService_ptt">
+        <wsdl:operation name="DBAdapterServiceSelect">
+            <wsdl:input message="tns:DBAdapterServiceSelect_inputParameters"/>
+            <wsdl:output message="tns:TeststockpricesCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

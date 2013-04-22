@@ -11,101 +11,88 @@
       <af:form id="f1">
         <af:panelSplitter id="ps1" orientation="vertical">
           <f:facet name="first">
-            <af:panelGroupLayout id="pgl1">
-              <af:panelCollection id="pc1">
-                <f:facet name="menus"/>
-                <f:facet name="toolbar">
-                  <af:toolbar id="t2">
-                    <af:commandToolbarButton text="compareStocks" id="ctb1"/>
-                  </af:toolbar>
-                </f:facet>
-                <f:facet name="statusbar"/>
-                <af:table value="#{bindings.TestPortfolioStocksVO.collectionModel}"
-                          var="row"
-                          rows="#{bindings.TestPortfolioStocksVO.rangeSize}"
-                          emptyText="#{bindings.TestPortfolioStocksVO.viewable ? 'No data to display.' : 'Access Denied.'}"
-                          fetchSize="#{bindings.TestPortfolioStocksVO.rangeSize}"
-                          rowBandingInterval="0"
-                          selectionListener="#{bindings.TestPortfolioStocksVO.collectionModel.makeCurrent}"
-                          rowSelection="multiple" id="t1">
-                  <af:column sortProperty="Portfolioid" sortable="false"
-                             headerText="#{bindings.TestPortfolioStocksVO.hints.Portfolioid.label}"
-                             id="c4">
-                    <af:inputText value="#{row.bindings.Portfolioid.inputValue}"
-                                  label="#{bindings.TestPortfolioStocksVO.hints.Portfolioid.label}"
-                                  required="#{bindings.TestPortfolioStocksVO.hints.Portfolioid.mandatory}"
-                                  columns="#{bindings.TestPortfolioStocksVO.hints.Portfolioid.displayWidth}"
-                                  maximumLength="#{bindings.TestPortfolioStocksVO.hints.Portfolioid.precision}"
-                                  shortDesc="#{bindings.TestPortfolioStocksVO.hints.Portfolioid.tooltip}"
-                                  id="it4">
-                      <f:validator binding="#{row.bindings.Portfolioid.validator}"/>
-                      <af:convertNumber groupingUsed="false"
-                                        pattern="#{bindings.TestPortfolioStocksVO.hints.Portfolioid.format}"/>
-                    </af:inputText>
-                  </af:column>
-                  <af:column sortProperty="Stockid" sortable="false"
-                             headerText="#{bindings.TestPortfolioStocksVO.hints.Stockid.label}"
-                             id="c2">
-                    <af:inputText value="#{row.bindings.Stockid.inputValue}"
-                                  label="#{bindings.TestPortfolioStocksVO.hints.Stockid.label}"
-                                  required="#{bindings.TestPortfolioStocksVO.hints.Stockid.mandatory}"
-                                  columns="#{bindings.TestPortfolioStocksVO.hints.Stockid.displayWidth}"
-                                  maximumLength="#{bindings.TestPortfolioStocksVO.hints.Stockid.precision}"
-                                  shortDesc="#{bindings.TestPortfolioStocksVO.hints.Stockid.tooltip}"
-                                  id="it1">
-                      <f:validator binding="#{row.bindings.Stockid.validator}"/>
-                      <af:convertNumber groupingUsed="false"
-                                        pattern="#{bindings.TestPortfolioStocksVO.hints.Stockid.format}"/>
-                    </af:inputText>
-                  </af:column>
-                  <af:column sortProperty="Dateadded" sortable="false"
-                             headerText="#{bindings.TestPortfolioStocksVO.hints.Dateadded.label}"
-                             id="c3">
-                    <af:inputText value="#{row.bindings.Dateadded.inputValue}"
-                                  label="#{bindings.TestPortfolioStocksVO.hints.Dateadded.label}"
-                                  required="#{bindings.TestPortfolioStocksVO.hints.Dateadded.mandatory}"
-                                  columns="#{bindings.TestPortfolioStocksVO.hints.Dateadded.displayWidth}"
-                                  maximumLength="#{bindings.TestPortfolioStocksVO.hints.Dateadded.precision}"
-                                  shortDesc="#{bindings.TestPortfolioStocksVO.hints.Dateadded.tooltip}"
-                                  id="it2">
-                      <f:validator binding="#{row.bindings.Dateadded.validator}"/>
-                      <af:convertNumber groupingUsed="false"
-                                        pattern="#{bindings.TestPortfolioStocksVO.hints.Dateadded.format}"/>
-                    </af:inputText>
-                  </af:column>
-                  <af:column sortProperty="Timeadded" sortable="false"
-                             headerText="#{bindings.TestPortfolioStocksVO.hints.Timeadded.label}"
-                             id="c1">
-                    <af:inputText value="#{row.bindings.Timeadded.inputValue}"
-                                  label="#{bindings.TestPortfolioStocksVO.hints.Timeadded.label}"
-                                  required="#{bindings.TestPortfolioStocksVO.hints.Timeadded.mandatory}"
-                                  columns="#{bindings.TestPortfolioStocksVO.hints.Timeadded.displayWidth}"
-                                  maximumLength="#{bindings.TestPortfolioStocksVO.hints.Timeadded.precision}"
-                                  shortDesc="#{bindings.TestPortfolioStocksVO.hints.Timeadded.tooltip}"
-                                  id="it3">
-                      <f:validator binding="#{row.bindings.Timeadded.validator}"/>
-                      <af:convertNumber groupingUsed="false"
-                                        pattern="#{bindings.TestPortfolioStocksVO.hints.Timeadded.format}"/>
-                    </af:inputText>
-                  </af:column>
-                </af:table>
-              </af:panelCollection>
-            </af:panelGroupLayout>
+            <af:panelCollection id="pc1">
+              <f:facet name="menus"/>
+              <f:facet name="toolbar">
+                <af:toolbar id="t2">
+                  <af:commandToolbarButton text="getAllSelectedRows"
+                                           id="ctb1"
+                                           actionListener="#{MultiSelectBackingBean.getSelectedRows}"/>
+                </af:toolbar>
+              </f:facet>
+              <f:facet name="statusbar"/>
+              <af:table value="#{bindings.PortfolioStocks2.collectionModel}"
+                        var="row" rows="#{bindings.PortfolioStocks2.rangeSize}"
+                        emptyText="#{bindings.PortfolioStocks2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                        fetchSize="#{bindings.PortfolioStocks2.rangeSize}"
+                        rowBandingInterval="0"
+                        selectionListener="#{bindings.PortfolioStocks2.collectionModel.makeCurrent}"
+                        rowSelection="multiple" id="t1"
+                        binding="#{MultiSelectBackingBean.pfTable}">
+                <af:column sortProperty="Portfolioid" sortable="false"
+                           headerText="#{bindings.PortfolioStocks2.hints.Portfolioid.label}"
+                           id="c2">
+                  <af:inputText value="#{row.bindings.Portfolioid.inputValue}"
+                                label="#{bindings.PortfolioStocks2.hints.Portfolioid.label}"
+                                required="#{bindings.PortfolioStocks2.hints.Portfolioid.mandatory}"
+                                columns="#{bindings.PortfolioStocks2.hints.Portfolioid.displayWidth}"
+                                maximumLength="#{bindings.PortfolioStocks2.hints.Portfolioid.precision}"
+                                shortDesc="#{bindings.PortfolioStocks2.hints.Portfolioid.tooltip}"
+                                id="it2">
+                    <f:validator binding="#{row.bindings.Portfolioid.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.PortfolioStocks2.hints.Portfolioid.format}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="Stockid" sortable="false"
+                           headerText="#{bindings.PortfolioStocks2.hints.Stockid.label}"
+                           id="c1">
+                  <af:inputText value="#{row.bindings.Stockid.inputValue}"
+                                label="#{bindings.PortfolioStocks2.hints.Stockid.label}"
+                                required="#{bindings.PortfolioStocks2.hints.Stockid.mandatory}"
+                                columns="#{bindings.PortfolioStocks2.hints.Stockid.displayWidth}"
+                                maximumLength="#{bindings.PortfolioStocks2.hints.Stockid.precision}"
+                                shortDesc="#{bindings.PortfolioStocks2.hints.Stockid.tooltip}"
+                                id="it4">
+                    <f:validator binding="#{row.bindings.Stockid.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.PortfolioStocks2.hints.Stockid.format}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="Dateadded" sortable="false"
+                           headerText="#{bindings.PortfolioStocks2.hints.Dateadded.label}"
+                           id="c4">
+                  <af:inputText value="#{row.bindings.Dateadded.inputValue}"
+                                label="#{bindings.PortfolioStocks2.hints.Dateadded.label}"
+                                required="#{bindings.PortfolioStocks2.hints.Dateadded.mandatory}"
+                                columns="#{bindings.PortfolioStocks2.hints.Dateadded.displayWidth}"
+                                maximumLength="#{bindings.PortfolioStocks2.hints.Dateadded.precision}"
+                                shortDesc="#{bindings.PortfolioStocks2.hints.Dateadded.tooltip}"
+                                id="it1">
+                    <f:validator binding="#{row.bindings.Dateadded.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.PortfolioStocks2.hints.Dateadded.format}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="Timeadded" sortable="false"
+                           headerText="#{bindings.PortfolioStocks2.hints.Timeadded.label}"
+                           id="c3">
+                  <af:inputText value="#{row.bindings.Timeadded.inputValue}"
+                                label="#{bindings.PortfolioStocks2.hints.Timeadded.label}"
+                                required="#{bindings.PortfolioStocks2.hints.Timeadded.mandatory}"
+                                columns="#{bindings.PortfolioStocks2.hints.Timeadded.displayWidth}"
+                                maximumLength="#{bindings.PortfolioStocks2.hints.Timeadded.precision}"
+                                shortDesc="#{bindings.PortfolioStocks2.hints.Timeadded.tooltip}"
+                                id="it3">
+                    <f:validator binding="#{row.bindings.Timeadded.validator}"/>
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.PortfolioStocks2.hints.Timeadded.format}"/>
+                  </af:inputText>
+                </af:column>
+              </af:table>
+            </af:panelCollection>
           </f:facet>
-          <f:facet name="second">
-            <dvt:lineGraph id="lineGraph1" subType="LINE_VERT_ABS">
-              <dvt:background>
-                <dvt:specialEffects/>
-              </dvt:background>
-              <dvt:graphPlotArea/>
-              <dvt:seriesSet>
-                <dvt:series/>
-              </dvt:seriesSet>
-              <dvt:o1Axis/>
-              <dvt:y1Axis/>
-              <dvt:legendArea automaticPlacement="AP_NEVER"/>
-            </dvt:lineGraph>
-          </f:facet>
+          <f:facet name="second"/>
         </af:panelSplitter>
       </af:form>
     </af:document>
