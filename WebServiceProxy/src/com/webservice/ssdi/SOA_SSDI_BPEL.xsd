@@ -1,0 +1,23 @@
+<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL"
+     xmlns="http://www.w3.org/2001/XMLSchema">
+    <element name="serviceInput">
+        <complexType>
+            <sequence>
+                <element name="StockID" type="decimal"/>
+                <element name="StartDate" type="int"/>
+                <element name="EndDate" type="int"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="serviceOutput">
+        <complexType>
+            <sequence>
+                <element name="result" type="double"/>
+                <element name="outputXBar" type="double"/>
+                <element name="outputYBar" type="double"/>
+                <element name="outputBeta0" type="double"/>
+                <element name="outputBeta1" type="double"/>
+            </sequence>
+        </complexType>
+    </element>
+</schema>

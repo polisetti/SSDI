@@ -1,2 +1,13 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Faults/>
+<Faults>
+   <Fault>
+      <severity>error</severity>
+      <loc>/ns:composite</loc>
+      <line>12</line>
+      <col>61</col>
+      <file/>
+      <msg>
+         <![CDATA[Parse of component type files failed, check the adf-config.xml file : "oracle.fabric.common.FabricException: oracle.mds.config.MDSConfigurationException: MDS-01333: missing element "mds-config": MDS-01333: missing element "mds-config": oracle.mds.config.MDSConfigurationException: MDS-01333: missing element "mds-config": MDS-01333: missing element "mds-config""]]>
+      </msg>
+   </Fault>
+</Faults>

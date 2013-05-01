@@ -26,6 +26,28 @@
     Name="BindPortfolioID"
     Kind="where"
     Type="java.lang.Integer"/>
+  <ViewAccessor
+    Name="StockDetailsROVO"
+    ViewObjectName="com.test.model.view.StockDetailsROVO"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_Stockid"
+    ListVOName="StockDetailsROVO"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Stockid"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Stockid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Stockname"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
   <SQLQuery>
     <![CDATA[SELECT PortfolioStocksEO.DATEADDED, 
        PortfolioStocksEO.PORTFOLIOID, 
@@ -66,6 +88,7 @@ WHERE PortfolioStocksEO.PORTFOLIOID =:BindPortfolioID]]>
   </ViewAttribute>
   <ViewAttribute
     Name="Stockid"
+    LOVName="LOV_Stockid"
     PrecisionRule="true"
     EntityAttrName="Stockid"
     EntityUsage="PortfolioStocksEO"
@@ -74,6 +97,8 @@ WHERE PortfolioStocksEO.PORTFOLIOID =:BindPortfolioID]]>
       <SchemaBasedProperties>
         <DISPLAYWIDTH
           Value="10"/>
+        <CONTROLTYPE
+          Value="choice"/>
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>

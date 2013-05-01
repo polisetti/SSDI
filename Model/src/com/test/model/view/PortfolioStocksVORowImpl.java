@@ -2,6 +2,7 @@ package com.test.model.view;
 
 import com.test.model.entity.PortfolioStocksEOImpl;
 
+import oracle.jbo.RowSet;
 import oracle.jbo.domain.Number;
 import oracle.jbo.domain.RowID;
 import oracle.jbo.server.AttributeDefImpl;
@@ -76,6 +77,16 @@ public class PortfolioStocksVORowImpl extends ViewRowImpl {
                 obj.setSelection((Boolean)value);
             }
         }
+        ,
+        StockDetailsROVO {
+            public Object get(PortfolioStocksVORowImpl obj) {
+                return obj.getStockDetailsROVO();
+            }
+
+            public void put(PortfolioStocksVORowImpl obj, Object value) {
+                obj.setAttributeInternal(index(), value);
+            }
+        }
         ;
         private static AttributesEnum[] vals = null;
         private static int firstIndex = 0;
@@ -112,6 +123,7 @@ public class PortfolioStocksVORowImpl extends ViewRowImpl {
     public static final int TIMEADDED = AttributesEnum.Timeadded.index();
     public static final int ROWID = AttributesEnum.RowID.index();
     public static final int SELECTION = AttributesEnum.Selection.index();
+    public static final int STOCKDETAILSROVO = AttributesEnum.StockDetailsROVO.index();
 
     /**
      * This is the default constructor (do not remove).
@@ -221,6 +233,13 @@ public class PortfolioStocksVORowImpl extends ViewRowImpl {
      */
     public void setSelection(Boolean value) {
         setAttributeInternal(SELECTION, value);
+    }
+
+    /**
+     * Gets the view accessor <code>RowSet</code> StockDetailsROVO.
+     */
+    public RowSet getStockDetailsROVO() {
+        return (RowSet)getAttributeInternal(STOCKDETAILSROVO);
     }
 
     /**

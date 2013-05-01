@@ -14,17 +14,17 @@
                     fetchSize="#{bindings.PortfolioStocksVO.rangeSize}"
                     rowBandingInterval="0"
                     selectionListener="#{bindings.PortfolioStocksVO.collectionModel.makeCurrent}"
-                    autoHeightRows="#{bindings.PortfolioStocksVO.estimatedRowCount}"
+                    autoHeightRows="4"
                     rowSelection="multiple" id="t1"
                     partialTriggers="::cb1 :::cb5" styleClass="AFStretchWidth"
                     binding="#{pageFlowScope.PortfolioBakingBean.pfTable}">
-            <af:column sortProperty="Selection" sortable="false"
+            <af:column sortProperty="Selection" sortable="true"
                        headerText="#{bindings.PortfolioStocksVO.hints.Selection.label}"
                        id="c5">
               <af:selectBooleanCheckbox text="" value="#{row.Selection}"
                                         id="sbc1"/>
             </af:column>
-            <af:column sortProperty="Dateadded" sortable="false"
+            <af:column sortProperty="Dateadded" sortable="true"
                        headerText="#{bindings.PortfolioStocksVO.hints.Dateadded.label}"
                        id="c2">
               <af:outputText value="#{row.Dateadded}" id="ot2">
@@ -32,7 +32,7 @@
                                   pattern="#{bindings.PortfolioStocksVO.hints.Dateadded.format}"/>
               </af:outputText>
             </af:column>
-            <af:column sortProperty="Portfolioid" sortable="false"
+            <af:column sortProperty="Portfolioid" sortable="true"
                        headerText="#{bindings.PortfolioStocksVO.hints.Portfolioid.label}"
                        id="c1">
               <af:outputText value="#{row.Portfolioid}" id="ot4">
@@ -40,15 +40,18 @@
                                   pattern="#{bindings.PortfolioStocksVO.hints.Portfolioid.format}"/>
               </af:outputText>
             </af:column>
-            <af:column sortProperty="Stockid" sortable="false"
+            <af:column sortProperty="Stockid" sortable="true"
                        headerText="#{bindings.PortfolioStocksVO.hints.Stockid.label}"
                        id="c3">
-              <af:outputText value="#{row.Stockid}" id="ot1">
-                <af:convertNumber groupingUsed="false"
-                                  pattern="#{bindings.PortfolioStocksVO.hints.Stockid.format}"/>
-              </af:outputText>
+              <af:selectOneChoice value="#{row.bindings.Stockid.inputValue}"
+                                  label="#{row.bindings.Stockid.label}"
+                                  required="#{bindings.PortfolioStocksVO.hints.Stockid.mandatory}"
+                                  shortDesc="#{bindings.PortfolioStocksVO.hints.Stockid.tooltip}"
+                                  id="soc1" readOnly="true">
+                <f:selectItems value="#{row.bindings.Stockid.items}" id="si1"/>
+              </af:selectOneChoice>
             </af:column>
-            <af:column sortProperty="Timeadded" sortable="false"
+            <af:column sortProperty="Timeadded" sortable="true"
                        headerText="#{bindings.PortfolioStocksVO.hints.Timeadded.label}"
                        id="c4">
               <af:outputText value="#{row.Timeadded}" id="ot3">
@@ -98,15 +101,29 @@
           <af:spacer width="30" height="10" id="s8"/>
           <h:commandLink value="1 day" id="cl4" style="font-size:small;"/>
           <af:spacer width="10" height="10" id="s5"/>
-          <h:commandLink value="5 days" id="cl1" style="font-size:small;"/>
+          <h:commandLink value="5 days" id="cl1" style="font-size:small;"
+                         binding="#{pageFlowScope.PortfolioBakingBean.fiveDaysBinding}"
+                         actionListener="#{pageFlowScope.PortfolioBakingBean.updateLineGraph}">
+            <f:attribute name="days" value="5"/>
+            <f:setPropertyActionListener target="#{pageFlowScope.PortfolioBakingBean.numberOfDays}"
+                                         value="5"/>
+          </h:commandLink>
           <af:spacer width="10" height="10" id="s6"/>
-          <h:commandLink value="10 days" id="cl3" style="font-size:small;"/>
+          <h:commandLink value="10 days" id="cl3" style="font-size:small;"
+                         binding="#{pageFlowScope.PortfolioBakingBean.tenDaysBinding}"
+                         actionListener="#{pageFlowScope.PortfolioBakingBean.updateLineGraph}">
+            <f:attribute name="days" value="10"/>
+          </h:commandLink>
           <af:spacer width="10" height="10" id="s7"/>
-          <h:commandLink value="1 month" id="cl2" style="font-size:small;"/>
+          <h:commandLink value="15 days" id="cl2" style="font-size:small;"
+                         binding="#{pageFlowScope.PortfolioBakingBean.fifteenDaysBinding}"
+                         actionListener="#{pageFlowScope.PortfolioBakingBean.updateLineGraph}">
+            <f:attribute name="days" value="15"/>
+          </h:commandLink>
           <dvt:lineGraph id="lineGraph1" subType="LINE_VERT_ABS"
-                         tabularData="#{pageFlowScope.PortfolioBakingBean.tabularData}"
-                         partialTriggers=""
-                         binding="#{pageFlowScope.PortfolioBakingBean.displayLineGraph}">
+                         partialTriggers="::cl1"
+                         tabularData="#{pageFlowScope.PortfolioBakingBean.updatedTabularData}"
+                         rendered="#{pageFlowScope.PortfolioBakingBean.isShowLineGraph}">
             <dvt:background>
               <dvt:specialEffects/>
             </dvt:background>
@@ -118,9 +135,9 @@
             <dvt:y1Axis/>
             <dvt:legendArea automaticPlacement="AP_NEVER"/>
             <dvt:legendTitle text="Legend Title"/>
-            <dvt:graphFootnote text="Footnote"/>
-            <dvt:graphSubtitle text="Subtitle"/>
-            <dvt:graphTitle text="Title"/>
+            <dvt:graphFootnote text="Footnote" rendered="false"/>
+            <dvt:graphSubtitle text="Subtitle" rendered="false"/>
+            <dvt:graphTitle text="Stock Prices Graph"/>
             <dvt:o1Title text="O1-Axis Title"/>
             <dvt:y1Title text="Y1-Axis Title"/>
           </dvt:lineGraph>

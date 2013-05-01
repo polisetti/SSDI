@@ -1,0 +1,52 @@
+<wsdl:definitions
+     name="SOA_SSDI_BPEL"
+     targetNamespace="http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL"
+     xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:client="http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    >
+    <wsdl:documentation>
+        <abstractWSDL>http://172.16.42.2:8001/soa-infra/services/ssdi/SOA_SSDI!8.0/SOA_SSDI_BPEL.wsdl</abstractWSDL>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="SOA_SSDI_BPEL">
+        <plnk:role name="SOA_SSDI_BPELProvider">
+            <plnk:portType name="client:SOA_SSDI_BPEL"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL"
+                    schemaLocation="../../webservice/ssdi/SOA_SSDI_BPEL.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="SOA_SSDI_BPELRequestMessage">
+        <wsdl:part name="payload" element="client:serviceInput"/>
+    </wsdl:message>
+    <wsdl:message name="SOA_SSDI_BPELResponseMessage">
+        <wsdl:part name="payload" element="client:serviceOutput"/>
+    </wsdl:message>
+    <wsdl:portType name="SOA_SSDI_BPEL">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:SOA_SSDI_BPELRequestMessage"/>
+            <wsdl:output message="client:SOA_SSDI_BPELResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SOA_SSDI_BPELBinding" type="client:SOA_SSDI_BPEL">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="process">
+            <soap:operation style="document" soapAction="process"/>
+            <wsdl:input>
+                <soap:body use="literal" namespace="http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" namespace="http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="SOA_SSDI_Service_ep">
+        <wsdl:port name="SOA_SSDI_BPEL_pt" binding="client:SOA_SSDI_BPELBinding">
+            <soap:address location="http://172.16.42.2:8001/soa-infra/services/ssdi/SOA_SSDI/SOA_SSDI_Service_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

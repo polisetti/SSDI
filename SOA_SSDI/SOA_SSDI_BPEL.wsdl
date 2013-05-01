@@ -22,10 +22,10 @@
 	part of the port type defintions
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->      
 	<wsdl:message name="SOA_SSDI_BPELRequestMessage">
-		<wsdl:part name="payload" element="client:process"/>
+		<wsdl:part name="payload" element="client:serviceInput"/>
 	</wsdl:message>
 	<wsdl:message name="SOA_SSDI_BPELResponseMessage">
-		<wsdl:part name="payload" element="client:processResponse"/>
+		<wsdl:part name="payload" element="client:serviceOutput"/>
 	</wsdl:message>
 
 	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

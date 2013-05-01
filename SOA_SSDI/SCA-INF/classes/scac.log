@@ -1,26 +1,31 @@
-Apr 21, 2013 9:38:53 PM oracle.fabric.common.wsdl.SchemaManager isIncrementalBuildSupported
-INFO: XMLSchema incremental build enabled.
-Apr 21, 2013 9:38:54 PM com.collaxa.cube.CubeLogger info
-INFO: validating "SOA_SSDI_BPEL.bpel" ...
-oracle.jrf.UnknownPlatformException: JRF is unable to determine the current application server platform.
-	at oracle.jrf.ServerPlatformSupportFactory.getInstance(ServerPlatformSupportFactory.java:79)
-	at oracle.integration.platform.blocks.WLSPlatformConfigurationProvider.<clinit>(WLSPlatformConfigurationProvider.java:44)
-	at oracle.integration.platform.blocks.FabricConfigManager.<clinit>(FabricConfigManager.java:155)
-	at oracle.integration.platform.blocks.xpath.FabricXPathFunctionResolver.loadXpathFunctions(FabricXPathFunctionResolver.java:271)
-	at oracle.integration.platform.blocks.xpath.FabricXPathFunctionResolver.loadXPathConfigFile(FabricXPathFunctionResolver.java:153)
-	at oracle.integration.platform.blocks.xpath.FabricXPathFunctionResolver.init(FabricXPathFunctionResolver.java:51)
-	at com.collaxa.cube.xml.xpath.BPELXPathFunctionNameResolver.loadFabricXpathFunctions(BPELXPathFunctionNameResolver.java:57)
-	at com.collaxa.cube.xml.xpath.BPELXPathFunctionNameResolver.<init>(BPELXPathFunctionNameResolver.java:48)
-	at com.collaxa.cube.xml.xpath.BPELXPathFunctionNameResolver.<clinit>(BPELXPathFunctionNameResolver.java:44)
-	at com.collaxa.cube.lang.compiler.bpel.XPathExprValidatorVisitor.<init>(XPathExprValidatorVisitor.java:122)
-	at com.collaxa.cube.lang.compiler.bpel.AssignValidator.<init>(AssignValidator.java:89)
-	at com.collaxa.cube.lang.compiler.bpel.BpelParser.<init>(BpelParser.java:452)
-	at com.collaxa.cube.lang.compiler.bpel.BPELValidator.validate(BPELValidator.java:60)
-	at com.collaxa.cube.lang.compiler.BPEL1Processor.validate(BPEL1Processor.java:329)
-	at com.collaxa.cube.lang.compiler.BPEL1Processor.process(BPEL1Processor.java:153)
-	at com.collaxa.cube.lang.compiler.CubeParserHelper.compile(CubeParserHelper.java:47)
-	at oracle.fabric.bpel.bpelc.BPELComponentValidator.validate(BPELComponentValidator.java:40)
-	at oracle.soa.scac.ValidateComposite.validateComponentTypeServicesReferences(ValidateComposite.java:1117)
-	at oracle.soa.scac.ValidateComposite.doValidation(ValidateComposite.java:500)
+Apr 28, 2013 11:30:05 PM oracle.mds
+ERROR: missing element "file:/C:/JDeveloper/mywork/SSDI%20Demo/.adf/META-INF/adf-config.xml" in document "{1}"
+Parse of component type files failed, check the adf-config.xml file : "oracle.fabric.common.FabricException: oracle.mds.config.MDSConfigurationException: MDS-01333: missing element "mds-config": MDS-01333: missing element "mds-config": oracle.mds.config.MDSConfigurationException: MDS-01333: missing element "mds-config": MDS-01333: missing element "mds-config""
+oracle.fabric.common.FabricException: oracle.fabric.common.FabricException: oracle.mds.config.MDSConfigurationException: MDS-01333: missing element "mds-config": MDS-01333: missing element "mds-config": oracle.mds.config.MDSConfigurationException: MDS-01333: missing element "mds-config": MDS-01333: missing element "mds-config"
+	at oracle.fabric.common.FabricMetadataManagerFactory.createMetadataManager(FabricMetadataManagerFactory.java:181)
+	at oracle.fabric.common.FabricMetadataManagerFactory.createMetadataManager(FabricMetadataManagerFactory.java:146)
+	at oracle.fabric.composite.model.ModuleConfigModel.initializeMetadataManager(ModuleConfigModel.java:63)
+	at oracle.fabric.composite.model.CompositeModel.getClientMetadataManager(CompositeModel.java:226)
+	at oracle.soa.scac.ValidateComposite.loadComposite(ValidateComposite.java:849)
+	at oracle.soa.scac.ValidateComposite.doValidation(ValidateComposite.java:490)
 	at oracle.soa.scac.ValidateComposite.run(ValidateComposite.java:150)
 	at oracle.soa.scac.ValidateComposite.main(ValidateComposite.java:135)
+Caused by: oracle.fabric.common.FabricException: oracle.mds.config.MDSConfigurationException: MDS-01333: missing element "mds-config": MDS-01333: missing element "mds-config"
+	at oracle.integration.platform.common.MDSMetadataManagerImpl.init(MDSMetadataManagerImpl.java:313)
+	at oracle.integration.platform.common.MDSMetadataManagerImpl.init(MDSMetadataManagerImpl.java:237)
+	at oracle.integration.platform.common.MDSMetadataManagerImpl.<init>(MDSMetadataManagerImpl.java:223)
+	at oracle.integration.platform.common.MDSMetadataManagerImpl.<init>(MDSMetadataManagerImpl.java:173)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+	at oracle.fabric.common.FabricMetadataManagerFactory.createMetadataManager(FabricMetadataManagerFactory.java:176)
+	... 7 more
+Caused by: oracle.mds.config.MDSConfigurationException: MDS-01333: missing element "mds-config"
+	at oracle.mds.config.MDSConfig.<init>(MDSConfig.java:523)
+	at oracle.mds.config.MDSConfig.<init>(MDSConfig.java:443)
+	at oracle.integration.platform.common.MDSUtil.getMDSConfig(MDSUtil.java:42)
+	at oracle.integration.platform.common.MDSUtil.getMDSInstance(MDSUtil.java:132)
+	at oracle.integration.platform.common.MDSMetadataManagerImpl.getMDSInstance(MDSMetadataManagerImpl.java:662)
+	at oracle.integration.platform.common.MDSMetadataManagerImpl.init(MDSMetadataManagerImpl.java:276)
+	... 15 more

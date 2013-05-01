@@ -69,6 +69,11 @@
             <url n="sourceOwnerURL" path="../SSDI Demo.jws"/>
             <url n="sourceURL" path="../Model/Model.jpr"/>
          </hash>
+         <hash>
+            <value n="class" v="oracle.jdeveloper.library.ProjectLibrary"/>
+            <url n="sourceOwnerURL" path="../SSDI Demo.jws"/>
+            <url n="sourceURL" path="../WebServiceProxy/WebServiceProxy.jpr"/>
+         </hash>
       </list>
    </hash>
    <hash n="oracle.ide.model.TechnologyScopeConfiguration">

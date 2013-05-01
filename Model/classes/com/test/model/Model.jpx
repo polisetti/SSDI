@@ -1,49 +1,47 @@
 <?xml version='1.0' encoding='windows-1252' ?>
 <!DOCTYPE JboProject SYSTEM "jbo_03_01.dtd">
-<!---->
 
 <JboProject
    xmlns="http://xmlns.oracle.com/bc4j"
    Name="Model"
    Version="11.1.1.60.13"
    SeparateXMLFiles="true"
-   PackageName="com.test.model">
+   PackageName="com.test.model" >
    <DesignTime>
-      <Attr Name="_jprName" Value="../../../../Model.jpr"/>
-      <Attr Name="_appModuleNames0" Value="com.test.model.am.SSDI_AM"/>
-      <Attr Name="_NamedConnection" Value="SSDI-DEMO"/>
+      <Attr Name="_jprName" Value="../../../../Model.jpr" />
+      <Attr Name="_appModuleNames0" Value="com.test.model.am.SSDI_AM" />
+      <Attr Name="_NamedConnection" Value="SSDI-DEMO" />
    </DesignTime>
    <Containee
       Name="am"
-      PackageName="com.test.model.am"
-      ObjectType="JboPackage">
+      ObjectType="JboPackage"
+      PackageName="com.test.model.am" >
       <DesignTime>
-         <Attr Name="_VO" Value="true"/>
-         <Attr Name="_AM" Value="true"/>
+         <Attr Name="_AM" Value="true" />
       </DesignTime>
    </Containee>
    <Containee
       Name="association"
-      PackageName="com.test.model.entity.association"
-      ObjectType="JboPackage">
+      ObjectType="JboPackage"
+      PackageName="com.test.model.entity.association" >
       <DesignTime>
-         <Attr Name="_AS" Value="true"/>
+         <Attr Name="_AS" Value="true" />
       </DesignTime>
    </Containee>
    <Containee
       Name="entity"
-      PackageName="com.test.model.entity"
-      ObjectType="JboPackage">
+      ObjectType="JboPackage"
+      PackageName="com.test.model.entity" >
       <DesignTime>
-         <Attr Name="_EO" Value="true"/>
+         <Attr Name="_EO" Value="true" />
       </DesignTime>
    </Containee>
    <Containee
       Name="view"
-      PackageName="com.test.model.view"
-      ObjectType="JboPackage">
+      ObjectType="JboPackage"
+      PackageName="com.test.model.view" >
       <DesignTime>
-         <Attr Name="_VO" Value="true"/>
+         <Attr Name="_VO" Value="true" />
       </DesignTime>
    </Containee>
 </JboProject>

@@ -2,7 +2,11 @@ package com.test.model.am.client;
 
 import com.test.model.am.common.SSDI_AM;
 
+import java.sql.SQLException;
+
 import java.util.List;
+
+import java.util.Map;
 
 import oracle.jbo.client.remote.ApplicationModuleImpl;
 import oracle.jbo.domain.Number;
@@ -19,20 +23,11 @@ public class SSDI_AMClient extends ApplicationModuleImpl implements SSDI_AM {
     public SSDI_AMClient() {
     }
 
-
-    /*
     public List<String> autoComplete(String inputValue) {
         Object _ret =
             this.riInvokeExportedMethod(this,"autoComplete",new String [] {"java.lang.String"},new Object[] {inputValue});
         return (List<String>)_ret;
-    } */
-
-
-    /* public List<String> autoComplete(String inputValue) {
-        Object _ret =
-            this.riInvokeExportedMethod(this,"autoComplete",new String [] {"java.lang.String"},new Object[] {inputValue});
-        return (List<String>)_ret;
-    } */
+    }
 
 
     public void deleteStocksFromPortfolio(int stockID, int portfolioID) {
@@ -88,9 +83,9 @@ public class SSDI_AMClient extends ApplicationModuleImpl implements SSDI_AM {
         return (String)_ret;
     }
 
-    public List<String> autoComplete(String inputValue) {
+    public Map getThePastPrices(Number stockID, Number stDate, Number enDate) {
         Object _ret =
-            this.riInvokeExportedMethod(this,"autoComplete",new String [] {"java.lang.String"},new Object[] {inputValue});
-        return (List<String>)_ret;
+            this.riInvokeExportedMethod(this,"getThePastPrices",new String [] {"oracle.jbo.domain.Number","oracle.jbo.domain.Number","oracle.jbo.domain.Number"},new Object[] {stockID, stDate, enDate});
+        return (Map)_ret;
     }
 }

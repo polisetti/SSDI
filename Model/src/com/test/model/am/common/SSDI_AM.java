@@ -2,6 +2,8 @@ package com.test.model.am.common;
 
 import java.util.List;
 
+import java.util.Map;
+
 import oracle.jbo.ApplicationModule;
 import oracle.jbo.domain.Number;
 // ---------------------------------------------------------------------
@@ -29,5 +31,4 @@ public interface SSDI_AM extends ApplicationModule {
 
     String getStockName(Number pStockID);
 
-    List<String> autoComplete(String inputValue);
 }

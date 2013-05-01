@@ -18,12 +18,5 @@
     <CredentialStoreContext credentialStoreClass="oracle.adf.share.security.providers.jps.CSFCredentialStore"
                             credentialStoreLocation="./jps-config.xml"/>
   </sec:adf-security-child>
-  <adf-mds-config xmlns="http://xmlns.oracle.com/adf/mds/config">
-    <mds-config xmlns="http://xmlns.oracle.com/mds/config">
-      <persistence-config>
-        <metadata-namespaces/>
-        <metadata-store-usages/>
-      </persistence-config>
-    </mds-config>
-  </adf-mds-config>
+ 
 </adf-config>

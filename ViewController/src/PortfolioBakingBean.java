@@ -2,10 +2,13 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.el.ELContext;
 import javax.el.ExpressionFactory;
 import javax.el.ValueExpression;
+
 import javax.faces.application.Application;
+import javax.faces.component.html.HtmlCommandLink;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
@@ -15,102 +18,278 @@ import oracle.adf.view.rich.component.rich.data.RichTable;
 import oracle.adf.view.rich.component.rich.layout.RichPanelGroupLayout;
 import oracle.adf.view.rich.component.rich.nav.RichCommandToolbarButton;
 import oracle.adf.view.rich.model.AutoSuggestUIHints;
+
 import oracle.binding.BindingContainer;
 import oracle.binding.OperationBinding;
+
 import java.util.ListIterator;
 
 import java.util.Random;
+
 import oracle.adf.model.BindingContext;
 import oracle.adf.model.binding.DCBindingContainer;
 import oracle.adf.model.binding.DCIteratorBinding;
+
 import oracle.jbo.Key;
 import oracle.jbo.Row;
 import oracle.jbo.RowSetIterator;
 import oracle.jbo.domain.Number;
 
 import javax.faces.context.ExternalContext;
+
 import org.apache.myfaces.trinidad.model.RowKeySet;
+
+import com.webservice.SoaWebServiceClient;
+
+import java.sql.SQLException;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PortfolioBakingBean {
     private RichTable pfTable;
     public String stockName;
-    public List <String> stocksSelected ;
+    public List<String> stocksSelected;
+    public List<Number> stocksList;
     private Boolean showLineGraph;
-    private UIGraph displayLineGraph;
     private RichCommandToolbarButton compareStocksButton;
+    public Integer numberOfDays;
+    private HtmlCommandLink fiveDaysBinding;
+    private HtmlCommandLink tenDaysBinding;
+    private HtmlCommandLink fifteenDaysBinding;
+    public int startDate, endDate;
+    public Map<Number, Double> resultMap;
+    public List<Integer> dateList;
+    public Map<Number, Object> globalMap;
 
     public PortfolioBakingBean() {
         showLineGraph = Boolean.FALSE;
         stocksSelected = new ArrayList<String>();
+        stocksList = new ArrayList<Number>();
+        dateList = new ArrayList<Integer>();
+        globalMap = new HashMap<Number, Object>();
     }
 
-
     public void compareStocks(ActionEvent actionEvent) {
+        //set first and second date
+        setFirstAndSecondDate(5);
+        
         //Get the binding
-        RowKeySet selectedEmps = getPfTable().getSelectedRowKeys();    
+        RowKeySet selectedEmps = getPfTable().getSelectedRowKeys();
         Iterator selectedEmpIter = selectedEmps.iterator();
         DCBindingContainer bindings =
-                          (DCBindingContainer)BindingContext.getCurrent().getCurrentBindingsEntry();
-        
+            (DCBindingContainer)BindingContext.getCurrent().getCurrentBindingsEntry();
+
         //get the binding iterator
-        DCIteratorBinding empIter = bindings.findIteratorBinding("PortfolioStocksVOIterator");
+        DCIteratorBinding empIter =
+            bindings.findIteratorBinding("PortfolioStocksVOIterator");
+        RowSetIterator empRSIter = empIter.getRowSetIterator();
+        stocksSelected = new ArrayList<String>();
+        //iterate through all the selected rows in the table
+
+        while (selectedEmpIter.hasNext()) {
+            Key key = (Key)((List)selectedEmpIter.next()).get(0);
+            Row currentRow = empRSIter.getRow(key);
+            Number sid = (Number)currentRow.getAttribute("Stockid");
+            String stockName = getStockName(sid);
+            
+            stocksSelected.add(stockName);
+        }
+        setShowLineGraph(Boolean.TRUE);
+    }
+    public String getStockName(Number sid) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        Application app = facesContext.getApplication();
+        ExpressionFactory elFactory = app.getExpressionFactory();
+        ELContext elContext = facesContext.getELContext();
+        ValueExpression valueExp =
+            elFactory.createValueExpression(elContext, "#{bindings}",
+                                            Object.class);
+        BindingContainer binding =
+            (BindingContainer)valueExp.getValue(elContext);
+        OperationBinding operationBinding =
+            binding.getOperationBinding("getStockName");
+
+        // Set the Input parameters to the operation bindings as below
+        operationBinding.getParamsMap().put("pStockID", sid);
+
+        // Invoke the Application module method
+        operationBinding.execute();
+
+        // Get the result from operation bindings
+        Object obj = operationBinding.getResult();
+        String stockName = (String)operationBinding.getResult();
+
+        return stockName;
+    }
+    public List<Object[]> getTabularData() {
+        List<Object[]> tabularData = new ArrayList<Object[]>();
+
+          //time, stock id, price
+          int time = 900;
+          Random ran = new Random();
+          List<String> Locations = new ArrayList<String>();
+
+          //Add the selected stocks to the line graph
+          for (String s : stocksSelected) {
+              Locations.add(s);
+          }
+
+          while (time < 1500) {
+              for (String loc : Locations) {
+                  tabularData.add(new Object[] { time, loc, Double.valueOf(ran.nextInt(40) + 25) });
+              }
+              time += 100;
+          }
+          //displayLineGraph
+          return tabularData;
+    }
+    public List<Object[]> getUpdatedTabularData() {
+        List<Object[]> tabularDataNew = new ArrayList<Object[]>();
+
+        Random ran = new Random();
+        List<String> Locations = new ArrayList<String>();
+
+        //Add the selected stocks to the line graph
+        for (Number numb : stocksList) {
+            Locations.add(numb.stringValue());
+        }
+        
+        Collections.sort(stocksList);
+
+        int counter = 0;
+        while (counter < numberOfDays) {
+           for (Number loc : stocksList) {
+                try {
+                    Integer currentDate = dateList.get(counter);
+                    Map<Number, Double> x = (Map<Number, Double>)globalMap.get(loc);
+                    Double price;
+                    
+                    price = x.get(new Number(dateList.get(counter)));
+                    System.out.println(price);
+                    tabularDataNew.add(new Object[] { currentDate, getStockName(loc), price });
+                    //tabularDataNew.add(new Object[] { dateList.get(counter), getStockName(loc), Double.valueOf(ran.nextInt(40) + 25) });
+                } 
+                catch (SQLException e) {
+                
+                }
+           }
+           counter += 1;
+        }
+        //displayLineGraph
+        return tabularDataNew;
+    }
+
+    public void updateSelectedList() {
+        stocksList = new ArrayList<Number>();
+        RowKeySet selectedEmps = getPfTable().getSelectedRowKeys();
+        Iterator selectedEmpIter = selectedEmps.iterator();
+        DCBindingContainer bindings =
+            (DCBindingContainer)BindingContext.getCurrent().getCurrentBindingsEntry();
+
+        //get the binding iterator
+        DCIteratorBinding empIter =
+            bindings.findIteratorBinding("PortfolioStocksVOIterator");
         RowSetIterator empRSIter = empIter.getRowSetIterator();
         stocksSelected = new ArrayList<String>();
         //iterate through all the selected rows in the table
         //TODO Bring the while loop code outside
-        while(selectedEmpIter.hasNext()) {
-           Key key = (Key)((List)selectedEmpIter.next()).get(0);
-           Row currentRow = empRSIter.getRow(key);
-           Number sid = (Number)currentRow.getAttribute("Stockid");
+        while (selectedEmpIter.hasNext()) {
+            Key key = (Key)((List)selectedEmpIter.next()).get(0);
+            Row currentRow = empRSIter.getRow(key);
+            Number sid = (Number)currentRow.getAttribute("Stockid");
+            stocksList.add(sid);
+            //System.out.println(sid);
+        }
+    }
+    public void setFirstAndSecondDate(int delta) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        
+        Date fd = new Date();
+        Calendar cal = new GregorianCalendar();
+        cal.setTime(fd);
+        
+        Number firstDate = new Number(Integer.parseInt(dateFormat.format(fd)));
+        Number secondDate = new Number();
+        
+        dateList.add(firstDate.intValue());
+        System.out.println(firstDate);
+        
+        for (int count=0; count<delta; count++){
+            cal.add(Calendar.DAY_OF_MONTH, -1);
+            
+            Date sd = new Date();
+            sd = cal.getTime();
+            secondDate = new Number(Integer.parseInt(dateFormat.format(sd)));
+            dateList.add(secondDate.intValue());
+            System.out.println(secondDate);
+        }
+        
+        startDate = secondDate.intValue();
+        endDate = firstDate.intValue();
+        
+        System.out.println(startDate);
+        System.out.println(endDate);
+    }
+    public void updateLineGraph(ActionEvent actionEvent) {
+        //Fivedays method
+        //get the selected stocks
+        updateSelectedList();
+        
+        //print the selected stocks
+        for (Number x: stocksList) {
+            System.out.println("Vlue is: " + x.toString());
+        }
 
-           FacesContext facesContext = FacesContext.getCurrentInstance();
-           Application app = facesContext.getApplication();
-           ExpressionFactory elFactory = app.getExpressionFactory();
-           ELContext elContext = facesContext.getELContext();
-           ValueExpression valueExp =
-           elFactory.createValueExpression(elContext, "#{bindings}", Object.class);
-           BindingContainer binding= (BindingContainer)valueExp.getValue(elContext);
-           OperationBinding operationBinding=binding.getOperationBinding("getStockName");
+        //set the start and end dates
+        setFirstAndSecondDate(5);
+        
+        //for each stock call the AM method and get the data here
+        for (Number id : stocksList) {
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            Application app = facesContext.getApplication();
+            ExpressionFactory elFactory = app.getExpressionFactory();
+            ELContext elContext = facesContext.getELContext();
+            ValueExpression valueExp =
+                elFactory.createValueExpression(elContext, "#{bindings}",
+                                                Object.class);
+            BindingContainer binding =
+                (BindingContainer)valueExp.getValue(elContext);
 
-           // Set the Input parameters to the operation bindings as below
-           operationBinding.getParamsMap().put("pStockID", sid);  
+            OperationBinding operationBinding =
+                binding.getOperationBinding("getThePastPrices");
 
-           // Invoke the Application module method
-           operationBinding.execute();
+            // Set the Input parameters to the operation bindings as below
+            operationBinding.getParamsMap().put("stockID", id);
+            operationBinding.getParamsMap().put("stDate", startDate);
+            operationBinding.getParamsMap().put("enDate", endDate);
 
-           // Get the result from operation bindings
-           String stockName = (String)operationBinding.getResult();
+            // Invoke the Application module method
+            operationBinding.execute();
 
-           // Add the stockName returned to the global variable
-           stocksSelected.add(stockName);
-           System.out.println(stockName);
+            // Get the result from operation bindings
+            resultMap = (Map<Number, Double>)operationBinding.getResult();
+            globalMap.put(id, resultMap);
+            
+            //print the result set map
+            for (Iterator<Number> it = resultMap.keySet().iterator(); it.hasNext(); ) {
+                Number itValue = it.next();
+                System.out.print(itValue);
+                System.out.print("\t");
+                System.out.println(resultMap.get(itValue));
+            }
         }
         setShowLineGraph(Boolean.TRUE);
-        //this.getTabularData();
-        //return stocksSelected;
+        System.out.println("done");
     }
-    public List<Object[]> getTabularData() {
-       List<Object[]> tabularData = new ArrayList<Object []>();
-         
-       //time, stock id, price  
-       int time = 900;
-       Random ran = new Random();
-       List <String> Locations = new ArrayList <String>();
-       
-       //Add the selected stocks to the line graph
-       for (String s: stocksSelected) {
-           Locations.add(s);    
-       }
 
-       while (time < 1500) {
-           for (String loc: Locations) {
-               tabularData.add(new Object[]{time, loc, Double.valueOf(ran.nextInt(40) + 25)});    
-           }
-           time += 100;
-         }
-        //displayLineGraph
-        return tabularData;
-     }
     public void deleteStocksFromPortfolio(ActionEvent actionEvent) {
         // Add event code here...
     }
@@ -120,32 +299,35 @@ public class PortfolioBakingBean {
     }
 
     public List<SelectItem> auto(FacesContext facesContext,
-                     AutoSuggestUIHints autoSuggestUIHints) {
+                                 AutoSuggestUIHints autoSuggestUIHints) {
         String subValue = autoSuggestUIHints.getSubmittedValue();
         subValue = subValue.toLowerCase();
-        
+
         facesContext = FacesContext.getCurrentInstance();
         Application app = facesContext.getApplication();
         ExpressionFactory elFactory = app.getExpressionFactory();
         ELContext elContext = facesContext.getELContext();
         ValueExpression valueExp =
-          elFactory.createValueExpression(elContext, "#{bindings}", Object.class);
-        BindingContainer binding= (BindingContainer)valueExp.getValue(elContext);
-        OperationBinding operationBinding=binding.getOperationBinding("autoComplete");
+            elFactory.createValueExpression(elContext, "#{bindings}",
+                                            Object.class);
+        BindingContainer binding =
+            (BindingContainer)valueExp.getValue(elContext);
+        OperationBinding operationBinding =
+            binding.getOperationBinding("autoComplete");
         // Set the Input parameters to the operation bindings as below
-           operationBinding.getParamsMap().put("inputValue", subValue);  
+        operationBinding.getParamsMap().put("inputValue", subValue);
         // Invoke the Application module method
         operationBinding.execute();
         // Get the result from operation bindings
         List<String> obj = (List<String>)operationBinding.getResult();
         ListIterator<String> litr = obj.listIterator();
-        List <SelectItem> cont = new ArrayList<SelectItem>();
+        List<SelectItem> cont = new ArrayList<SelectItem>();
 
         while (litr.hasNext()) {
-          String element = litr.next();
-          cont.add(new SelectItem(element));
+            String element = litr.next();
+            cont.add(new SelectItem(element));
         }
-       return cont;
+        return cont;
     }
 
     public void addStocksToPortfolio(ActionEvent actionEvent) {
@@ -159,23 +341,26 @@ public class PortfolioBakingBean {
         ExpressionFactory elFactory = app.getExpressionFactory();
         ELContext elContext = facesContext.getELContext();
         ValueExpression valueExp =
-          elFactory.createValueExpression(elContext, "#{bindings}", Object.class);
-        BindingContainer binding= (BindingContainer)valueExp.getValue(elContext);
+            elFactory.createValueExpression(elContext, "#{bindings}",
+                                            Object.class);
+        BindingContainer binding =
+            (BindingContainer)valueExp.getValue(elContext);
 
         //get the Operation Binding
-        OperationBinding operationBinding = binding.getOperationBinding("getStockID");
-        
+        OperationBinding operationBinding =
+            binding.getOperationBinding("getStockID");
+
         //set the parameter
         operationBinding.getParamsMap().put("pStockName", stockName);
-        
+
         //execute and get the StockID
         operationBinding.execute();
         Number stockID = (Number)operationBinding.getResult();
-                
+
         operationBinding = binding.getOperationBinding("addStocksToPortfolio");
         operationBinding.getParamsMap().put("stockID", stockID);
         operationBinding.execute();
-        
+
         return;
     }
 
@@ -199,16 +384,8 @@ public class PortfolioBakingBean {
         this.showLineGraph = showLineGraph;
     }
 
-    public Boolean isShowLineGraph() {
+    public Boolean getIsShowLineGraph() {
         return showLineGraph;
-    }
-
-    public void setDisplayLineGraph(UIGraph displayLineGraph) {
-        this.displayLineGraph = displayLineGraph;
-    }
-
-    public UIGraph  getDisplayLineGraph() {
-        return displayLineGraph;
     }
 
     public void setCompareStocksButton(RichCommandToolbarButton compareStocksButton) {
@@ -219,4 +396,41 @@ public class PortfolioBakingBean {
         return compareStocksButton;
     }
 
+    public void setNumberOfDays(Integer numberOfDays) {
+        this.numberOfDays = numberOfDays;
+    }
+
+    public Integer getNumberOfDays() {
+        return numberOfDays;
+    }
+
+    public void setFiveDaysBinding(HtmlCommandLink fiveDaysBinding) {
+        this.fiveDaysBinding = fiveDaysBinding;
+    }
+
+    public HtmlCommandLink getFiveDaysBinding() {
+        return fiveDaysBinding;
+    }
+
+    public void setTenDaysBinding(HtmlCommandLink tenDaysBinding) {
+        this.tenDaysBinding = tenDaysBinding;
+    }
+
+    public HtmlCommandLink getTenDaysBinding() {
+        return tenDaysBinding;
+    }
+
+    public void setFifteenDaysBinding(HtmlCommandLink fifteenDaysBinding) {
+        this.fifteenDaysBinding = fifteenDaysBinding;
+    }
+
+    public HtmlCommandLink getFifteenDaysBinding() {
+        return fifteenDaysBinding;
+    }
+
+    public Object fiveDaysActionMethod() {
+        // Add event code here...
+        System.out.println(getNumberOfDays());
+        return null;
+    }
 }

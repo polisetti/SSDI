@@ -96,10 +96,10 @@ FROM
           Name="autoExecute"
           Value="false"/>
         <Property
-          Name="showInList"
+          Name="allowConjunctionOverride"
           Value="true"/>
         <Property
-          Name="allowConjunctionOverride"
+          Name="showInList"
           Value="true"/>
         <Property
           Name="mode"
@@ -134,10 +134,10 @@ FROM
           Name="autoExecute"
           Value="false"/>
         <Property
-          Name="allowConjunctionOverride"
+          Name="showInList"
           Value="true"/>
         <Property
-          Name="showInList"
+          Name="allowConjunctionOverride"
           Value="true"/>
         <Property
           Name="mode"
@@ -157,6 +157,9 @@ FROM
         Required="Optional"/>
     </ViewCriteriaRow>
   </ViewCriteria>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="Stockid"/>
+  </AttrArray>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="com.test.model.ModelBundle"/>

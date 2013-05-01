@@ -3,7 +3,7 @@
 	elementFormDefault="qualified"
 	targetNamespace="http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL"
 	xmlns="http://www.w3.org/2001/XMLSchema">
-	<element name="process">
+	<element name="serviceInput">
 		<complexType>
 			<sequence>
 				<element name="StockID" type="decimal"/>
@@ -12,10 +12,14 @@
 			</sequence>
 		</complexType>
 	</element>
-	<element name="processResponse">
+	<element name="serviceOutput">
 		<complexType>
 			<sequence>
 				<element name="result" type="double"/>
+				<element name="outputXBar" type="double"/>
+				<element name="outputYBar" type="double"/>
+				<element name="outputBeta0" type="double"/>
+				<element name="outputBeta1" type="double"/>
 			</sequence>
 		</complexType>
 	</element>

@@ -75,6 +75,10 @@
     <variable name="writeFileAdapter_InputVariable"
               messageType="ns3:Write_msg"/>
     <variable name="tempVar" type="xsd:double"/>
+    <variable name="beta0" type="xsd:double"/>
+    <variable name="beta1" type="xsd:double"/>
+    <variable name="ybar" type="xsd:double"/>
+    <variable name="xbar" type="xsd:double"/>
   </variables>
 
   <!-- 
@@ -93,21 +97,21 @@
     <assign name="Assign_DBAdapter">
       <copy>
         <from variable="inputVariable" part="payload"
-              query="/client:process/client:StockID"/>
+              query="/client:serviceInput/client:StockID"/>
         <to variable="InputVariable_DBAdapter"
             part="DBAdapterServiceSelect_inputParameters"
             query="/ns2:DBAdapterServiceSelect_BindStockID_BindStartDate_BindEndDateInputParameters/ns2:BindStockID"/>
       </copy>
       <copy>
         <from variable="inputVariable" part="payload"
-              query="/client:process/client:StartDate"/>
+              query="/client:serviceInput/client:StartDate"/>
         <to variable="InputVariable_DBAdapter"
             part="DBAdapterServiceSelect_inputParameters"
             query="/ns2:DBAdapterServiceSelect_BindStockID_BindStartDate_BindEndDateInputParameters/ns2:BindStartDate"/>
       </copy>
       <copy>
         <from variable="inputVariable" part="payload"
-              query="/client:process/client:EndDate"/>
+              query="/client:serviceInput/client:EndDate"/>
         <to variable="InputVariable_DBAdapter"
             part="DBAdapterServiceSelect_inputParameters"
             query="/ns2:DBAdapterServiceSelect_BindStockID_BindStartDate_BindEndDateInputParameters/ns2:BindEndDate"/>
@@ -144,14 +148,44 @@
     <bpelx:exec import="org.w3c.dom.Element"/>
     <bpelx:exec import="prediction.*"/>
     <bpelx:exec name="Prediction_Algorithm" version="1.5" language="java">
-      <![CDATA[Double predictedPrice = PredictionAlgorithm.predictedValue();  
-setVariableData("tempVar", predictedPrice);]]>
+      <![CDATA[PredictionAlgorithm obj = new PredictionAlgorithm(); 
+Double predictedPrice = obj.predictedValue(); 
+Double xBarValue  = obj.getXbar(); 
+Double yBarValue  = obj.getYbar(); 
+Double beta0Value = obj.getBeta0(); 
+Double beta1Value = obj.getBeta1(); 
+ 
+setVariableData("tempVar", predictedPrice); 
+setVariableData("xbar", xBarValue); 
+setVariableData("ybar", yBarValue); 
+setVariableData("beta0", beta0Value); 
+setVariableData("beta1", beta1Value);]]>
     </bpelx:exec>
-        <assign name="Assign1">
+        <assign name="Assign_Result">
       <copy>
         <from variable="tempVar"/>
         <to variable="outputVariable" part="payload"
-            query="/client:processResponse/client:result"/>
+            query="/client:serviceOutput/client:result"/>
+      </copy>
+      <copy>
+        <from variable="xbar"/>
+        <to variable="outputVariable" part="payload"
+            query="/client:serviceOutput/client:outputXBar"/>
+      </copy>
+      <copy>
+        <from variable="ybar"/>
+        <to variable="outputVariable" part="payload"
+            query="/client:serviceOutput/client:outputYBar"/>
+      </copy>
+      <copy>
+        <from variable="beta1"/>
+        <to variable="outputVariable" part="payload"
+            query="/client:serviceOutput/client:outputBeta1"/>
+      </copy>
+      <copy>
+        <from variable="beta0"/>
+        <to variable="outputVariable" part="payload"
+            query="/client:serviceOutput/client:outputBeta0"/>
       </copy>
     </assign>
     <reply name="replyOutput" partnerLink="SOA_SSDI_Service" portType="client:SOA_SSDI_BPEL" operation="process" variable="outputVariable"/>

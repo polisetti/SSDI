@@ -39,13 +39,20 @@
     ViewObjectName="com.test.model.view.StockPricesVO"/>
   <ViewUsage
     Name="StockPricesROVO"
-    ViewObjectName="com.test.model.am.StockPricesROVO"/>
+    ViewObjectName="com.test.model.view.StockPricesROVO"/>
   <ViewUsage
     Name="TestPortfolioStocksVO"
     ViewObjectName="com.test.model.view.TestPortfolioStocksVO"/>
   <ViewUsage
     Name="PortfolioStocks2"
     ViewObjectName="com.test.model.view.PortfolioStocks2"/>
+  <ViewUsage
+    Name="TestStockPricesVO"
+    ViewObjectName="com.test.model.view.TestStockPricesVO"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.test.model.ModelBundle"/>
+  </ResourceBundle>
   <ClientInterface>
     <Method
       Name="deleteStocksFromPortfolio">
@@ -123,20 +130,18 @@
         Type="oracle.jbo.domain.Number"/>
     </Method>
     <Method
-      Name="autoComplete">
+      Name="getThePastPrices">
       <Return
-        Type="java.util.List"
-        IsGeneric="true">
-        <Element
-          Type="java.lang.String"/>
-      </Return>
+        Type="java.util.Map"/>
       <Parameter
-        Name="inputValue"
-        Type="java.lang.String"/>
+        Name="stockID"
+        Type="oracle.jbo.domain.Number"/>
+      <Parameter
+        Name="stDate"
+        Type="oracle.jbo.domain.Number"/>
+      <Parameter
+        Name="enDate"
+        Type="oracle.jbo.domain.Number"/>
     </Method>
   </ClientInterface>
-  <ResourceBundle>
-    <PropertiesBundle
-      PropertiesFile="com.test.model.ModelBundle"/>
-  </ResourceBundle>
 </AppModule>

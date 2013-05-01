@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class PredictionAlgorithm {
-    public static double predictedValue() {
+    private double beta0, beta1, ybar, xbar;
+    public double predictedValue() {
         int MAXN = 1000;
         int n = 0;
 
@@ -63,8 +64,8 @@ public class PredictionAlgorithm {
             //Close the input stream
             in.close();
 
-            double xbar = sumx / n;
-            double ybar = sumy / n;
+            this.xbar = sumx / n;
+            this.ybar = sumy / n;
 
             // second pass: compute summary statistics
             double xxbar = 0.0, yybar = 0.0, xybar = 0.0;
@@ -74,14 +75,46 @@ public class PredictionAlgorithm {
                 xybar += (x[i] - xbar) * (y[i] - ybar);
             }
 
-            double beta1 = xybar / xxbar;
-            double beta0 = ybar - beta1 * xbar;
+            this.beta1 = xybar / xxbar;
+            this.beta0 = this.ybar - this.beta1 * this.xbar;
 
-            return beta0;
+            return this.beta0;
         }
         catch (Exception e){
             System.err.println("Error: " + e.getMessage());
             return 0.0;
         }
+    }
+
+    public void setBeta0(double beta0) {
+        this.beta0 = beta0;
+    }
+
+    public double getBeta0() {
+        return beta0;
+    }
+
+    public void setXbar(double xbar) {
+        this.xbar = xbar;
+    }
+
+    public double getXbar() {
+        return xbar;
+    }
+
+    public void setBeta1(double beta1) {
+        this.beta1 = beta1;
+    }
+
+    public double getBeta1() {
+        return beta1;
+    }
+
+    public void setYbar(double ybar) {
+        this.ybar = ybar;
+    }
+
+    public double getYbar() {
+        return ybar;
     }
 }
