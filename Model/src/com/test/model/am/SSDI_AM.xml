@@ -130,9 +130,10 @@
         Type="oracle.jbo.domain.Number"/>
     </Method>
     <Method
-      Name="getThePastPrices">
+      Name="getTodayPrice">
       <Return
-        Type="java.util.Map"/>
+        Type="java.util.Map"
+        IsGeneric="true"/>
       <Parameter
         Name="stockID"
         Type="oracle.jbo.domain.Number"/>

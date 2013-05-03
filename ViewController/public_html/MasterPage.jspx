@@ -73,7 +73,20 @@
             </af:panelGroupLayout>
           </f:facet>
           <f:facet name="center">
-            <af:region value="#{bindings.SearchStock1.regionModel}" id="r1"/>
+            <af:panelTabbed id="pt2">
+              <!--af:showDetailItem text="SearchStockPrice" id="sdi6">
+                <af:panelGroupLayout id="pgl5" layout="scroll">
+                  <af:region value="#{bindings.SearchStock2.regionModel}"
+                             id="r1"/>
+                </af:panelGroupLayout>
+              </af:showDetailItem -->
+              <af:showDetailItem text="CompareStocks" id="sdi7" >
+                <af:panelGroupLayout id="pgl6" layout="scroll">
+                  <af:region value="#{bindings.CompareStocks1.regionModel}"
+                             id="r2" styleClass="AFStretchWidth"/>
+                </af:panelGroupLayout>
+              </af:showDetailItem>
+            </af:panelTabbed>
           </f:facet>
         </af:pageTemplate>
       </af:form>

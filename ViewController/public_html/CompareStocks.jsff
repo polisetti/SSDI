@@ -2,40 +2,85 @@
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
           xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
           xmlns:f="http://java.sun.com/jsf/core"
-          xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+          xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces"
+          xmlns:h="http://java.sun.com/jsf/html">
   <af:panelSplitter id="ps1" orientation="vertical">
     <f:facet name="first">
-      <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+              <af:panelStretchLayout id="psl1" endWidth="100px">
+          <f:facet name="bottom"/>
+          <f:facet name="center">
+		  <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
         <af:spacer width="50" height="30" id="s1"/>
         <af:outputText value="Enter the Stock Name" id="ot1"
                        inlineStyle="color:Black; font-size:x-large; text-align:center;"/>
         <af:panelGroupLayout id="pgl2" layout="horizontal">
-          <af:inputText label="Label 1" id="it1"
+          <af:inputText id="it1"
                         value="#{pageFlowScope.CompareStocksBean.stockSelected}">
             <af:autoSuggestBehavior suggestItems="#{pageFlowScope.CompareStocksBean.autoComplete}"/>
           </af:inputText>
           <af:spacer width="10" height="10" id="s2"/>
           <af:commandButton text="Add to Compare" id="cb1"
-                            actionListener="#{pageFlowScope.CompareStocksBean.compareStocks}"
+                            actionListener="#{pageFlowScope.CompareStocksBean.updateLineGraph}"
                             partialSubmit="true"/>
         </af:panelGroupLayout>
       </af:panelGroupLayout>
+		  </f:facet>
+          <f:facet name="start"/>
+          <f:facet name="end"/>
+          <f:facet name="top"/>
+        </af:panelStretchLayout>
+
     </f:facet>
     <f:facet name="second">
-      <dvt:lineGraph id="lineGraph1" subType="LINE_VERT_ABS"
-                     tabularData="#{pageFlowScope.CompareStocksBean.tabularData}"
-                     partialTriggers="::cb1">
-        <dvt:background>
-          <dvt:specialEffects/>
-        </dvt:background>
-        <dvt:graphPlotArea/>
-        <dvt:seriesSet>
-          <dvt:series/>
-        </dvt:seriesSet>
-        <dvt:o1Axis/>
-        <dvt:y1Axis/>
-        <dvt:legendArea automaticPlacement="AP_NEVER"/>
-      </dvt:lineGraph>
+      <af:panelStretchLayout id="psl2">
+        <f:facet name="bottom"/>
+        <f:facet name="center">
+          <af:panelGroupLayout layout="scroll"
+                               xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                               id="pgl4">
+            <af:panelGroupLayout id="pgl3" halign="center">
+              <af:spacer width="25" height="10" id="s5"/>
+              <h:commandLink value="5days" id="cl1" style="font-size:small;"
+                             actionListener="#{pageFlowScope.CompareStocksBean.updateLineGraph}">
+                <af:spacer width="10" height="10" id="s3"/>
+                <f:setPropertyActionListener target="#{pageFlowScope.CompareStocksBean.numberOfDays}"
+                                             value="5"/>
+              </h:commandLink>
+              <h:commandLink value="10 days" id="cl2" style="font-size:small;"
+                             actionListener="#{pageFlowScope.CompareStocksBean.updateTenDaysLineGraph}">
+                <af:spacer width="10" height="10" id="s4"/>
+                <f:setPropertyActionListener target="#{pageFlowScope.CompareStocksBean.numberOfDays}"
+                                             value="10"/>
+              </h:commandLink>
+              <h:commandLink value="15 days" id="cl3" style="font-size:small;"
+                             actionListener="#{pageFlowScope.CompareStocksBean.updateFifteenDaysLineGraph}">
+                <f:setPropertyActionListener target="#{pageFlowScope.CompareStocksBean.numberOfDays}"
+                                             value="15"/>
+              </h:commandLink>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="pgl5" layout="scroll">
+              <dvt:lineGraph id="lineGraph1" subType="LINE_VERT_ABS"
+                             tabularData="#{pageFlowScope.CompareStocksBean.tabularData}"
+                             partialTriggers="::cb1"
+                             rendered="#{pageFlowScope.CompareStocksBean.showLineGraph}">
+                <dvt:background>
+                  <dvt:specialEffects/>
+                </dvt:background>
+                <dvt:graphPlotArea/>
+                <dvt:seriesSet>
+                  <dvt:series/>
+                </dvt:seriesSet>
+                <dvt:o1Axis/>
+                <dvt:y1Axis/>
+                <dvt:legendArea automaticPlacement="AP_NEVER"/>
+              </dvt:lineGraph>
+            </af:panelGroupLayout>
+          </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="start"/>
+        <f:facet name="end"/>
+        <f:facet name="top"/>
+      </af:panelStretchLayout>
     </f:facet>
   </af:panelSplitter>
 </jsp:root>

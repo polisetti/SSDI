@@ -7,21 +7,22 @@
     <f:facet name="first">
       <af:panelGroupLayout id="pgl1" halign="center" valign="middle"
                            layout="vertical">
-        <af:spacer width="10" height="30" id="s3"/>
+        <af:spacer width="10" height="10" id="s3"/>
         <af:activeOutputText value="Enter the Stock Name" id="aot1"
                              inlineStyle="color:Black; font-size:x-large; text-align:center;"/>
         <af:panelGroupLayout id="pgl2" layout="horizontal">
           <af:inputText label="" id="it1"
                         inlineStyle="font-size:medium; text-align:center;"
-                        columns="40" autoSubmit="true">
+                        columns="40" autoSubmit="true"
+                        value="#{pageFlowScope.SearchStockPriceBean.stockSelected}">
                         
-            <af:autoSuggestBehavior suggestItems="#{SearchStockPriceBean.autoComplete}"/>
+            <af:autoSuggestBehavior suggestItems="#{pageFlowScope.SearchStockPriceBean.autoComplete}"/>
           </af:inputText>
           <af:spacer width="10" height="10" id="s1"/>
           <af:commandButton
                             text="Search"
                             id="cb2"
-                            action="#{SearchStockPriceBean.getStockID}"/>
+                            actionListener="#{pageFlowScope.SearchStockPriceBean.updateLineGraph}"/>
           <af:spacer width="10" height="10" id="s2"/>
           <f:verbatim>
             <br/>
@@ -35,9 +36,9 @@
     </f:facet>
     <f:facet name="second">
       <dvt:lineGraph id="lineGraph1"
-                     value="#{bindings.StockPricesVO.graphModel}"
                      subType="LINE_VERT_ABS" threeDEffect="false"
-                     inlineStyle="text-align:center;" partialTriggers="::cb2">
+                     inlineStyle="text-align:center;" partialTriggers="::cb2"
+                     tabularData="#{pageFlowScope.SearchStockPriceBean.tabularData}">
         <dvt:background>
           <dvt:specialEffects/>
         </dvt:background>

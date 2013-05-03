@@ -18,8 +18,8 @@
    </hash>
    <list n="listOfChildren">
       <hash><url n="URL" path="Model/Model.jpr"/></hash>
+      <hash><url n="URL" path="NewWebServiceProxy/NewWebServiceProxy.jpr"/></hash>
       <hash><url n="URL" path="ViewController/ViewController.jpr"/></hash>
-      <hash><url n="URL" path="WebServiceProxy/WebServiceProxy.jpr"/></hash>
    </list>
    <hash n="oracle.jdeveloper.deploy.dt.DeploymentProfiles">
       <hash n="DefaultProfile">

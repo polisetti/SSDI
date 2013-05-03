@@ -31,4 +31,6 @@ public interface SSDI_AM extends ApplicationModule {
 
     String getStockName(Number pStockID);
 
+    Map<Number, Double> getTodayPrice(Number stockID, Number stDate,
+                                      Number enDate);
 }

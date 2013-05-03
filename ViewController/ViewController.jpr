@@ -72,7 +72,7 @@
          <hash>
             <value n="class" v="oracle.jdeveloper.library.ProjectLibrary"/>
             <url n="sourceOwnerURL" path="../SSDI Demo.jws"/>
-            <url n="sourceURL" path="../WebServiceProxy/WebServiceProxy.jpr"/>
+            <url n="sourceURL" path="../NewWebServiceProxy/NewWebServiceProxy.jpr"/>
          </hash>
       </list>
    </hash>

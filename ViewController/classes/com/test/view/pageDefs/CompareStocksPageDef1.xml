@@ -15,5 +15,20 @@
                   ReturnName="data.SSDI_AMDataControl.methodResults.autoComplete_SSDI_AMDataControl_dataProvider_autoComplete_result">
       <NamedData NDName="inputValue" NDType="java.lang.String"/>
     </methodAction>
+    <methodAction id="getStockName"
+                  InstanceName="SSDI_AMDataControl.dataProvider"
+                  DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getStockName"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.SSDI_AMDataControl.methodResults.getStockName_SSDI_AMDataControl_dataProvider_getStockName_result">
+      <NamedData NDName="pStockID" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+    <methodAction id="getStockID" InstanceName="SSDI_AMDataControl.dataProvider"
+                  DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getStockID"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.SSDI_AMDataControl.methodResults.getStockID_SSDI_AMDataControl_dataProvider_getStockID_result">
+      <NamedData NDName="pStockName" NDType="java.lang.String"/>
+    </methodAction>
   </bindings>
 </pageDefinition>

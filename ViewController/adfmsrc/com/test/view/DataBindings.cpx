@@ -27,6 +27,8 @@
           usageId="com_test_view_CompareStocksPageDef1"/>
     <page path="/CompareStocks.jspx"
           usageId="com_test_view_CompareStocksPageDef"/>
+    <page path="/CreatePortfolio.jspx"
+          usageId="com_test_view_CreatePortfolioPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="com_test_view_MasterPagePageDef"
@@ -49,6 +51,8 @@
           path="com.test.view.pageDefs.CompareStocksPageDef1"/>
     <page id="com_test_view_CompareStocksPageDef"
           path="com.test.view.pageDefs.CompareStocksPageDef"/>
+    <page id="com_test_view_CreatePortfolioPageDef"
+          path="com.test.view.pageDefs.CreatePortfolioPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <BC4JDataControl id="SSDI_AMDataControl" Package="com.test.model.am"

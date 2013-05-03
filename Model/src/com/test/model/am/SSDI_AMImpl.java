@@ -213,14 +213,47 @@ public class SSDI_AMImpl extends ApplicationModuleImpl implements SSDI_AM {
         it.closeRowSetIterator();
         return outputList;
     }
+    //get time tracked, prices
+    public Map<Number, Double> getTodayPrice(Number stockID, Number stDate, Number enDate) {
+        Map<Number, Double> m = new HashMap<Number, Double>();
+        //get VO instance
+        TestStockPricesVOImpl tspVO = getTestStockPricesVO();
+
+        //get VC instance
+        ViewCriteria vc =
+            tspVO.getViewCriteria("GetStockPricesInGivenDateRangeCriteria");
+        vc.resetCriteria();
+
+        //set All the bind parameters
+        tspVO.setBindStockID(stockID);
+        tspVO.setBindStartDate(stDate);
+        tspVO.setBindEndDate(enDate);
+        
+        //apply the view criteria
+        tspVO.applyViewCriteria(vc);
+        
+        //execute the view Object programatically
+        tspVO.executeQuery();
+        System.out.print("Row count: ");
+        System.out.println(tspVO.getRowCount());
+
+        //Iterate through the results
+        RowSetIterator it = tspVO.createRowSetIterator(null);
+        while (it.hasNext()) {
+            TestStockPricesVORowImpl newRow = (TestStockPricesVORowImpl)it.next();
+            Number timetracked = newRow.getTimetracked();
+            Number price = newRow.getPrice();
+           
+            m.put(timetracked, price.doubleValue());
+        }
+        it.closeRowSetIterator();
+        return m;
+    }
     
+    //get date tracked, prices
     public Map<Number, Double> getThePastPrices(Number stockID, Number stDate, Number enDate) throws SQLException {
         Map<Number, Double> m = new HashMap<Number, Double>();
-        System.out.println("Printing the input parameters");
-        System.out.println(stockID);
-        System.out.println(stDate);
-        System.out.println(enDate);
-        
+
         //get VO instance
         TestStockPricesVOImpl tspVO = getTestStockPricesVO();
 
@@ -249,12 +282,7 @@ public class SSDI_AMImpl extends ApplicationModuleImpl implements SSDI_AM {
             Number datetracked = newRow.getDatetracked();
             Number timetracked = newRow.getTimetracked();
             Number price = newRow.getPrice();
-            System.out.print(datetracked);
-            System.out.print( "\t");
-            System.out.print(timetracked);
-            System.out.print( "\t");
-            System.out.println(price);
-            
+           
             m.put(datetracked, price.doubleValue());
         }
         it.closeRowSetIterator();

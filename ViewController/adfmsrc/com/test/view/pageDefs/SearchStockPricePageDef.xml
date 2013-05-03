@@ -5,23 +5,8 @@
   <parameters/>
   <executables>
     <variableIterator id="variables"/>
-    <iterator Binds="StockPricesVO" RangeSize="-1"
-              DataControl="SSDI_AMDataControl" id="StockPricesVOIterator"/>
   </executables>
   <bindings>
-    <graph IterBinding="StockPricesVOIterator" id="StockPricesVO"
-           xmlns="http://xmlns.oracle.com/adfm/dvt" type="LINE_VERT_ABS">
-      <graphDataMap leafOnly="true">
-        <series>
-          <data>
-            <item value="Price"/>
-          </data>
-        </series>
-        <groups>
-          <item value="Timetracked"/>
-        </groups>
-      </graphDataMap>
-    </graph>
     <methodAction id="autoComplete"
                   InstanceName="SSDI_AMDataControl.dataProvider"
                   DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
@@ -36,6 +21,23 @@
                   Action="invokeMethod" MethodName="displayGraph"
                   IsViewObjectMethod="false">
       <NamedData NDName="pStockName" NDValue="x" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getStockID" InstanceName="SSDI_AMDataControl.dataProvider"
+                  DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getStockID"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.SSDI_AMDataControl.methodResults.getStockID_SSDI_AMDataControl_dataProvider_getStockID_result">
+      <NamedData NDName="pStockName" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getTodayPrice"
+                  InstanceName="SSDI_AMDataControl.dataProvider"
+                  DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getTodayPrice"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.SSDI_AMDataControl.methodResults.getTodayPrice_SSDI_AMDataControl_dataProvider_getTodayPrice_result">
+      <NamedData NDName="stockID" NDType="oracle.jbo.domain.Number"/>
+      <NamedData NDName="stDate" NDType="oracle.jbo.domain.Number"/>
+      <NamedData NDName="enDate" NDType="oracle.jbo.domain.Number"/>
     </methodAction>
   </bindings>
 </pageDefinition>

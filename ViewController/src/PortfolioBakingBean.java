@@ -35,11 +35,7 @@ import oracle.jbo.Row;
 import oracle.jbo.RowSetIterator;
 import oracle.jbo.domain.Number;
 
-import javax.faces.context.ExternalContext;
-
 import org.apache.myfaces.trinidad.model.RowKeySet;
-
-import com.webservice.SoaWebServiceClient;
 
 import java.sql.SQLException;
 
@@ -61,9 +57,6 @@ public class PortfolioBakingBean {
     private Boolean showLineGraph;
     private RichCommandToolbarButton compareStocksButton;
     public Integer numberOfDays;
-    private HtmlCommandLink fiveDaysBinding;
-    private HtmlCommandLink tenDaysBinding;
-    private HtmlCommandLink fifteenDaysBinding;
     public int startDate, endDate;
     public Map<Number, Double> resultMap;
     public List<Integer> dateList;
@@ -153,16 +146,8 @@ public class PortfolioBakingBean {
     }
     public List<Object[]> getUpdatedTabularData() {
         List<Object[]> tabularDataNew = new ArrayList<Object[]>();
-
-        Random ran = new Random();
         List<String> Locations = new ArrayList<String>();
-
-        //Add the selected stocks to the line graph
-        for (Number numb : stocksList) {
-            Locations.add(numb.stringValue());
-        }
-        
-        Collections.sort(stocksList);
+        Collections.sort(dateList);
 
         int counter = 0;
         while (counter < numberOfDays) {
@@ -178,7 +163,6 @@ public class PortfolioBakingBean {
                     //tabularDataNew.add(new Object[] { dateList.get(counter), getStockName(loc), Double.valueOf(ran.nextInt(40) + 25) });
                 } 
                 catch (SQLException e) {
-                
                 }
            }
            counter += 1;
@@ -218,7 +202,7 @@ public class PortfolioBakingBean {
         
         Number firstDate = new Number(Integer.parseInt(dateFormat.format(fd)));
         Number secondDate = new Number();
-        
+        dateList = new ArrayList<Integer>();
         dateList.add(firstDate.intValue());
         System.out.println(firstDate);
         
@@ -240,17 +224,27 @@ public class PortfolioBakingBean {
     }
     public void updateLineGraph(ActionEvent actionEvent) {
         //Fivedays method
-        //get the selected stocks
         updateSelectedList();
-        
-        //print the selected stocks
-        for (Number x: stocksList) {
-            System.out.println("Vlue is: " + x.toString());
-        }
-
-        //set the start and end dates
         setFirstAndSecondDate(5);
-        
+        updateGlobalMap();
+        setShowLineGraph(Boolean.TRUE);
+    }
+    public void updateLineGraphTenDays(ActionEvent actionEvent) {
+        // Add event code here...
+        updateSelectedList();
+        setFirstAndSecondDate(10);
+        updateGlobalMap();
+        setShowLineGraph(Boolean.TRUE);
+    }
+    public void updateLineGraphFifteenDays(ActionEvent actionEvent) {
+        // Add event code here...
+        updateSelectedList();
+        setFirstAndSecondDate(15);
+        updateGlobalMap();
+        setShowLineGraph(Boolean.TRUE);
+
+    }
+    public void updateGlobalMap() {
         //for each stock call the AM method and get the data here
         for (Number id : stocksList) {
             FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -278,16 +272,7 @@ public class PortfolioBakingBean {
             resultMap = (Map<Number, Double>)operationBinding.getResult();
             globalMap.put(id, resultMap);
             
-            //print the result set map
-            for (Iterator<Number> it = resultMap.keySet().iterator(); it.hasNext(); ) {
-                Number itValue = it.next();
-                System.out.print(itValue);
-                System.out.print("\t");
-                System.out.println(resultMap.get(itValue));
-            }
         }
-        setShowLineGraph(Boolean.TRUE);
-        System.out.println("done");
     }
 
     public void deleteStocksFromPortfolio(ActionEvent actionEvent) {
@@ -402,35 +387,5 @@ public class PortfolioBakingBean {
 
     public Integer getNumberOfDays() {
         return numberOfDays;
-    }
-
-    public void setFiveDaysBinding(HtmlCommandLink fiveDaysBinding) {
-        this.fiveDaysBinding = fiveDaysBinding;
-    }
-
-    public HtmlCommandLink getFiveDaysBinding() {
-        return fiveDaysBinding;
-    }
-
-    public void setTenDaysBinding(HtmlCommandLink tenDaysBinding) {
-        this.tenDaysBinding = tenDaysBinding;
-    }
-
-    public HtmlCommandLink getTenDaysBinding() {
-        return tenDaysBinding;
-    }
-
-    public void setFifteenDaysBinding(HtmlCommandLink fifteenDaysBinding) {
-        this.fifteenDaysBinding = fifteenDaysBinding;
-    }
-
-    public HtmlCommandLink getFifteenDaysBinding() {
-        return fifteenDaysBinding;
-    }
-
-    public Object fiveDaysActionMethod() {
-        // Add event code here...
-        System.out.println(getNumberOfDays());
-        return null;
     }
 }

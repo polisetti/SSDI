@@ -8,8 +8,12 @@
     <iterator Binds="UserPortfolioNamesROVO" RangeSize="25"
               DataControl="SSDI_AMDataControl"
               id="UserPortfolioNamesROVOIterator"/>
-    <taskFlow id="SearchStock1"
+    <taskFlow id="SearchStock2"
               taskFlowId="/WEB-INF/SearchStock.xml#SearchStock"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="CompareStocks1"
+              taskFlowId="/WEB-INF/CompareStocks.xml#CompareStocks"
               activation="deferred"
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
   </executables>

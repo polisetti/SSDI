@@ -30,6 +30,13 @@ public class SSDI_AMClient extends ApplicationModuleImpl implements SSDI_AM {
     }
 
 
+    public Map getThePastPrices(Number stockID, Number stDate, Number enDate) {
+        Object _ret =
+            this.riInvokeExportedMethod(this,"getThePastPrices",new String [] {"oracle.jbo.domain.Number","oracle.jbo.domain.Number","oracle.jbo.domain.Number"},new Object[] {stockID, stDate, enDate});
+        return (Map)_ret;
+    }
+
+
     public void deleteStocksFromPortfolio(int stockID, int portfolioID) {
         Object _ret =
             this.riInvokeExportedMethod(this,"deleteStocksFromPortfolio",new String [] {"int","int"},new Object[] {new Integer(stockID), new Integer(portfolioID)});
@@ -83,9 +90,9 @@ public class SSDI_AMClient extends ApplicationModuleImpl implements SSDI_AM {
         return (String)_ret;
     }
 
-    public Map getThePastPrices(Number stockID, Number stDate, Number enDate) {
+    public Map getTodayPrice(Number stockID, Number stDate, Number enDate) {
         Object _ret =
-            this.riInvokeExportedMethod(this,"getThePastPrices",new String [] {"oracle.jbo.domain.Number","oracle.jbo.domain.Number","oracle.jbo.domain.Number"},new Object[] {stockID, stDate, enDate});
+            this.riInvokeExportedMethod(this,"getTodayPrice",new String [] {"oracle.jbo.domain.Number","oracle.jbo.domain.Number","oracle.jbo.domain.Number"},new Object[] {stockID, stDate, enDate});
         return (Map)_ret;
     }
 }

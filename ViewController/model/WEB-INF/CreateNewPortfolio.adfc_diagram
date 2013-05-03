@@ -3,7 +3,7 @@
    <OverallProperties
       id="OverallProperties1"/>
    <View
-      id="View2">
+      id="View3">
       <property
          name="activityId">CreateNewPortfolio1</property>
       <property
@@ -15,10 +15,10 @@
       <property
          name="exceptionHandler">false</property>
       <property
-         name="y">151.44824</property>
+         name="y">249.44824</property>
       <property
          name="pageFragment">true</property>
       <property
-         name="x">464.35938</property>
+         name="x">409.35938</property>
    </View>
 </SDM>
