@@ -132,6 +132,31 @@
     <Method
       Name="getTodayPrice">
       <Return
+        Type="java.util.Map"/>
+      <Parameter
+        Name="stockID"
+        Type="oracle.jbo.domain.Number"/>
+      <Parameter
+        Name="stDate"
+        Type="oracle.jbo.domain.Number"/>
+      <Parameter
+        Name="enDate"
+        Type="oracle.jbo.domain.Number"/>
+    </Method>
+    <Method
+      Name="autoComplete">
+      <Return
+        Type="java.util.List">
+        <Element
+          Type="java.lang.String"/>
+      </Return>
+      <Parameter
+        Name="inputValue"
+        Type="java.lang.String"/>
+    </Method>
+    <Method
+      Name="getThePastPrices">
+      <Return
         Type="java.util.Map"
         IsGeneric="true"/>
       <Parameter

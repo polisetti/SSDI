@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="CompareMultiStocks">
+    <default-activity id="__1">CompareMultiStocks1</default-activity>
+    <managed-bean id="__9">
+      <managed-bean-name id="__7">CompareMultiStockBean</managed-bean-name>
+      <managed-bean-class id="__6">com.test.view.backing.CompareMultiStockBean</managed-bean-class>
+      <managed-bean-scope id="__8">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="CompareMultiStocks1">
+      <page>/CompareMultiStocks.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

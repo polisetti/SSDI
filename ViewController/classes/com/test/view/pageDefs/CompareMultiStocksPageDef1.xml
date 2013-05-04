@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.60.13" id="CompareMultiStocksPageDef1"
+                Package="com.test.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+  </executables>
+  <bindings>
+    <methodAction id="autoComplete"
+                  InstanceName="SSDI_AMDataControl.dataProvider"
+                  DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="autoComplete"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.SSDI_AMDataControl.methodResults.autoComplete_SSDI_AMDataControl_dataProvider_autoComplete_result">
+      <NamedData NDName="inputValue" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getStockID" InstanceName="SSDI_AMDataControl.dataProvider"
+                  DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getStockID"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.SSDI_AMDataControl.methodResults.getStockID_SSDI_AMDataControl_dataProvider_getStockID_result">
+      <NamedData NDName="pStockName" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getStockName"
+                  InstanceName="SSDI_AMDataControl.dataProvider"
+                  DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getStockName"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.SSDI_AMDataControl.methodResults.getStockName_SSDI_AMDataControl_dataProvider_getStockName_result">
+      <NamedData NDName="pStockID" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+    <methodAction id="getThePastPrices"
+                  InstanceName="SSDI_AMDataControl.dataProvider"
+                  DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getThePastPrices"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.SSDI_AMDataControl.methodResults.getThePastPrices_SSDI_AMDataControl_dataProvider_getThePastPrices_result">
+      <NamedData NDName="stockID" NDType="oracle.jbo.domain.Number"/>
+      <NamedData NDName="stDate" NDType="oracle.jbo.domain.Number"/>
+      <NamedData NDName="enDate" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

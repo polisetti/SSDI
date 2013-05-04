@@ -19,7 +19,7 @@
             <af:autoSuggestBehavior suggestItems="#{pageFlowScope.CompareStocksBean.autoComplete}"/>
           </af:inputText>
           <af:spacer width="10" height="10" id="s2"/>
-          <af:commandButton text="Add to Compare" id="cb1"
+          <af:commandButton text="Get Prediction" id="cb1"
                             actionListener="#{pageFlowScope.CompareStocksBean.updateLineGraph}"
                             partialSubmit="true"/>
         </af:panelGroupLayout>
@@ -27,12 +27,11 @@
 		  </f:facet>
           <f:facet name="start"/>
           <f:facet name="end"/>
-          <f:facet name="top"/>
         </af:panelStretchLayout>
 
     </f:facet>
     <f:facet name="second">
-      <af:panelStretchLayout id="psl2">
+      <af:panelStretchLayout id="psl2" bottomHeight="1px" styleClass="AFStrechWidth">
         <f:facet name="bottom"/>
         <f:facet name="center">
           <af:panelGroupLayout layout="scroll"
@@ -40,46 +39,34 @@
                                id="pgl4">
             <af:panelGroupLayout id="pgl3" halign="center">
               <af:spacer width="25" height="10" id="s5"/>
-              <h:commandLink value="5days" id="cl1" style="font-size:small;"
+              <h:commandLink value="5 Days" id="cl1" style="font-size:medium;"
                              actionListener="#{pageFlowScope.CompareStocksBean.updateLineGraph}">
                 <af:spacer width="10" height="10" id="s3"/>
                 <f:setPropertyActionListener target="#{pageFlowScope.CompareStocksBean.numberOfDays}"
                                              value="5"/>
               </h:commandLink>
-              <h:commandLink value="10 days" id="cl2" style="font-size:small;"
+              <h:commandLink value="10 Days" id="cl2" style="font-size:medium;"
                              actionListener="#{pageFlowScope.CompareStocksBean.updateTenDaysLineGraph}">
                 <af:spacer width="10" height="10" id="s4"/>
                 <f:setPropertyActionListener target="#{pageFlowScope.CompareStocksBean.numberOfDays}"
                                              value="10"/>
               </h:commandLink>
-              <h:commandLink value="15 days" id="cl3" style="font-size:small;"
+              <h:commandLink value="15 Days" id="cl3" style="font-size:medium;"
                              actionListener="#{pageFlowScope.CompareStocksBean.updateFifteenDaysLineGraph}">
                 <f:setPropertyActionListener target="#{pageFlowScope.CompareStocksBean.numberOfDays}"
                                              value="15"/>
               </h:commandLink>
             </af:panelGroupLayout>
-            <af:panelGroupLayout id="pgl5" layout="scroll">
-              <dvt:lineGraph id="lineGraph1" subType="LINE_VERT_ABS"
-                             tabularData="#{pageFlowScope.CompareStocksBean.tabularData}"
-                             partialTriggers="::cb1"
-                             rendered="#{pageFlowScope.CompareStocksBean.showLineGraph}">
-                <dvt:background>
-                  <dvt:specialEffects/>
-                </dvt:background>
-                <dvt:graphPlotArea/>
-                <dvt:seriesSet>
-                  <dvt:series/>
-                </dvt:seriesSet>
-                <dvt:o1Axis/>
-                <dvt:y1Axis/>
-                <dvt:legendArea automaticPlacement="AP_NEVER"/>
-              </dvt:lineGraph>
-            </af:panelGroupLayout>
+            <dvt:lineGraph id="lineGraph1" subType="LINE_VERT_ABS"
+                           tabularData="#{pageFlowScope.CompareStocksBean.tabularData}"
+                           partialTriggers="::cb1"
+                           rendered="#{pageFlowScope.CompareStocksBean.showLineGraph}">
+              <dvt:legendArea automaticPlacement="AP_NEVER"/>
+            </dvt:lineGraph>
           </af:panelGroupLayout>
         </f:facet>
         <f:facet name="start"/>
         <f:facet name="end"/>
-        <f:facet name="top"/>
       </af:panelStretchLayout>
     </f:facet>
   </af:panelSplitter>

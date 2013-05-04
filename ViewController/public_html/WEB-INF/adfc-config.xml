@@ -10,4 +10,9 @@
     <managed-bean-class id="__5">MultiSelectBackingBean</managed-bean-class>
     <managed-bean-scope id="__6">request</managed-bean-scope>
   </managed-bean>
+  <managed-bean id="__12">
+    <managed-bean-name id="__10">HomeBean</managed-bean-name>
+    <managed-bean-class id="__9">com.test.view.backing.HomeBean</managed-bean-class>
+    <managed-bean-scope id="__11">pageFlow</managed-bean-scope>
+  </managed-bean>
 </adfc-config>

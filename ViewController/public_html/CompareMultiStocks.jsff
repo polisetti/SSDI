@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+  <af:panelSplitter id="ps1" orientation="vertical">
+    <f:facet name="first">
+      <af:panelGroupLayout id="pgl1" inlineStyle="font-size:large;"
+                           layout="vertical" halign="center">
+        <af:spacer width="10" height="0" id="s1"/>
+        <af:spacer width="10" height="10" id="s7"/>
+        Enter Stock Name
+        <af:panelGroupLayout id="pgl2" layout="horizontal">
+          <af:spacer width="10" height="10" id="s2"/>
+          <af:inputText id="it1"
+                        value="#{pageFlowScope.CompareMultiStockBean.stockSelected}">
+            <af:autoSuggestBehavior suggestItems="#{pageFlowScope.CompareMultiStockBean.autoComplete}"/>
+          </af:inputText>
+          <af:spacer width="10" height="10" id="s6"/>
+          <af:commandButton text="Compare" id="cb1"
+                            actionListener="#{pageFlowScope.CompareMultiStockBean.updateLineGraph}"/>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+    <f:facet name="second">
+      <af:panelGroupLayout id="pgl3">
+        <af:panelGroupLayout id="pgl4">
+          <af:spacer width="10" height="10" id="s3"/>
+          <h:commandLink value="5 Days" id="cl1" style="font-size:medium;"
+                         actionListener="#{pageFlowScope.CompareMultiStockBean.updateLineGraph}">
+            <f:setPropertyActionListener target="#{pageFlowScope.CompareMultiStockBean.numberOfDays}"
+                                         value="5"/>
+          </h:commandLink>
+          <af:spacer width="10" height="10" id="s4"/>
+          <h:commandLink value="10 Days" id="cl2" style="font-size:medium;"
+                         actionListener="#{pageFlowScope.CompareMultiStockBean.updateTenDaysLineGraph}">
+            <f:setPropertyActionListener target="#{pageFlowScope.CompareMultiStockBean.numberOfDays}"
+                                         value="10"/>
+          </h:commandLink>
+          <af:spacer width="10" height="10" id="s5"/>
+          <h:commandLink value="15 Days" id="cl3" style="font-size:medium;"
+                         actionListener="#{pageFlowScope.CompareMultiStockBean.updateFifteenDaysLineGraph}">
+            <f:setPropertyActionListener target="#{pageFlowScope.CompareMultiStockBean.numberOfDays}"
+                                         value="15"/>
+          </h:commandLink>
+        </af:panelGroupLayout>
+        <af:panelGroupLayout id="pgl5">
+          <dvt:lineGraph id="lineGraph1" subType="LINE_VERT_ABS"
+                         rendered="#{pageFlowScope.CompareMultiStockBean.showLineGraph}"
+                         tabularData="#{pageFlowScope.CompareMultiStockBean.updatedTabularData}">
+            <dvt:background>
+              <dvt:specialEffects/>
+            </dvt:background>
+            <dvt:graphPlotArea/>
+            <dvt:seriesSet>
+              <dvt:series/>
+            </dvt:seriesSet>
+            <dvt:o1Axis/>
+            <dvt:y1Axis/>
+            <dvt:legendArea automaticPlacement="AP_NEVER"/>
+          </dvt:lineGraph>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+  </af:panelSplitter>
+</jsp:root>

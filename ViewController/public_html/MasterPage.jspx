@@ -5,7 +5,6 @@
           xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
   <jsp:directive.page contentType="text/html;charset=UTF-8"/>
   <f:view>
-    
     <af:document id="d1">
       <af:messages id="m1"/>
       <af:form id="f1">
@@ -24,20 +23,27 @@
               <af:showDetailItem text="Home" id="sdi1">
                 <af:panelGroupLayout id="pgl1">
                   <h:commandLink value="Get Quote" id="cl1"
-                                 style="font-size:small; color:Black; text-align:center;"/>
-                  <br/><br/>
+                                 style="font-size:small; color:Black; text-align:center;"
+                                 actionListener="#{pageFlowScope.HomeBean.setTab1}"/>
+                  <br/>
+                  <br/>
                 </af:panelGroupLayout>
               </af:showDetailItem>
               <af:showDetailItem text="Stocks" id="sdi2">
                 <af:panelGroupLayout id="pgl2">
                   <h:commandLink value="Get Stock Quote" id="cl2"
-                                 style="color:Black; font-size:small;"/>
-                  <br/><br/>
-                  <h:commandLink value="See Predicted" id="cl3"
-                                 style="color:Black; font-size:small;"/>
-                  <br/><br/>
+                                 style="color:Black; font-size:small;"
+                                 actionListener="#{pageFlowScope.HomeBean.setTab1}"/>
+                  <br/>
+                  <br/>
                   <h:commandLink value="Compare Stocks" id="cl4"
-                                 style="color:Black; font-size:small;"/>                 
+                                 style="color:Black; font-size:small;"
+                                 actionListener="#{pageFlowScope.HomeBean.setCompareStocksTab}"/>
+                  <br/>
+                  <br/>
+                  <h:commandLink value="See Prediction" id="cl3"
+                                 style="color:Black; font-size:small;"
+                                 actionListener="#{pageFlowScope.HomeBean.setPredictionTab}"/>
                 </af:panelGroupLayout>
               </af:showDetailItem>
               <af:showDetailItem text="PortFolios" id="sdi3">
@@ -49,8 +55,9 @@
                             emptyText="#{bindings.UserPortfolioNamesROVO.viewable ? 'No data to display.' : 'Access Denied.'}"
                             fetchSize="#{bindings.UserPortfolioNamesROVO.rangeSize}"
                             rowBandingInterval="0" id="t1">
-                    <af:column sortProperty="Portfolioname" sortable="false" id="c1">
-                      <af:outputText value="#{row.Portfolioname}" id="ot1"/>
+                    <af:column sortProperty="Portfolioname" sortable="false"
+                               id="c1">
+                      <h:commandLink value="#{row.Portfolioname}" id="cl9"/>
                     </af:column>
                   </af:table>
                   <h:commandLink value="Create New" id="cl8"/>
@@ -65,7 +72,7 @@
           <f:facet name="copyright"/>
           <f:facet name="status">
             <af:panelGroupLayout id="pgl4">
-            <br/>
+              <br/>
               <h:commandLink value="Logout" id="cl5"/>
               <af:spacer width="10" height="10" id="s1"/>
               <h:commandLink value="ViewDemo" id="cl7"/>
@@ -73,20 +80,46 @@
             </af:panelGroupLayout>
           </f:facet>
           <f:facet name="center">
-            <af:panelTabbed id="pt2">
-              <!--af:showDetailItem text="SearchStockPrice" id="sdi6">
-                <af:panelGroupLayout id="pgl5" layout="scroll">
-                  <af:region value="#{bindings.SearchStock2.regionModel}"
-                             id="r1"/>
-                </af:panelGroupLayout>
-              </af:showDetailItem -->
-              <af:showDetailItem text="CompareStocks" id="sdi7" >
-                <af:panelGroupLayout id="pgl6" layout="scroll">
-                  <af:region value="#{bindings.CompareStocks1.regionModel}"
-                             id="r2" styleClass="AFStretchWidth"/>
-                </af:panelGroupLayout>
-              </af:showDetailItem>
-            </af:panelTabbed>
+            <af:group id="g1">
+              <af:panelStretchLayout id="psl1" inlineStyle="width:482px;">
+                <f:facet name="bottom"/>
+                <f:facet name="center">
+                  <af:panelTabbed id="pt2" styleClass="AFStrechWidth">
+                    <af:showDetailItem text="SearchStockPrice" id="sdi6"
+                                       rendered="#{pageFlowScope.HomeBean.rederTab1}"
+                                       partialTriggers="cl1"
+                                       disclosed="#{pageFlowScope.HomeBean.rederTab1}">
+                      <af:panelGroupLayout id="pgl5" layout="horizontal"
+                                           inlineStyle="width:1234.0px;">
+                        <af:region value="#{bindings.SearchStock2.regionModel}"
+                                   id="r1" inlineStyle="width:1200.0px;"/>
+                      </af:panelGroupLayout>
+                    </af:showDetailItem>
+                    <af:showDetailItem text="Prediction" id="sdi7"
+                                       rendered="#{pageFlowScope.HomeBean.renderPrediction}"
+                                       disclosed="#{pageFlowScope.HomeBean.renderPrediction}"
+                                       partialTriggers="cl3">
+                      <af:panelGroupLayout id="pgl6" layout="scroll">
+                        <af:region value="#{bindings.CompareStocks1.regionModel}"
+                                   id="r2" styleClass="AFStretchWidth"/>
+                      </af:panelGroupLayout>
+                    </af:showDetailItem>
+                    <af:showDetailItem text="CompareStocks" id="sdi8"
+                                       rendered="#{pageFlowScope.HomeBean.renderCmpareStocksTab}"
+                                       disclosed="#{pageFlowScope.HomeBean.renderCmpareStocksTab}"
+                                       partialTriggers="cl3">
+                      <af:panelGroupLayout id="pgl7">
+                        <af:region value="#{bindings.CompareMultiStocks1.regionModel}"
+                                   id="r3"/>
+                      </af:panelGroupLayout>
+                    </af:showDetailItem>
+                  </af:panelTabbed>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="top"/>
+              </af:panelStretchLayout>
+            </af:group>
           </f:facet>
         </af:pageTemplate>
       </af:form>

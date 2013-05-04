@@ -148,11 +148,6 @@ public class SSDI_AMImpl extends ApplicationModuleImpl implements SSDI_AM {
 
     public void addStocksToPortfolio(Number stockID) {
         PortfolioStocksVOImpl vo = getPortfolioStocksVO();
-        //PortfolioStocksVORowImpl currentRow = (PortfolioStocksVORowImpl)getPortfolioStocksVO().getCurrentRow();
-
-        //System.out.println(currentRow.getStockid());
-        //System.out.println(currentRow.getTimeadded());
-
         try {
             PortfolioStocksVORowImpl row =
                 (PortfolioStocksVORowImpl)vo.createRow();
@@ -250,44 +245,6 @@ public class SSDI_AMImpl extends ApplicationModuleImpl implements SSDI_AM {
         return m;
     }
     
-    //get date tracked, prices
-    public Map<Number, Double> getThePastPrices(Number stockID, Number stDate, Number enDate) throws SQLException {
-        Map<Number, Double> m = new HashMap<Number, Double>();
-
-        //get VO instance
-        TestStockPricesVOImpl tspVO = getTestStockPricesVO();
-
-        //get VC instance
-        ViewCriteria vc =
-            tspVO.getViewCriteria("GetStockPricesInGivenDateRangeCriteria");
-        vc.resetCriteria();
-
-        //set All the bind parameters
-        tspVO.setBindStockID(stockID);
-        tspVO.setBindStartDate(stDate);
-        tspVO.setBindEndDate(enDate);
-        
-        //apply the view criteria
-        tspVO.applyViewCriteria(vc);
-        
-        //execute the view Object programatically
-        tspVO.executeQuery();
-        System.out.print("Row count: ");
-        System.out.println(tspVO.getRowCount());
-
-        //Iterate through the results
-        RowSetIterator it = tspVO.createRowSetIterator(null);
-        while (it.hasNext()) {
-            TestStockPricesVORowImpl newRow = (TestStockPricesVORowImpl)it.next();
-            Number datetracked = newRow.getDatetracked();
-            Number timetracked = newRow.getTimetracked();
-            Number price = newRow.getPrice();
-           
-            m.put(datetracked, price.doubleValue());
-        }
-        it.closeRowSetIterator();
-        return m;
-    }
    
     /**
      * Container's getter for PortfolioStocksVO.
@@ -344,4 +301,43 @@ public class SSDI_AMImpl extends ApplicationModuleImpl implements SSDI_AM {
     public TestStockPricesVOImpl getTestStockPricesVO() {
         return (TestStockPricesVOImpl)findViewObject("TestStockPricesVO");
     }
+    //get date tracked, prices
+    public Map<Number, Double> getThePastPrices(Number stockID, Number stDate, Number enDate)  {
+        Map<Number, Double> m = new HashMap<Number, Double>();
+
+        //get VO instance
+        TestStockPricesVOImpl tspVO = getTestStockPricesVO();
+
+        //get VC instance
+        ViewCriteria vc =
+            tspVO.getViewCriteria("GetStockPricesInGivenDateRangeCriteria");
+        vc.resetCriteria();
+
+        //set All the bind parameters
+        tspVO.setBindStockID(stockID);
+        tspVO.setBindStartDate(stDate);
+        tspVO.setBindEndDate(enDate);
+        
+        //apply the view criteria
+        tspVO.applyViewCriteria(vc);
+        
+        //execute the view Object programatically
+        tspVO.executeQuery();
+        System.out.print("Row count: ");
+        System.out.println(tspVO.getRowCount());
+
+        //Iterate through the results
+        RowSetIterator it = tspVO.createRowSetIterator(null);
+        while (it.hasNext()) {
+            TestStockPricesVORowImpl newRow = (TestStockPricesVORowImpl)it.next();
+            Number datetracked = newRow.getDatetracked();
+            Number timetracked = newRow.getTimetracked();
+            Number price = newRow.getPrice();
+           
+            m.put(datetracked, price.doubleValue());
+        }
+        it.closeRowSetIterator();
+        return m;
+    }
+
 }

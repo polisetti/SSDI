@@ -16,6 +16,10 @@
               taskFlowId="/WEB-INF/CompareStocks.xml#CompareStocks"
               activation="deferred"
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="CompareMultiStocks1"
+              taskFlowId="/WEB-INF/CompareMultiStocks.xml#CompareMultiStocks"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
   </executables>
   <bindings>
     <tree IterBinding="UserPortfolioNamesROVOIterator"
