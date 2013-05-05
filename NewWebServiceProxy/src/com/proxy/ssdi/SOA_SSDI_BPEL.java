@@ -1,5 +1,9 @@
 package com.proxy.ssdi;
 
+import com.proxy.ssdi.types.ObjectFactory;
+import com.proxy.ssdi.types.ServiceInput;
+import com.proxy.ssdi.types.ServiceOutput;
+
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -20,7 +24,7 @@ import javax.xml.ws.Action;
   targetNamespace="http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL",
   name="SOA_SSDI_BPEL")
 @XmlSeeAlso(
-  { com.proxy.ssdi.types.ObjectFactory.class })
+  { ObjectFactory.class })
 @SOAPBinding(style=Style.DOCUMENT, parameterStyle=ParameterStyle.BARE)
 public interface SOA_SSDI_BPEL
 {
@@ -29,7 +33,7 @@ public interface SOA_SSDI_BPEL
   @Action(input="process", output="http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL/SOA_SSDI_BPEL/processResponse")
   @WebResult(targetNamespace="http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL",
     partName="payload", name="serviceOutput")
-  public com.proxy.ssdi.types.ServiceOutput process(@WebParam(targetNamespace="http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL",
+  public ServiceOutput process(@WebParam(targetNamespace="http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL",
       partName="payload", name="serviceInput")
-    com.proxy.ssdi.types.ServiceInput payload);
+    ServiceInput payload);
 }

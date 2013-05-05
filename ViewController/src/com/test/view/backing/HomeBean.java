@@ -34,7 +34,10 @@ public class HomeBean implements Serializable{
         setRenderPortfolioTab(false);
         setRenderCreatePortfolioTab(false);
     }
-    
+    public void hideAllTabs(ActionEvent actionEvent) {
+        // Add event code here...
+        makeAllFalse();
+    }    
     public void displayCreatePortfolioTab(ActionEvent actionEvent) {
         // Add event code here...
         makeAllFalse();
@@ -156,6 +159,5 @@ public class HomeBean implements Serializable{
     public boolean getRenderCreatePortfolioTab() {
         return renderCreatePortfolioTab;
     }
-
 
 }

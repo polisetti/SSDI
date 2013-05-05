@@ -75,19 +75,18 @@ public class SOA_SSDI_Service_ep
   }
 
   @WebEndpoint(name="SOA_SSDI_BPEL_pt")
-  public com.proxy.ssdi.SOA_SSDI_BPEL getSOA_SSDI_BPEL_pt()
+  public SOA_SSDI_BPEL getSOA_SSDI_BPEL_pt()
   {
-    return (com.proxy.ssdi.SOA_SSDI_BPEL) super.getPort(new QName("http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL",
-                                                                  "SOA_SSDI_BPEL_pt"),
-                                                        com.proxy.ssdi.SOA_SSDI_BPEL.class);
+    return (SOA_SSDI_BPEL) super.getPort(new QName("http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL",
+                                                   "SOA_SSDI_BPEL_pt"),
+                                         SOA_SSDI_BPEL.class);
   }
 
   @WebEndpoint(name="SOA_SSDI_BPEL_pt")
-  public com.proxy.ssdi.SOA_SSDI_BPEL getSOA_SSDI_BPEL_pt(WebServiceFeature... features)
+  public SOA_SSDI_BPEL getSOA_SSDI_BPEL_pt(WebServiceFeature... features)
   {
-    return (com.proxy.ssdi.SOA_SSDI_BPEL) super.getPort(new QName("http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL",
-                                                                  "SOA_SSDI_BPEL_pt"),
-                                                        com.proxy.ssdi.SOA_SSDI_BPEL.class,
-                                                        features);
+    return (SOA_SSDI_BPEL) super.getPort(new QName("http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL",
+                                                   "SOA_SSDI_BPEL_pt"),
+                                         SOA_SSDI_BPEL.class, features);
   }
 }

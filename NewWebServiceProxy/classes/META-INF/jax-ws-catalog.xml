@@ -1,4 +1,6 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
-  <system systemId="http://172.16.42.2:8001/soa-infra/services/ssdi/SOA_SSDI/SOA_SSDI_Service_ep?WSDL"
+  <system systemId="http://192.168.1.109:8001/soa-infra/services/ssdi/SOA_SSDI/SOA_SSDI_Service_ep?WSDL"
           uri="../com/proxy/ssdi/SOA_SSDI_Service_ep.wsdl"/>
+  <system systemId="http://172.16.42.2:8001/soa-infra/services/ssdi/SOA_SSDI/SOA_SSDI_Service_ep?WSDL"
+          uri="http://192.168.1.109:8001/soa-infra/services/ssdi/SOA_SSDI/SOA_SSDI_Service_ep?WSDL"/>
 </catalog>

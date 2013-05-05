@@ -11,7 +11,8 @@
       <af:spacer width="10" height="10" id="s2"/>
       <af:commandButton text="Create Portfolio" id="cb1" action="success"/>
       <af:spacer width="10" height="10" id="s1"/>
-      <af:commandButton text="Cancel" id="cb2" action="cancel"/>
+      <af:commandButton text="Cancel" id="cb2" action="cancel"
+                        actionListener="#{pageFlowScope.HomeBean.hideAllTabs}"/>
     </af:panelGroupLayout>
   </af:panelGroupLayout>
 </jsp:root>

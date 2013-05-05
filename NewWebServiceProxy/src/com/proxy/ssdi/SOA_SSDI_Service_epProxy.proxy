@@ -2,8 +2,6 @@
 <jdevws:WebServiceProxy xmlns:jdevws="http://xmlns.oracle.com/jdeveloper/10130/webserviceproxy">
    <list n="CHILD_NODES">
       <url path="SOA_SSDI_Service_ep.xml"/>
-      <url path="SOA_SSDI_Service_ep.wsdl"/>
-      <url path="SOA_SSDI_BPEL.xsd"/>
       <url path="types/ServiceOutput.java"/>
       <url path="SOA_SSDI_BPEL_ptClient.java"/>
       <url path="types/package-info.java"/>
@@ -14,6 +12,7 @@
    </list>
    <hash n="DATA_MODEL">
       <value n="ATTACHMENT_ENCODING" v="MTOM"/>
+      <value n="FIXED_WSDL" v="false"/>
       <list n="LOCAL_FILES"/>
       <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.WebServiceProxy"/>
       <url n="ORACLE_WEBSERVICES_XML" path="SOA_SSDI_Service_ep.xml"/>
@@ -55,7 +54,8 @@
                   <value n="wsrm"/>
                </hash>
             </hash>
-            <url n="PROXY_ORIGINAL_PORT_ENDPOINT" protocol="http" host="172.16.42.2" port="8001" path="/soa-infra/services/ssdi/SOA_SSDI/SOA_SSDI_Service_ep"/>
+            <url n="PROXY_ORIGINAL_PORT_ENDPOINT" protocol="http" host="192.168.1.109" port="8001" path="/soa-infra/services/ssdi/SOA_SSDI/SOA_SSDI_Service_ep"/>
+            <url n="PROXY_PORT_ENDPOINT" protocol="http" host="192.168.1.109" port="8001" path="/soa-infra/services/ssdi/SOA_SSDI/SOA_SSDI_Service_ep"/>
          </hash>
       </hash>
       <value n="PROXY_SERVICE_NAME" v="SOA_SSDI_Service_ep"/>
@@ -64,7 +64,7 @@
       <list n="PROXY_WSDL_IMPORT_LIST">
          <url path="SOA_SSDI_BPEL.xsd"/>
       </list>
-      <url n="PROXY_WSDL_URL" path="SOA_SSDI_Service_ep.wsdl"/>
+      <url n="PROXY_WSDL_URL" protocol="http" host="192.168.1.109" port="8001" path="/soa-infra/services/ssdi/SOA_SSDI/SOA_SSDI_Service_ep" query="WSDL"/>
       <hash n="REFERENCED_WEBSERVICE">
          <list n="BD_">
             <hash>
@@ -88,7 +88,7 @@
             </hash>
          </list>
          <list n="BINDING_FILES"/>
-         <value n="GUID" v="66816a7e-013e-1000-8002-ac102a0265bb"/>
+         <value n="GUID" v="7696dff8-013e-1000-800c-c0a8016d69f7"/>
          <value n="MODEL_CLASS" v="oracle.jdeveloper.webservices.model.proxy.WebServiceProxy$ProxyJavaWebService"/>
          <list n="PO_">
             <hash>
@@ -104,7 +104,7 @@
                   </hash>
                </list>
                <hash n="PROPERTY_GROUPS"/>
-               <url n="URL" protocol="http" host="172.16.42.2" port="8001" path="/soa-infra/services/ssdi/SOA_SSDI/SOA_SSDI_Service_ep"/>
+               <url n="URL" protocol="http" host="192.168.1.109" port="8001" path="/soa-infra/services/ssdi/SOA_SSDI/SOA_SSDI_Service_ep"/>
             </hash>
          </list>
          <hash n="PROPERTY_GROUPS">
@@ -130,7 +130,7 @@
          <value n="WS_ORIG_GEN_DIRECTION" v="TOP_DOWN"/>
          <value n="WS_TARGET_NAMESPACE" v="http://xmlns.oracle.com/SSDI_Demo/SOA_SSDI/SOA_SSDI_BPEL"/>
          <value n="WS_URI" v="SOA_SSDI_Service_ep"/>
-         <url n="WS_WSDL_FILE" protocol="http" host="172.16.42.2" port="8001" path="/soa-infra/services/ssdi/SOA_SSDI/SOA_SSDI_Service_ep" query="WSDL"/>
+         <url n="WS_WSDL_FILE" protocol="http" host="192.168.1.109" port="8001" path="/soa-infra/services/ssdi/SOA_SSDI/SOA_SSDI_Service_ep" query="WSDL"/>
       </hash>
       <value n="SERVICE_ASYNC" v="false"/>
       <value n="USE_WSDL_LOCATION" v="true"/>

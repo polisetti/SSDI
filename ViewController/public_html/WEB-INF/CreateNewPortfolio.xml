@@ -2,6 +2,11 @@
 <adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
   <task-flow-definition id="Create_new_portfolio">
     <default-activity id="__1">CreateNewPortfolio</default-activity>
+    <managed-bean id="__15">
+      <managed-bean-name id="__14">HomeBean</managed-bean-name>
+      <managed-bean-class id="__12">com.test.view.backing.HomeBean</managed-bean-class>
+      <managed-bean-scope id="__13">pageFlow</managed-bean-scope>
+    </managed-bean>
     <view id="Success">
       <page id="__11">/Success.jsff</page>
     </view>

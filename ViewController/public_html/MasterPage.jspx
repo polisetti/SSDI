@@ -63,7 +63,7 @@
                                                      value="#{row.Portfolioid}"/>
                       </h:commandLink>
                     </af:column>
-                    <af:column sortProperty="Portfolioid" sortable="false" visible="true"
+                    <!--af:column sortProperty="Portfolioid" sortable="false" visible="true"
                                headerText="#{bindings.UserPortfolioNamesROVO.hints.Portfolioid.label}"
                                id="c2">
                       <af:inputText value="#{row.bindings.Portfolioid.inputValue}"
@@ -77,7 +77,7 @@
                         <af:convertNumber groupingUsed="false"
                                           pattern="#{bindings.UserPortfolioNamesROVO.hints.Portfolioid.format}"/>
                       </af:inputText>
-                    </af:column>
+                    </af:column-->
                   </af:table>
                   <h:commandLink value="Create New" id="cl8"
                                  actionListener="#{pageFlowScope.HomeBean.displayCreatePortfolioTab}"/>
