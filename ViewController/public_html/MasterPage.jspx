@@ -101,7 +101,7 @@
           </f:facet>
           <f:facet name="center">
             <af:group id="g1">
-              <af:panelStretchLayout id="psl1" inlineStyle="width:482px;">
+              <af:panelStretchLayout id="psl1" >
                 <f:facet name="bottom"/>
                 <f:facet name="center">
                   <af:panelTabbed id="pt2" styleClass="AFStrechWidth">

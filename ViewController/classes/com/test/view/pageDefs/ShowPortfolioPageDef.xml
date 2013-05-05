@@ -7,9 +7,8 @@
     <variableIterator id="variables"/>
     <iterator Binds="PortfolioStocksVO" RangeSize="25"
               DataControl="SSDI_AMDataControl" id="PortfolioStocksVOIterator"/>
-    <iterator Binds="UserPortfolioNamesROVO" RangeSize="25"
-              DataControl="SSDI_AMDataControl"
-              id="UserPortfolioNamesROVOIterator"/>
+    <iterator Binds="UserPortfoliosVO" RangeSize="25"
+              DataControl="SSDI_AMDataControl" id="UserPortfoliosVOIterator"/>
   </executables>
   <bindings>
     <tree IterBinding="PortfolioStocksVOIterator" id="PortfolioStocksVO">
@@ -48,8 +47,6 @@
       <NamedData NDName="portfolioID" NDType="int"/>
     </methodAction>
     <action IterBinding="PortfolioStocksVOIterator" id="Delete"
-            RequiresUpdateModel="false" Action="removeCurrentRow"/>
-    <action IterBinding="UserPortfolioNamesROVOIterator" id="Delete1"
             RequiresUpdateModel="false" Action="removeCurrentRow"/>
     <methodAction id="autoComplete"
                   InstanceName="SSDI_AMDataControl.dataProvider"
@@ -93,5 +90,7 @@
                   ReturnName="data.SSDI_AMDataControl.methodResults.getStockName_SSDI_AMDataControl_dataProvider_getStockName_result">
       <NamedData NDName="pStockID" NDType="oracle.jbo.domain.Number"/>
     </methodAction>
+    <action IterBinding="UserPortfoliosVOIterator" id="Delete2"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
   </bindings>
 </pageDefinition>

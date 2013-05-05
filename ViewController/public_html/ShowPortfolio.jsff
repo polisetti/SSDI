@@ -72,15 +72,13 @@
                                 text="Delete Stock"
                                 disabled="#{!bindings.Delete.enabled}" id="cb1"
                                 immediate="true"/>
-              <af:commandButton actionListener="#{bindings.Delete1.execute}"
+              <af:commandButton actionListener="#{bindings.Delete2.execute}"
                                 text="Delete Portfolio"
-                                disabled="#{!bindings.Delete1.enabled}"
-                                id="cb2"/>
+                                id="cb4"/>
             </af:toolbar>
           </f:facet>
         </af:panelCollection>
-        <af:panelFormLayout id="pfl1" rows="1">
-          <f:facet name="footer"/>
+        <af:panelGroupLayout id="pgl2" layout="horizontal">
           <af:inputText label="Enter" id="it1"
                         value="#{pageFlowScope.PortfolioBakingBean.stockName}">
             <af:autoSuggestBehavior suggestItems="#{pageFlowScope.PortfolioBakingBean.auto}"/>
@@ -88,9 +86,9 @@
           <af:commandButton text="Add To Portfolio" id="cb5"
                             actionListener="#{pageFlowScope.PortfolioBakingBean.addStocksToPortfolio}"/>
           <af:commandButton actionListener="#{bindings.Commit.execute}"
-                            text="Commit All Changes"
-                            disabled="#{!bindings.Commit.enabled}" id="cb3"/>
-        </af:panelFormLayout>
+                            text="Commit" disabled="#{!bindings.Commit.enabled}"
+                            id="cb3"/>
+        </af:panelGroupLayout>
         <af:panelGroupLayout layout="scroll"
                              xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
                              id="pgl5">
