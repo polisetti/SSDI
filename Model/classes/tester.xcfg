@@ -1,10 +1,11 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
    <AppModuleConfigBag ApplicationName="com.test.model.am.SSDI_AM">
-      <AppModuleConfig name="13E6B1C6B0E" user="SSDI-DEMO" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" password="SSDI-DEMO" DBconnection="jdbc:oracle:thin:@localhost:1521:XE" IsLazyLoadingTrue="true" JDBCName="SSDI-DEMO" jbo.project="com.test.model.Model" BC4JConfigName="SSDI_AMLocal" DeployPlatform="LOCAL" ApplicationName="com.test.model.am.SSDI_AM">
-         <Database jbo.SQLBuilder="Oracle" jbo.TypeMapEntries="Oracle"/>
+      <AppModuleConfig name="13E7127F95B" DBconnection="jdbc:oracle:thin:@localhost:1521:XE" password="SSDI-DEMO" ApplicationName="com.test.model.am.SSDI_AM" DeployPlatform="LOCAL" IsLazyLoadingTrue="true" user="SSDI-DEMO" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" JDBCName="SSDI-DEMO" BC4JConfigName="SSDI_AMLocal" jbo.project="com.test.model.Model">
+         <Database jbo.TypeMapEntries="Oracle" jbo.SQLBuilder="Oracle"/>
          <Security AppModuleJndiName="com.test.model.am.SSDI_AM"/>
          <Tester FullProxyInterfaceName="com.test.model.am.common.SSDI_AM"/>
+         <Custom LastUsedConfiguration="SSDI_AMLocal"/>
       </AppModuleConfig>
    </AppModuleConfigBag>
 </BC4JConfig>

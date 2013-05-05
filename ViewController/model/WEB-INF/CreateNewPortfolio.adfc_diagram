@@ -3,22 +3,74 @@
    <OverallProperties
       id="OverallProperties1"/>
    <View
-      id="View3">
+      id="View4">
       <property
-         name="activityId">CreateNewPortfolio1</property>
+         name="activityId">Success</property>
+      <property
+         name="page">/Success.jsff</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>Success&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">169.69531</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">388.5</property>
+   </View>
+   <View
+      id="View6">
+      <property
+         name="activityId">CreateNewPortfolio</property>
       <property
          name="page">/CreateNewPortfolio.jsff</property>
       <property
          name="start">true</property>
       <property
-         name="description">&lt;html>&lt;p>&lt;b>CreateNewPortfolio1&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+         name="description">&lt;html>&lt;p>&lt;b>CreateNewPortfolio&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
       <property
          name="exceptionHandler">false</property>
       <property
-         name="y">249.44824</property>
+         name="y">259.44824</property>
       <property
          name="pageFragment">true</property>
       <property
-         name="x">409.35938</property>
+         name="x">166.02246</property>
    </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase7"
+      from="View6"
+      to="View4">
+      <property
+         name="fromOutcome">success</property>
+      <property
+         name="sdm:polyPoints">R46,207.02246,255.59766,347.5,169.34473,L50</property>
+   </ControlFlowCase>
+   <TaskFlowReturn
+      id="TaskFlowReturn8">
+      <property
+         name="activityId">taskFlowReturn1</property>
+      <property
+         name="finish">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>taskFlowReturn1&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Return&lt;/p>&lt;p>Outcome:  taskFlowReturn1&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">333.94824</property>
+      <property
+         name="x">499.0</property>
+   </TaskFlowReturn>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase9"
+      from="View6"
+      to="TaskFlowReturn8">
+      <property
+         name="fromOutcome">cancel</property>
+      <property
+         name="sdm:polyPoints">R54,207.02246,262.59766,458.0,333.59766,L50</property>
+   </ControlFlowCase>
 </SDM>

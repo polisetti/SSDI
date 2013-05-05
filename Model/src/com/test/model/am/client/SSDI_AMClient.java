@@ -29,7 +29,43 @@ public class SSDI_AMClient extends ApplicationModuleImpl implements SSDI_AM {
             this.riInvokeExportedMethod(this,"autoComplete",new String [] {"java.lang.String"},new Object[] {inputValue});
         return (List<String>)_ret;
     }
-    
+
+
+    public Map getTodayPrice(Number stockID, Number stDate, Number enDate) {
+        Object _ret =
+            this.riInvokeExportedMethod(this,"getTodayPrice",new String [] {"oracle.jbo.domain.Number","oracle.jbo.domain.Number","oracle.jbo.domain.Number"},new Object[] {stockID, stDate, enDate});
+        return (Map)_ret;
+    }
+
+
+
+    public Map getThePastPrices(Number stockID, Number stDate, Number enDate) {
+        Object _ret =
+            this.riInvokeExportedMethod(this,"getThePastPrices",new String [] {"oracle.jbo.domain.Number","oracle.jbo.domain.Number","oracle.jbo.domain.Number"},new Object[] {stockID, stDate, enDate});
+        return (Map)_ret;
+    }
+
+
+    //    public Map getThePastPrices(Number stockID, Number stDate, Number enDate) {
+//        Object _ret =
+//            this.riInvokeExportedMethod(this,"getThePastPrices",new String [] {"oracle.jbo.domain.Number","oracle.jbo.domain.Number","oracle.jbo.domain.Number"},new Object[] {stockID, stDate, enDate});
+//        return (Map)_ret;
+//    }
+
+
+//    public Map getThePastPrices(Number stockID, Number stDate, Number enDate) {
+//        Object _ret =
+//            this.riInvokeExportedMethod(this,"getThePastPrices",new String [] {"oracle.jbo.domain.Number","oracle.jbo.domain.Number","oracle.jbo.domain.Number"},new Object[] {stockID, stDate, enDate});
+//        return (Map)_ret;
+//    }
+
+
+//    public Map getThePastPrices(Number stockID, Number stDate, Number enDate) {
+//        Object _ret =
+//            this.riInvokeExportedMethod(this,"getThePastPrices",new String [] {"oracle.jbo.domain.Number","oracle.jbo.domain.Number","oracle.jbo.domain.Number"},new Object[] {stockID, stDate, enDate});
+//        return (Map)_ret;
+//    }
+
     public void deleteStocksFromPortfolio(int stockID, int portfolioID) {
         Object _ret =
             this.riInvokeExportedMethod(this,"deleteStocksFromPortfolio",new String [] {"int","int"},new Object[] {new Integer(stockID), new Integer(portfolioID)});
@@ -83,17 +119,20 @@ public class SSDI_AMClient extends ApplicationModuleImpl implements SSDI_AM {
         return (String)_ret;
     }
 
-    public Map getTodayPrice(Number stockID, Number stDate, Number enDate) {
+//    public Map getThePastPrices(Number stockID, Number stDate, Number enDate) {
+//        Object _ret =
+//            this.riInvokeExportedMethod(this,"getThePastPrices",new String [] {"oracle.jbo.domain.Number","oracle.jbo.domain.Number","oracle.jbo.domain.Number"},new Object[] {stockID, stDate, enDate});
+//        return (Map)_ret;
+//    }
+
+    public Number getPortfolioID(String portfolioName) {
         Object _ret =
-            this.riInvokeExportedMethod(this,"getTodayPrice",new String [] {"oracle.jbo.domain.Number","oracle.jbo.domain.Number","oracle.jbo.domain.Number"},new Object[] {stockID, stDate, enDate});
-        return (Map)_ret;
+            this.riInvokeExportedMethod(this,"getPortfolioID",new String [] {"java.lang.String"},new Object[] {portfolioName});
+        return (Number)_ret;
     }
 
-
-
-    public Map getThePastPrices(Number stockID, Number stDate, Number enDate) {
-        Object _ret =
-            this.riInvokeExportedMethod(this,"getThePastPrices",new String [] {"oracle.jbo.domain.Number","oracle.jbo.domain.Number","oracle.jbo.domain.Number"},new Object[] {stockID, stDate, enDate});
-        return (Map)_ret;
+    public void showPortfolio() {
+        Object _ret = this.riInvokeExportedMethod(this,"showPortfolio",null,null);
+        return;
     }
 }

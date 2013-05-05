@@ -1,16 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
-          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
-  <af:popup id="p1">
-    <af:dialog id="d1">
-      <af:outputText value="Create Portfolio" id="ot1"
-                     inlineStyle="font-size:medium; text-align:center;"/>
-      <af:inputText label="Label 1" id="it1"/>
-    </af:dialog>
-  </af:popup>
-  <af:commandButton text="Create Portfolio" id="cb1">
-    <af:showPopupBehavior popupId="p1"/>
-  </af:commandButton>
-  <af:spacer width="10" height="10" id="s1"/>
-  <af:commandButton text="Cancel" id="cb2"/>
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelGroupLayout id="pgl2">
+    <af:spacer width="10" height="10" id="s3"/>
+    <af:activeOutputText value="Enter the Portfolio Name" id="aot1"
+                         inlineStyle="font-size:large;"/>
+    <af:panelGroupLayout id="pgl1">
+      <af:inputText id="it1"/>
+      <af:spacer width="10" height="10" id="s2"/>
+      <af:commandButton text="Create Portfolio" id="cb1" action="success"/>
+      <af:spacer width="10" height="10" id="s1"/>
+      <af:commandButton text="Cancel" id="cb2" action="cancel"/>
+    </af:panelGroupLayout>
+  </af:panelGroupLayout>
 </jsp:root>

@@ -56,11 +56,31 @@
                             fetchSize="#{bindings.UserPortfolioNamesROVO.rangeSize}"
                             rowBandingInterval="0" id="t1">
                     <af:column sortProperty="Portfolioname" sortable="false"
-                               id="c1">
-                      <h:commandLink value="#{row.Portfolioname}" id="cl9"/>
+                               id="c1" headerText="">
+                      <h:commandLink value="#{row.Portfolioname}" id="cl9"
+                                     actionListener="#{pageFlowScope.HomeBean.displayOnePortfolio}">
+                        <f:setPropertyActionListener target="#{pageFlowScope.HomeBean.portfolioID}"
+                                                     value="#{row.Portfolioid}"/>
+                      </h:commandLink>
+                    </af:column>
+                    <af:column sortProperty="Portfolioid" sortable="false" visible="true"
+                               headerText="#{bindings.UserPortfolioNamesROVO.hints.Portfolioid.label}"
+                               id="c2">
+                      <af:inputText value="#{row.bindings.Portfolioid.inputValue}"
+                                    label="#{bindings.UserPortfolioNamesROVO.hints.Portfolioid.label}"
+                                    required="#{bindings.UserPortfolioNamesROVO.hints.Portfolioid.mandatory}"
+                                    columns="#{bindings.UserPortfolioNamesROVO.hints.Portfolioid.displayWidth}"
+                                    maximumLength="#{bindings.UserPortfolioNamesROVO.hints.Portfolioid.precision}"
+                                    shortDesc="#{bindings.UserPortfolioNamesROVO.hints.Portfolioid.tooltip}"
+                                    id="it1">
+                        <f:validator binding="#{row.bindings.Portfolioid.validator}"/>
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.UserPortfolioNamesROVO.hints.Portfolioid.format}"/>
+                      </af:inputText>
                     </af:column>
                   </af:table>
-                  <h:commandLink value="Create New" id="cl8"/>
+                  <h:commandLink value="Create New" id="cl8"
+                                 actionListener="#{pageFlowScope.HomeBean.displayCreatePortfolioTab}"/>
                 </af:panelGroupLayout>
               </af:showDetailItem>
               <af:showDetailItem text="DomesticTrends" id="sdi4">
@@ -112,6 +132,21 @@
                         <af:region value="#{bindings.CompareMultiStocks1.regionModel}"
                                    id="r3"/>
                       </af:panelGroupLayout>
+                    </af:showDetailItem>
+                    <af:showDetailItem text="ShowPortfolio" id="sdi9"
+                                       rendered="#{pageFlowScope.HomeBean.renderPortfolioTab}"
+                                       disclosed="#{pageFlowScope.HomeBean.renderPortfolioTab}">
+                      <af:panelGroupLayout id="pgl8">
+                        <af:region value="#{bindings.ShowPortfolio1.regionModel}"
+                                   id="r4"/>
+                      </af:panelGroupLayout>
+                    </af:showDetailItem>
+                    <af:showDetailItem text="CreatePortfolio" id="sdi10"
+                                       rendered="#{pageFlowScope.HomeBean.renderCreatePortfolioTab}"
+                                       partialTriggers="cl8"
+                                       disclosed="#{pageFlowScope.HomeBean.renderCreatePortfolioTab}">
+                      <af:region value="#{bindings.Create_new_portfolio1.regionModel}"
+                                 id="r5"/>
                     </af:showDetailItem>
                   </af:panelTabbed>
                 </f:facet>

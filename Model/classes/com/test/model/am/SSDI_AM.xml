@@ -23,12 +23,6 @@
     Name="UserDetailsVO"
     ViewObjectName="com.test.model.view.UserDetailsVO"/>
   <ViewUsage
-    Name="UserPortfoliosVO"
-    ViewObjectName="com.test.model.view.UserPortfoliosVO"/>
-  <ViewUsage
-    Name="UserPortfolioNamesROVO"
-    ViewObjectName="com.test.model.view.UserPortfolioNamesROVO"/>
-  <ViewUsage
     Name="PortfolioStocksVO"
     ViewObjectName="com.test.model.view.PortfolioStocksVO"/>
   <ViewUsage
@@ -49,6 +43,12 @@
   <ViewUsage
     Name="TestStockPricesVO"
     ViewObjectName="com.test.model.view.TestStockPricesVO"/>
+  <ViewUsage
+    Name="UserPortfoliosVO"
+    ViewObjectName="com.test.model.view.UserPortfoliosVO"/>
+  <ViewUsage
+    Name="UserPortfolioNamesROVO"
+    ViewObjectName="com.test.model.view.UserPortfolioNamesROVO"/>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="com.test.model.ModelBundle"/>
@@ -130,31 +130,6 @@
         Type="oracle.jbo.domain.Number"/>
     </Method>
     <Method
-      Name="getTodayPrice">
-      <Return
-        Type="java.util.Map"/>
-      <Parameter
-        Name="stockID"
-        Type="oracle.jbo.domain.Number"/>
-      <Parameter
-        Name="stDate"
-        Type="oracle.jbo.domain.Number"/>
-      <Parameter
-        Name="enDate"
-        Type="oracle.jbo.domain.Number"/>
-    </Method>
-    <Method
-      Name="autoComplete">
-      <Return
-        Type="java.util.List">
-        <Element
-          Type="java.lang.String"/>
-      </Return>
-      <Parameter
-        Name="inputValue"
-        Type="java.lang.String"/>
-    </Method>
-    <Method
       Name="getThePastPrices">
       <Return
         Type="java.util.Map"
@@ -168,6 +143,19 @@
       <Parameter
         Name="enDate"
         Type="oracle.jbo.domain.Number"/>
+    </Method>
+    <Method
+      Name="getPortfolioID">
+      <Return
+        Type="oracle.jbo.domain.Number"/>
+      <Parameter
+        Name="portfolioName"
+        Type="java.lang.String"/>
+    </Method>
+    <Method
+      Name="showPortfolio">
+      <Return
+        Type="void"/>
     </Method>
   </ClientInterface>
 </AppModule>

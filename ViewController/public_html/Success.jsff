@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:spacer width="50" height="50" id="s1"/>
+  <af:activeOutputText value="Portfolio Creation is Sucessful" id="aot1"
+                       inlineStyle="font-size:large;"/>
+</jsp:root>

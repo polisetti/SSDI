@@ -12,13 +12,27 @@
   BindingStyle="OracleName"
   CustomQuery="false"
   PageIterMode="Full"
-  UseGlueCode="false">
+  UseGlueCode="false"
+  RowClass="com.test.model.view.UserPortfoliosVORowImpl"
+  ComponentClass="com.test.model.view.UserPortfoliosVOImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
   <Properties>
     <SchemaBasedProperties>
       <LABEL
         ResId="com.test.model.view.UserPortfoliosVO_LABEL"/>
     </SchemaBasedProperties>
   </Properties>
+  <Variable
+    Name="BindPortfolioName"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="BindPortfolioID"
+    Kind="viewcriteria"
+    Type="oracle.jbo.domain.Number"/>
   <EntityUsage
     Name="UserPortfoliosEO"
     Entity="com.test.model.entity.UserPortfoliosEO"/>
@@ -62,6 +76,87 @@
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>
+  <ViewCriteria
+    Name="getPortfolioIDCriteria"
+    ViewObjectName="com.test.model.view.UserPortfoliosVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow6"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="Portfolioname"
+        ViewAttribute="Portfolioname"
+        Operator="="
+        Conjunction="AND"
+        Value=":BindPortfolioName"
+        GenerateIsNullClauseForBindVars="false"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ViewCriteria
+    Name="showPortfolioStocksCriteria"
+    ViewObjectName="com.test.model.view.UserPortfoliosVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow14"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="UserPortfoliosVOCriteria_vcrow14_Portfolioid"
+        ViewAttribute="Portfolioid"
+        Operator="="
+        Conjunction="AND"
+        Value=":BindPortfolioID"
+        GenerateIsNullClauseForBindVars="false"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="Userid"
+        ViewAttribute="Userid"
+        Operator="="
+        Conjunction="AND"
+        Value="1"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="com.test.model.ModelBundle"/>

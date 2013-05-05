@@ -20,6 +20,19 @@
               taskFlowId="/WEB-INF/CompareMultiStocks.xml#CompareMultiStocks"
               activation="deferred"
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="ShowPortfolio1"
+              taskFlowId="/WEB-INF/ShowPortfolio.xml#ShowPortfolio"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="inputParameter1"
+                   value="#{pageFlowScope.HomeBean.portfolioID}"/>
+      </parameters>
+    </taskFlow>
+    <taskFlow id="Create_new_portfolio1"
+              taskFlowId="/WEB-INF/CreateNewPortfolio.xml#Create_new_portfolio"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
   </executables>
   <bindings>
     <tree IterBinding="UserPortfolioNamesROVOIterator"
@@ -28,8 +41,22 @@
                       Name="UserPortfolioNamesROVO0">
         <AttrNames>
           <Item Value="Portfolioname"/>
+          <Item Value="Portfolioid"/>
         </AttrNames>
       </nodeDefinition>
     </tree>
+    <methodAction id="getPortfolioID"
+                  InstanceName="SSDI_AMDataControl.dataProvider"
+                  DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="getPortfolioID"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.SSDI_AMDataControl.methodResults.getPortfolioID_SSDI_AMDataControl_dataProvider_getPortfolioID_result">
+      <NamedData NDName="portfolioName" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="showPortfolio"
+                  InstanceName="SSDI_AMDataControl.dataProvider"
+                  DataControl="SSDI_AMDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="showPortfolio"
+                  IsViewObjectMethod="false"/>
   </bindings>
 </pageDefinition>

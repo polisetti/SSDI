@@ -3,60 +3,57 @@
           xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
           xmlns:f="http://java.sun.com/jsf/core"
           xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
-  <af:panelSplitter id="ps1" orientation="vertical" splitterPosition="203">
-    <f:facet name="first">
-      <af:panelGroupLayout id="pgl1" halign="center" valign="middle"
-                           layout="vertical">
+  <af:panelStretchLayout id="psl1">
+    <f:facet name="bottom"/>
+    <f:facet name="center">
+      <af:panelGroupLayout layout="scroll"
+                           xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                           id="pgl3">
         <af:spacer width="10" height="10" id="s3"/>
-        <af:activeOutputText value="Enter the Stock Name" id="aot1"
-                             inlineStyle="color:Black; font-size:x-large; text-align:center;"/>
-        <af:panelGroupLayout id="pgl2" layout="horizontal">
-          <af:inputText label="" id="it1"
-                        inlineStyle="font-size:medium; text-align:center;"
-                        columns="40" autoSubmit="true"
-                        value="#{pageFlowScope.SearchStockPriceBean.stockSelected}">
-                        
-            <af:autoSuggestBehavior suggestItems="#{pageFlowScope.SearchStockPriceBean.autoComplete}"/>
-          </af:inputText>
-          <af:spacer width="10" height="10" id="s1"/>
-          <af:commandButton
-                            text="Search"
-                            id="cb2"
-                            actionListener="#{pageFlowScope.SearchStockPriceBean.updateLineGraph}"/>
-          <af:spacer width="10" height="10" id="s2"/>
-          <f:verbatim>
-            <br/>
-            <br/>
-          </f:verbatim>
-        </af:panelGroupLayout>
-        <f:verbatim>
-          <br/>
-        </f:verbatim>
+        <dvt:lineGraph id="lineGraph1" subType="LINE_VERT_ABS"
+                       threeDEffect="false" inlineStyle="text-align:center;"
+                       partialTriggers="::cb2"
+                       tabularData="#{pageFlowScope.SearchStockPriceBean.tabularData}">
+          <dvt:background>
+            <dvt:specialEffects/>
+          </dvt:background>
+          <dvt:graphPlotArea/>
+          <dvt:seriesSet>
+            <dvt:series/>
+          </dvt:seriesSet>
+          <dvt:o1Axis/>
+          <dvt:y1Axis/>
+          <dvt:legendArea automaticPlacement="AP_NEVER" position="LAP_TOP"
+                          rendered="false"/>
+          <dvt:graphSubtitle text="Subtitle" rendered="false"/>
+          <dvt:graphTitle text="StockPriceGraph"/>
+          <dvt:o1Title text="Time"/>
+          <dvt:y1Title text="Price"/>
+          <dvt:legendTitle id="legendTitle1" text="Legend Title"
+                           rendered="false"/>
+        </dvt:lineGraph>
       </af:panelGroupLayout>
     </f:facet>
-    <f:facet name="second">
-      <dvt:lineGraph id="lineGraph1"
-                     subType="LINE_VERT_ABS" threeDEffect="false"
-                     inlineStyle="text-align:center;" partialTriggers="::cb2"
-                     tabularData="#{pageFlowScope.SearchStockPriceBean.tabularData}">
-        <dvt:background>
-          <dvt:specialEffects/>
-        </dvt:background>
-        <dvt:graphPlotArea/>
-        <dvt:seriesSet>
-          <dvt:series/>
-        </dvt:seriesSet>
-        <dvt:o1Axis/>
-        <dvt:y1Axis/>
-        <dvt:legendArea automaticPlacement="AP_NEVER" position="LAP_TOP"
-                        rendered="false"/>
-        <dvt:graphSubtitle text="Subtitle" rendered="false"/>
-        <dvt:graphTitle text="StockPriceGraph"/>
-        <dvt:o1Title text="Time"/>
-        <dvt:y1Title text="Price"/>
-        <dvt:legendTitle id="legendTitle1" text="Legend Title"
-                         rendered="false"/>
-      </dvt:lineGraph>
+    <f:facet name="start"/>
+    <f:facet name="end"/>
+    <f:facet name="top">
+  
+        <af:panelFormLayout id="pfl1" rows="2">
+          <af:outputText value="Enter the Stock Name" id="aot1"
+                         inlineStyle="color:Black; font-size:x-large; text-align:center;"/>
+          <af:panelGroupLayout id="pgl2" layout="horizontal">
+            <af:inputText label="" id="it1"
+                          inlineStyle="font-size:medium; text-align:center;"
+                          columns="40" autoSubmit="true"
+                          value="#{pageFlowScope.SearchStockPriceBean.stockSelected}">
+              <af:autoSuggestBehavior suggestItems="#{pageFlowScope.SearchStockPriceBean.autoComplete}"/>
+            </af:inputText>
+            <af:spacer width="10" height="10" id="s1"/>
+            <af:commandButton text="Search" id="cb2"
+                              actionListener="#{pageFlowScope.SearchStockPriceBean.updateLineGraph}"/>
+          </af:panelGroupLayout>
+        </af:panelFormLayout>
+
     </f:facet>
-  </af:panelSplitter>
+  </af:panelStretchLayout>
 </jsp:root>

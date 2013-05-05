@@ -15,6 +15,12 @@ import com.test.model.view.TestStockPricesVOImpl;
 
 import com.test.model.view.TestStockPricesVORowImpl;
 
+import com.test.model.view.UserPortfolioNamesROVOImpl;
+import com.test.model.view.UserPortfolioNamesROVORowImpl;
+import com.test.model.view.UserPortfoliosVOImpl;
+
+import com.test.model.view.UserPortfoliosVORowImpl;
+
 import java.sql.SQLException;
 
 import java.text.DateFormat;
@@ -58,21 +64,6 @@ public class SSDI_AMImpl extends ApplicationModuleImpl implements SSDI_AM {
         return (ViewObjectImpl)findViewObject("UserDetailsVO");
     }
 
-    /**
-     * Container's getter for UserPortfoliosVO.
-     * @return UserPortfoliosVO
-     */
-    public ViewObjectImpl getUserPortfoliosVO() {
-        return (ViewObjectImpl)findViewObject("UserPortfoliosVO");
-    }
-
-    /**
-     * Container's getter for UserPortfolioNamesROVO.
-     * @return UserPortfolioNamesROVO
-     */
-    public ViewObjectImpl getUserPortfolioNamesROVO() {
-        return (ViewObjectImpl)findViewObject("UserPortfolioNamesROVO");
-    }
 
     /**
      * @param stockID1
@@ -171,13 +162,49 @@ public class SSDI_AMImpl extends ApplicationModuleImpl implements SSDI_AM {
             row.setDateadded(dateAdded);
             row.setTimeadded(timeAdded);
             row.setStockid(stockID);
-        } catch (TooManyObjectsException ex) {
+        }
+        catch (TooManyObjectsException ex) {
             throw new JboException(ex.getMessage());
         }
 
         this.getDBTransaction().commit();
     }
+    public void showPortfolio() {
+        UserPortfolioNamesROVOImpl vo1 = getUserPortfolioNamesROVO();
+        UserPortfolioNamesROVORowImpl row = (UserPortfolioNamesROVORowImpl)vo1.getCurrentRow();
+        Number portfolioID = row.getPortfolioid();
+        System.out.println("In the am impl method");
+        System.out.println(portfolioID);
+            
+        UserPortfoliosVOImpl vo = getUserPortfoliosVO();
+        ViewCriteria vc =
+            vo.getViewCriteria("showPortfolioStocksCriteria");
 
+        vc.resetCriteria();
+        vo.setBindPortfolioID(portfolioID);
+      
+        vo.applyViewCriteria(vc);
+        vo.executeQuery();
+    }
+    public Number getPortfolioID(String portfolioName) {
+        UserPortfoliosVOImpl pfVO = getUserPortfoliosVO();
+        ViewCriteria vc =
+            pfVO.getViewCriteria("getPortfolioIDCriteria");
+
+        vc.resetCriteria();
+        pfVO.setBindPortfolioName(portfolioName);
+        
+        pfVO.applyViewCriteria(vc);
+        pfVO.executeQuery();
+
+        // parsing the VO results
+        UserPortfoliosVORowImpl resultRow =
+            (UserPortfoliosVORowImpl)pfVO.first();
+        
+        return resultRow.getPortfolioid();
+        
+        
+    }
     public void deleteStocksFromPortfolio(int stockID, int portfolioID) {
 
     }
@@ -340,4 +367,19 @@ public class SSDI_AMImpl extends ApplicationModuleImpl implements SSDI_AM {
         return m;
     }
 
+    /**
+     * Container's getter for UserPortfoliosVO.
+     * @return UserPortfoliosVO
+     */
+    public UserPortfoliosVOImpl getUserPortfoliosVO() {
+        return (UserPortfoliosVOImpl)findViewObject("UserPortfoliosVO");
+    }
+
+    /**
+     * Container's getter for UserPortfolioNamesROVO.
+     * @return UserPortfolioNamesROVO
+     */
+    public UserPortfolioNamesROVOImpl getUserPortfolioNamesROVO() {
+        return (UserPortfolioNamesROVOImpl)findViewObject("UserPortfolioNamesROVO");
+    }
 }

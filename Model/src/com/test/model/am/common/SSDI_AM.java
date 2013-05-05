@@ -34,4 +34,8 @@ public interface SSDI_AM extends ApplicationModule {
 
     Map<Number, Double> getThePastPrices(Number stockID, Number stDate,
                                          Number enDate);
+
+    Number getPortfolioID(String portfolioName);
+
+    void showPortfolio();
 }

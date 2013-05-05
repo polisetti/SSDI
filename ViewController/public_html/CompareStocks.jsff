@@ -4,13 +4,47 @@
           xmlns:f="http://java.sun.com/jsf/core"
           xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces"
           xmlns:h="http://java.sun.com/jsf/html">
-  <af:panelSplitter id="ps1" orientation="vertical">
-    <f:facet name="first">
-              <af:panelStretchLayout id="psl1" endWidth="100px">
-          <f:facet name="bottom"/>
-          <f:facet name="center">
-		  <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
-        <af:spacer width="50" height="30" id="s1"/>
+  <af:panelStretchLayout id="psl3" topHeight="80px">
+    <f:facet name="bottom"/>
+         
+    <f:facet name="center">
+      <af:panelGroupLayout layout="scroll"
+                           xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                           id="pgl4">
+        <af:panelGroupLayout id="pgl3" halign="center">
+          <af:spacer width="25" height="10" id="s5"/>
+          <h:commandLink value="5 Days" id="cl1" style="font-size:medium;"
+                         actionListener="#{pageFlowScope.CompareStocksBean.updateLineGraph}">
+            <af:spacer width="10" height="10" id="s3"/>
+            <f:setPropertyActionListener target="#{pageFlowScope.CompareStocksBean.numberOfDays}"
+                                         value="5"/>
+          </h:commandLink>
+          <h:commandLink value="10 Days" id="cl2" style="font-size:medium;"
+                         actionListener="#{pageFlowScope.CompareStocksBean.updateTenDaysLineGraph}">
+            <af:spacer width="10" height="10" id="s4"/>
+            <f:setPropertyActionListener target="#{pageFlowScope.CompareStocksBean.numberOfDays}"
+                                         value="10"/>
+          </h:commandLink>
+          <h:commandLink value="15 Days" id="cl3" style="font-size:medium;"
+                         actionListener="#{pageFlowScope.CompareStocksBean.updateFifteenDaysLineGraph}">
+            <f:setPropertyActionListener target="#{pageFlowScope.CompareStocksBean.numberOfDays}"
+                                         value="15"/>
+          </h:commandLink>
+        </af:panelGroupLayout>
+        <dvt:lineGraph id="lineGraph1" subType="LINE_VERT_ABS"
+                       tabularData="#{pageFlowScope.CompareStocksBean.tabularData}"
+                       partialTriggers="::cb1"
+                       rendered="#{pageFlowScope.CompareStocksBean.showLineGraph}">
+          <dvt:legendArea automaticPlacement="AP_NEVER"/>
+        </dvt:lineGraph>
+      </af:panelGroupLayout>
+    </f:facet>
+    <f:facet name="start"/>
+    <f:facet name="end"/>
+    <f:facet name="top">
+    
+      <af:panelFormLayout id="pfl1">
+
         <af:outputText value="Enter the Stock Name" id="ot1"
                        inlineStyle="color:Black; font-size:x-large; text-align:center;"/>
         <af:panelGroupLayout id="pgl2" layout="horizontal">
@@ -23,51 +57,7 @@
                             actionListener="#{pageFlowScope.CompareStocksBean.updateLineGraph}"
                             partialSubmit="true"/>
         </af:panelGroupLayout>
-      </af:panelGroupLayout>
-		  </f:facet>
-          <f:facet name="start"/>
-          <f:facet name="end"/>
-        </af:panelStretchLayout>
-
+      </af:panelFormLayout>
     </f:facet>
-    <f:facet name="second">
-      <af:panelStretchLayout id="psl2" bottomHeight="1px" styleClass="AFStrechWidth">
-        <f:facet name="bottom"/>
-        <f:facet name="center">
-          <af:panelGroupLayout layout="scroll"
-                               xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
-                               id="pgl4">
-            <af:panelGroupLayout id="pgl3" halign="center">
-              <af:spacer width="25" height="10" id="s5"/>
-              <h:commandLink value="5 Days" id="cl1" style="font-size:medium;"
-                             actionListener="#{pageFlowScope.CompareStocksBean.updateLineGraph}">
-                <af:spacer width="10" height="10" id="s3"/>
-                <f:setPropertyActionListener target="#{pageFlowScope.CompareStocksBean.numberOfDays}"
-                                             value="5"/>
-              </h:commandLink>
-              <h:commandLink value="10 Days" id="cl2" style="font-size:medium;"
-                             actionListener="#{pageFlowScope.CompareStocksBean.updateTenDaysLineGraph}">
-                <af:spacer width="10" height="10" id="s4"/>
-                <f:setPropertyActionListener target="#{pageFlowScope.CompareStocksBean.numberOfDays}"
-                                             value="10"/>
-              </h:commandLink>
-              <h:commandLink value="15 Days" id="cl3" style="font-size:medium;"
-                             actionListener="#{pageFlowScope.CompareStocksBean.updateFifteenDaysLineGraph}">
-                <f:setPropertyActionListener target="#{pageFlowScope.CompareStocksBean.numberOfDays}"
-                                             value="15"/>
-              </h:commandLink>
-            </af:panelGroupLayout>
-            <dvt:lineGraph id="lineGraph1" subType="LINE_VERT_ABS"
-                           tabularData="#{pageFlowScope.CompareStocksBean.tabularData}"
-                           partialTriggers="::cb1"
-                           rendered="#{pageFlowScope.CompareStocksBean.showLineGraph}">
-              <dvt:legendArea automaticPlacement="AP_NEVER"/>
-            </dvt:lineGraph>
-          </af:panelGroupLayout>
-        </f:facet>
-        <f:facet name="start"/>
-        <f:facet name="end"/>
-      </af:panelStretchLayout>
-    </f:facet>
-  </af:panelSplitter>
+  </af:panelStretchLayout>
 </jsp:root>

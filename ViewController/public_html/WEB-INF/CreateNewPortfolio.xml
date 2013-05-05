@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="windows-1252" ?>
 <adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
-  <task-flow-definition id="CreateNewPortfolio">
-    <default-activity id="__1">CreateNewPortfolio1</default-activity>
-    <view id="CreateNewPortfolio1">
+  <task-flow-definition id="Create_new_portfolio">
+    <default-activity id="__1">CreateNewPortfolio</default-activity>
+    <view id="Success">
+      <page id="__11">/Success.jsff</page>
+    </view>
+    <view id="CreateNewPortfolio">
       <page>/CreateNewPortfolio.jsff</page>
     </view>
+    <task-flow-return id="taskFlowReturn1">
+      <outcome id="__7">
+        <name>taskFlowReturn1</name>
+      </outcome>
+    </task-flow-return>
+    <control-flow-rule id="__2">
+      <from-activity-id id="__3">CreateNewPortfolio</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome id="__6">success</from-outcome>
+        <to-activity-id id="__4">Success</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__9">
+        <from-outcome id="__10">cancel</from-outcome>
+        <to-activity-id id="__8">taskFlowReturn1</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
     <use-page-fragments/>
   </task-flow-definition>
 </adfc-config>
